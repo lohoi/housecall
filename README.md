@@ -28,7 +28,7 @@ Things you may want to cover:
 2. Install rails 5.1.4
 3. Clone the directory
 4. Navigate into the directory and run `rails s` to bootup the rails backend server
-5. Navigate into the web-app directory and run `ng serve` to bootup the Angular app.
+5. Navigate into the web-app directory and run `npm install` followed by `ng serve` to bootup the Angular app.
 
 ## Dev Notes:
 * `ng new <application name>`: Creates new AngularJS 2 application
