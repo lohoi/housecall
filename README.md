@@ -46,5 +46,6 @@ Things you may want to cover:
 Add your routes to app-routing.module.ts
 
 * Authentication
+TODO...
 
 * This application seems to require two servers, one to run the Angular webapp and other to run the Rails backend server. 
