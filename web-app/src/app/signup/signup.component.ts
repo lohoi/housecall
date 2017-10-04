@@ -13,21 +13,20 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.submitUser()
   }
 
   submitUser = function() {
-    let params = {
-      email: "remsr@umich.edu",
-      skype: "test",
-      firstname: "rem",
-      lastname: "re",
-      password: "1234567890",
-      specialty: 1,
-      hospital_id: 2,
-      user_type: 1
-    }
-    console.log(params)
-    this.http.post('http://localhost:3000/users', params).subscribe();
+    // let params = {
+    //   email: ,
+    //   skype: ,
+    //   firstname: ,
+    //   lastname: ,
+    //   password: ,
+    //   specialty: ,
+    //   hospital_id: ,
+    //   user_type: ,
+    // }
+    console.log(this.user);
+    // this.http.post('http://localhost:3000/users', params).subscribe();
   }
 }
