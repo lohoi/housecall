@@ -9,8 +9,9 @@ const routes: Routes = [
     path: '',
     component: LoginComponent
   },
-  { path: 'about',
-   component: AboutComponent  
+  {
+    path: 'about',
+    component: AboutComponent  
 	}
 ];
 
