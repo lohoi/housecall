@@ -43,6 +43,7 @@ Things you may want to cover:
     application -> app.module.ts -> app.component.ts 
 
 * Routing
+Add your routes to app-routing.module.ts
 
 * Authentication
 
