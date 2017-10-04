@@ -31,10 +31,10 @@ Things you may want to cover:
 5. Navigate into the web-app directory and run `ng serve` to bootup the Angular app.
 
 ## Dev Notes:
-* ng new <application name>: Creates new AngularJS 2 application
-    Note that there are additional flags that you can specify
+* `ng new <application name>`: Creates new AngularJS 2 application
+   <br/> Note that there are additional flags that you can specify
 
-* ng generate component <component_name>: Generates a new Angular 2 Component 
+* `ng generate component <component_name>`: Generates a new Angular 2 Component 
     and inserts it into app.module.ts
 
 * To add node_module dependencies, npm install with the --save flag and add them to angular-cli.json
