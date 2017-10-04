@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
+import { User } from '../user';
 
 @Component({
   selector: 'app-signup',
@@ -7,27 +8,20 @@ import { Http } from '@angular/http';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+  public user: User;
 
   constructor(private http: Http) {
-    this.http = http
+    this.http = http;
+    this.user = new User();
   }
 
   ngOnInit() {
-    this.submitUser()
+     // let this.User = new User();
   }
 
-  submitUser = function() {
-    let params = {
-      email: "remsr@umich.edu",
-      skype: "test",
-      firstname: "rem",
-      lastname: "re",
-      password: "1234567890",
-      specialty: 1,
-      hospital_id: 2,
-      user_type: 1
-    }
-    console.log(params)
-    this.http.post('http://localhost:3000/users', params).subscribe();
+  onSubmit = function() {
+    
+    // console.log(this.user);
+    this.http.post('http://localhost:3000/users', this.user).subscribe();
   }
 }
