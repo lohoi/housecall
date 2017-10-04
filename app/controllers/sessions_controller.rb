@@ -10,7 +10,6 @@ class SessionsController < ApplicationController
         format.html { redirect_to user}
       else
         format.html { render :new, notice: "Login failed, invalid email/password combination" }
-        format.json {}
       end
     end
   end

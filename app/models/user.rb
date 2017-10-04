@@ -25,6 +25,7 @@ class User < ApplicationRecord
   has_secure_password
 
   private
+
   def set_defaults
     self.user_type ||= :patient
   end
