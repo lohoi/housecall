@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users
+  resources :users
   root 'static_pages#home'
 
   get '/about', to: 'static_pages#about'
@@ -12,7 +13,5 @@ Rails.application.routes.draw do
   get    'users/:id', to: 'users#show', as: "/dashboard"
 
   post '/user',   to: 'users#create'
-
-  resources :users
 
 end

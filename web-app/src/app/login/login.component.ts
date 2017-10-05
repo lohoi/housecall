@@ -20,7 +20,7 @@ export class LoginComponent {
 
   onSubmit = function() {
     
-    console.log("onSubmit clicked!");
+    console.log("onSubmit clicked!: ", this.user);
     this.authToken.signIn({email: this.user.email, password: this.user.password}).subscribe(
 
         res => {
