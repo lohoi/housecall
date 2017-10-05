@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
 
   enum user_type: [:doctor, :patient, :admin]
 
@@ -22,7 +26,7 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }  
 
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
-  has_secure_password
+  # has_secure_password
 
   private
 

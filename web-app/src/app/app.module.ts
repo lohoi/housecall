@@ -9,6 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AboutComponent } from './about/about.component';
 import { SignupComponent } from './signup/signup.component';
+import { Angular2TokenService } from 'angular2-token';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +26,7 @@ import { SignupComponent } from './signup/signup.component';
     HttpModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [ Angular2TokenService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

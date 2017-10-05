@@ -16,12 +16,12 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit() {
-     // let this.User = new User();
   }
 
   onSubmit = function() {
     
-    // console.log(this.user);
-    this.http.post('http://localhost:3000/users', this.user).subscribe();
+    console.log(this.user);
+    this.http.post('http://localhost:3000/login', this.user).subscribe();
+    // this.http.post('http://localhost:3000/users', this.user).subscribe();
   }
 }
