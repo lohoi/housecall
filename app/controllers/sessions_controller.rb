@@ -3,11 +3,12 @@ class SessionsController < ApplicationController
   end
 
   def create
+    byebug
     user = User.find_by(email: params[:session][:email].downcase)
     respond_to do |format|
       if user && user.authenticate(params[:session][:password])
         log_in user
-        format.html { redirect_to user}
+        format.html { redirect_to user }
       else
         format.html { render :new, notice: "Login failed, invalid email/password combination" }
       end

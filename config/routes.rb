@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get    'users/:id', to: 'users#show', as: "/dashboard"
 
+  post '/create_user',   to: 'users#create'
+
   resources :users
 
 end
