@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
+  mount_devise_token_auth_for 'User', at: 'auth'
 
-  devise_for :users
+  # devise_for :users
   resources :users
-  root 'static_pages#home'
+  # root 'static_pages#home'
 
-  get '/about', to: 'static_pages#about'
+  # get '/about', to: 'static_pages#about'
 
   get    '/login',    to: 'sessions#new'
   post   '/login',    to: 'sessions#create'

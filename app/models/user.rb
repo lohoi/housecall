@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  include DeviseTokenAuth::Concerns::User
+
   enum user_type: [:doctor, :patient, :admin]
 
   enum specialty: [:general, :cardiology, :orthopedic_surgery,
