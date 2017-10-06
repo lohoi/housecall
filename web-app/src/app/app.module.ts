@@ -10,6 +10,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AboutComponent } from './about/about.component';
 import { SignupComponent } from './signup/signup.component';
 import { Angular2TokenService } from 'angular2-token';
+import { UserService } from './user.service';
+import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.component'
+import {AuthGuard} from './guards/auth.guard';
 
 
 @NgModule({
@@ -19,6 +22,7 @@ import { Angular2TokenService } from 'angular2-token';
     LoginComponent,
     AboutComponent,
     SignupComponent,
+    DoctorDashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +30,7 @@ import { Angular2TokenService } from 'angular2-token';
     HttpModule,
     AppRoutingModule,
   ],
-  providers: [ Angular2TokenService ],
-  bootstrap: [AppComponent]
+  providers: [ Angular2TokenService, UserService, AuthGuard ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
