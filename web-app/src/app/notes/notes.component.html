@@ -1,0 +1,9 @@
+<p>
+  notes works!
+</p>
+
+<form class="addNote" (ngSubmit)='saveNote()'>
+  <textarea style="background-color:whitesmoke;color:darkslategray" name="noteText" [(ngModel)]="noteText" cols="80" rows="20"></textarea>  
+  <button type="submit" class="btn btn-success">Save</button>
+</form>
+
