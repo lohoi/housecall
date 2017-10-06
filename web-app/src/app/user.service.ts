@@ -44,7 +44,7 @@ export class UserService {
     return this.authService.signIn({email: email_, password: password_}).map(
         res => {
           this.userSignedIn$.next(true);
-          return res
+          return res;
         },
 
         err => {
