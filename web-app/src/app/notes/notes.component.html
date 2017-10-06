@@ -1,6 +1,15 @@
-<p>
-  notes works!
-</p>
+
+<table class="table">
+  <tr *ngFor="let note of notes">
+    <div class="tableElement">
+      <span>
+        <td>{{note.text}}</td>
+        <button class="fa fa-pencil fa-lg"></button>
+        <button class="fa fa-trash-o" (click)='deleteNote()'></button>
+      </span>
+    </div>
+  </tr>
+</table>
 
 <form class="addNote" (ngSubmit)='saveNote()'>
   <textarea style="background-color:whitesmoke;color:darkslategray" name="noteText" [(ngModel)]="noteText" cols="80" rows="20"></textarea>  
