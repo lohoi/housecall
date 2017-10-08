@@ -1,5 +1,4 @@
 <br/>
-<div class="card_panel">
   <div class="row">
     <form class="col s12" (ngSubmit)="onSubmit()">
       <div class="row">
@@ -17,4 +16,6 @@
       <button type="submit" class="btn btn-success">Submit</button>
     </form>
   </div>
-</div>
+  <div class="row">
+    Need an account? <a [routerLink]="['/signup']">Click here to register</a>
+  </div>

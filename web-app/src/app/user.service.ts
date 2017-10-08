@@ -29,12 +29,23 @@ export class UserService {
     );
   }
 
-  registerUser(signUpData:  {email:string, password:string, passwordConfirmation:string}):Observable<Response>{
-    return this.authService.registerAccount(signUpData).map(
-        res => {
-          this.userSignedIn$.next(true);
-          return res
-        }
+  registerUser(user_):Observable<Response>{
+    // delete user_.confirm_success_url;
+    // let param = {
+    //   email: user_.email,
+    //   password: user_.password,
+    //   passwordConfirmation: user_.passwordConfirmation,
+    //   skype: user_.skype,
+    //   firstname: user_.firstname,
+    //   lastname: user_.lastname
+    // }
+
+    // console.log("inside user service with arguments: " , param);
+
+    return this.authService.registerAccount(user_).map(
+      res => {
+        return res
+      }
     );
   }
 
@@ -42,18 +53,16 @@ export class UserService {
     console.log("email: ", email_);
     console.log("password: ", password_);
     return this.authService.signIn({email: email_, password: password_}).map(
-        res => {
-          this.userSignedIn$.next(true);
-          return res;
-        },
+      res => {
+        this.userSignedIn$.next(true);
+        return res;
+      },
 
-        err => {
-          console.error('auth error:', err);
-          console.log("returning a -1");
-        }
-
+      err => {
+        console.error('auth error:', err);
+        console.log("returning a -1");
+      }
     );
-
   }
 
 

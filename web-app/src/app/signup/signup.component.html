@@ -1,31 +1,59 @@
 <br/>
-<div class="card_panel">
-  <div class="row">
-    <form class="col s12" (ngSubmit)="onSubmit()">
-    	<div class="row">
-      	<div class="input-field col s6">
-        	<input placeholder="Placeholder" id="first_name" type="text" class="validate" [(ngModel)]="user.firstname" name="firstname">
-          <label for="first_name">First Name</label>
-        </div>
-        <div class="input-field col s6">
-          <input id="last_name" type="text" class="validate" [(ngModel)]="user.lastname" name="lastname">
-          <label for="last_name">Last Name</label>
-        </div>
+<div class="row">
+  <form class="col s12" #signForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="email" type="email" class="validate" required [(ngModel)]="user.email" name="email">
+        <label for="email">Email</label>
       </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="password" type="password" class="validate" [(ngModel)]="user.password" name="password">
-          <label for="password">Password</label>
-        </div>
+      <div class="input-field col s6">
+        <input id="skype" type="text" class="validate" required [(ngModel)]="user.skype" name="skype">
+        <label for="skype">Skype</label>
       </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="email" type="email" class="validate" required [(ngModel)]="user.email" name="email">
-          <label for="email">Email</label>
-        </div>
+    </div>
+  	<div class="row">
+    	<div class="input-field col s6">
+      	<input id="first_name" type="text" class="validate" [(ngModel)]="user.firstname" name="firstname" required>
+        <label for="first_name">First Name</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="last_name" type="text" class="validate" [(ngModel)]="user.lastname" name="lastname" required>
+        <label for="last_name">Last Name</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="password" type="password" class="validate" [(ngModel)]="user.password" name="password" minlength=8 required>
+        <label for="password" data-error="Passwords must be atleast 8 characters long">Password</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="passwordConfirmation" type="password" class="validate" [(ngModel)]="user.passwordConfirmation" name="passwordConfirmation" required="user.password == user.passwordConfirmation" style="margin-bottom: 0px">
+        <small *ngIf="user.password != user.passwordConfirmation" style="color:red; margin-top: 0px;">
+          Passwords must match
+        </small>
+        <label for="passwordConfirmation" style="margin-bottom: 20px">Confirm Password</label>
       </div>
 
-      <button type="submit" class="btn btn-success">Submit</button>
-    </form>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <select>
+          <!-- <option value="" disabled selected>Choose your option</option> -->
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </select>
+        <label>Materialize Select</label>
+      </div>
+     
+    </div>
+
+    <button type="submit" [disabled]="!(signForm.valid) || !(user.password == user.passwordConfirmation) || !user.password"
+            class="waves-effect waves-light btn blue right" >Submit</button>
+  </form>
+
+  <div class="row">
+    Already have an account? <a [routerLink]="['/login']">Click here to login</a>
   </div>
+
 </div>

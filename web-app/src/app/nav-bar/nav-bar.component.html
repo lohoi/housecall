@@ -1,11 +1,11 @@
 <nav>
   <div class="nav-wrapper indigo darken-2">
-    <a href="#" class="brand-logo"> House Call</a>
+    <a *ngIf="!(userService.userSignedIn$ | async)" [routerLink]="['login']" class="brand-logo"> House Call</a>
+    <a *ngIf="(userService.userSignedIn$ | async)" [routerLink]="['doctor-dashboard']" class="brand-logo"> House Call</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li *ngIf="(userService.userSignedIn$ | async)"><a [routerLink]="['/doctor-dashboard']">Dashboard</a></li>
     	<li *ngIf="(userService.userSignedIn$ | async)"><a (click)="logOut()">LOGOUT</a></li>
-      <li *ngIf="!(userService.userSignedIn$ | async)"><a routerLink="['/']">Login</a></li>
-      <li *ngIf="!(userService.userSignedIn$ | async)"><a routerLink="['/about']">About</a></li>
+      <li *ngIf="!(userService.userSignedIn$ | async)"><a [routerLink]="['/about']">About</a></li>
     </ul>
   </div>
 </nav>

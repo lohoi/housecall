@@ -33,7 +33,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'devise_token_auth'
+gem "devise_token_auth", ">= 0.1.32.beta9"
 
 gem 'omniauth'
 

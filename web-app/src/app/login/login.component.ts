@@ -13,7 +13,6 @@ export class LoginComponent {
 
   @Output() onFormResult = new EventEmitter<any>();
 
-
   constructor(private userService:UserService, private router: Router) {
     this.user = new User();
   }
@@ -22,8 +21,7 @@ export class LoginComponent {
     event.preventDefault();
     this.userService.logInUser(this.user.email, this.user.password)
     .subscribe(
-        res => {
-        console.log("done!");
+      res => {
         if (res.status === 200) {
           this.onFormResult.emit({signedIn: true, res});
           this.router.navigate(['/doctor-dashboard']);  
