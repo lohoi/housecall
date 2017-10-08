@@ -1,18 +1,24 @@
+<div class="notes">
+  <div class="table-scroll">
+    <table class="table">
+      <tr *ngFor="let note of notes">
+        <div class="tableElement">
+          <span>
+            <td>{{note.name}}</td>
+            <td>{{note.text}}</td>
+            <div class="icon">
+              <button class="fa fa-pencil fa-lg"></button>
+              <button class="fa fa-trash-o" (click)='deleteNote()'></button>
+            </div>
+          </span>
+        </div>
+      </tr>
+    </table>
+  </div>
 
-<table class="table">
-  <tr *ngFor="let note of notes">
-    <div class="tableElement">
-      <span>
-        <td>{{note.text}}</td>
-        <button class="fa fa-pencil fa-lg"></button>
-        <button class="fa fa-trash-o" (click)='deleteNote()'></button>
-      </span>
-    </div>
-  </tr>
-</table>
-
-<form class="addNote" (ngSubmit)='saveNote()'>
-  <textarea style="background-color:whitesmoke;color:darkslategray" name="noteText" [(ngModel)]="noteText" cols="80" rows="20"></textarea>  
-  <button type="submit" class="btn btn-success">Save</button>
-</form>
-
+  <form class="addNote" (ngSubmit)='saveNote()'>
+    <textarea class="noteName" name="noteName" placeholder="New note name"></textarea>
+    <textarea class="noteText" name="noteText" [(ngModel)]="noteText" placeholder="New note..."></textarea>  
+    <button type="submit" class="btn btn-success">Save</button>
+  </form>
+</div>
