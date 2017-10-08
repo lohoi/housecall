@@ -4,7 +4,6 @@ export class User {
     skype: string;
     firstname: string;
     lastname: string;
-    specialty: number;
-    hospital_id: number;
-    user_type: number;
+    specialty: string;
+    hospital: string;
 }
