@@ -17,7 +17,6 @@ import { AuthGuard } from './guards/auth.guard'
 import { DoctorGuard } from './guards/doctor.guard';
 import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard.component'
 
-
 @NgModule({
   declarations: [
     AppComponent,

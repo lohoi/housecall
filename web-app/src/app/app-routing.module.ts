@@ -11,7 +11,6 @@ import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.co
 import { AuthGuard } from './guards/auth.guard'
 import { DoctorGuard } from './guards/doctor.guard'
 
-
 const routes: Routes = [
   {
     path: '',
