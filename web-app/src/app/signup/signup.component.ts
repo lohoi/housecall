@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { User } from '../user';
 import { UserService } from '../user.service';
-import {Observable} from 'rxjs/Observable';
-import {Observer} from 'rxjs/Observer';
+import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
+import { Router } from "@angular/router";
+
 declare var $: any;
 
 
@@ -19,13 +21,13 @@ export class SignupComponent implements OnInit {
   public specialties: any;
 z  // public userTypes: any;
 
-  constructor(private http: Http, private userService: UserService) {
+  constructor(private http: Http, private userService: UserService, private router: Router) {
     this.http = http;
     this.user = new User();
-    this.hospitals = ['Mott Children\'s Hospital','Kellogg Eye Center'];
-    this.specialties = ['General', 'Cardiology', 'Orthopedic Surgery',
-                   'Gastroentrerology', 'Dermatology',
-                   'Anesthesiology', 'Plastic Surgery']
+    // this.hospitals = ['Mott Children\'s Hospital','Kellogg Eye Center'];
+    this.specialties = ['general', 'cardiology', 'orthopedic_surgery',
+                   'gastroentrerology', 'dermatology',
+                   'anesthesiology', 'plastic_surgery']
   }
 
   ngOnInit() {
@@ -33,19 +35,19 @@ z  // public userTypes: any;
   }
 
   onSubmit = function() {    
-    console.log(this.user);
-    // this.userService.registerUser(this.user)
-    // .subscribe(
-    //   res => {
-    //     console.log("done!");
-    //     if (res.status === 200) {
-    //       this.router.navigate(['/login']);  
-    //     }
-    //   },
-    //   err => {
-    //       this.onFormResult.emit({signedIn: false, err});
+    // TODO for now
+    this.user.specialty = 1;
+
+    this.userService.registerUser(this.user)
+    .subscribe(
+      res => {
+        alert("registration successful!");
+        this.router.navigate(['/login']);  
+      },
+      err => {
+          this.onFormResult.emit({signedIn: false, err});
         
-    //   }
-    // );
+      }
+    );
   }
 }

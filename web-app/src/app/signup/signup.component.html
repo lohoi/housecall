@@ -36,7 +36,7 @@
 
     </div>
     <div class="row">
-      <div class="input-field col s6">
+<!--       <div class="input-field col s6">
         <select materialize="material_select" [(ngModel)]="user.hospital" name="hospital" id="hospital">
           <option value="disabled" disabled selected>
             Choose associated hospital
@@ -45,13 +45,13 @@
             {{hospital}}
           </option>
         </select>
-        <label for="hospital">Hospital: {{user.hospital}}</label>
-      </div>
+        <label for="hospital">Hospital</label>
+      </div> -->
 
       <div class="input-field col s6">
-        <select materialize="material_select" [(ngModel)]="user.specialty" name="specialty">
+        <select materialize="material_select" [(ngModel)]="user.specialty" name="specialty" required>
           <option value="disabled" disabled selected>Choose specialty</option>
-          <option *ngFor="let specialty of specialties" [ngValue]="specialty">{{specialty}}</option>
+          <option *ngFor="let specialty of specialties" [ngValue]="specialty">{{specialty }}</option>
         </select>
         <label>Specialty</label>
       </div>
