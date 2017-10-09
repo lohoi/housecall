@@ -37,8 +37,6 @@ export class UserService {
   }
 
   logInUser(email_, password_):Observable<Response>{
-    console.log("email: ", email_);
-    console.log("password: ", password_)
     return this.authService.signIn({email: email_, password: password_}).map(
       res => {
         this.userSignedIn$.next(true)
@@ -52,11 +50,7 @@ export class UserService {
   }
 
   isDoctor(): boolean {
-    console.log(this.authService.currentUserData);
     if (!this.authService.userSignedIn() || !this.authService.currentUserData) { 
-      console.log("AJDSFKAJSDLKFHAF")
-      console.log(!this.authService.userSignedIn())
-      console.log(!this.authService.currentUserData)
       return false
     } else {
       return this.authService.currentUserData["user_type"] === "doctor"

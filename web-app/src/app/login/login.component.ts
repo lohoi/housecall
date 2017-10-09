@@ -27,7 +27,6 @@ export class LoginComponent {
 
           this.onFormResult.emit({signedIn: true, res})
 
-          console.log("user_type: ", data.user_type)
           switch(data.user_type) {
             case 'doctor':
               this.router.navigate(['/doctor-dashboard'])
