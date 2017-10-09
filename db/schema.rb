@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 20171005170534) do
     t.string "skype"
     t.string "firstname"
     t.string "lastname"
-    t.string "password"
     t.integer "specialty"
     t.integer "hospital_id"
     t.integer "user_type"
