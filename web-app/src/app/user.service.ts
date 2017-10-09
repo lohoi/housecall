@@ -52,11 +52,19 @@ export class UserService {
   }
 
   isDoctor(): boolean {
-    if (!this.userSignedIn$ || !this.authService.currentUserData) { 
+    console.log(this.authService.currentUserData);
+    if (!this.authService.userSignedIn() || !this.authService.currentUserData) { 
+      console.log("AJDSFKAJSDLKFHAF")
+      console.log(!this.authService.userSignedIn())
+      console.log(!this.authService.currentUserData)
       return false
     } else {
       return this.authService.currentUserData["user_type"] === "doctor"
     }
+  }
+
+  getUser(): any {
+    return this.authService.currentUserData;
   }
 
 
@@ -91,7 +99,7 @@ export class UserService {
  //    	error =>    console.log(error)
 	// )}
 
-  // userSignedIn = function() {
-  //   return this.authToken.userSignedIn();
-  // }
+  userSignedIn = function() {
+    return this.authService.userSignedIn();
+  }
 }

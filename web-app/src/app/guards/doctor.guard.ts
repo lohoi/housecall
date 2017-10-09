@@ -9,11 +9,11 @@ export class DoctorGuard implements CanActivate {
               private router:Router){}
 
   canActivate() {
-    if(this.userService.userSignedIn$ && this.userService.isDoctor()) {
+    if(this.userService.userSignedIn() && this.userService.isDoctor()) {
       console.log("inside can activate of doctr guard")
       return true
     } else {
-      this.router.navigate(['/'])
+      this.router.navigate(['about'])
       return false
     }
   }

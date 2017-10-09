@@ -9,10 +9,10 @@ export class AuthGuard implements CanActivate {
               private router:Router){}
 
   canActivate() {
-    if(this.userService.userSignedIn$) {
+    if(this.userService.userSignedIn() && !this.userService.isDoctor()) {
       return true
     } else {
-      this.router.navigate(['/'])
+      this.router.navigate(['about'])
       return false
     }
   }
