@@ -33,30 +33,41 @@
         </small>
         <label for="passwordConfirmation" style="margin-bottom: 20px">Confirm Password</label>
       </div>
-
     </div>
     <div class="row">
-<!--       <div class="input-field col s6">
+      <div class="input-field col s12">
         <select materialize="material_select" [(ngModel)]="user.hospital" name="hospital" id="hospital">
           <option value="disabled" disabled selected>
             Choose associated hospital
           </option>
-          <option *ngFor="let hospital of hospitals" [value]="hospital">
-            {{hospital}}
+          <option *ngFor="let hospital of hospitals" [value]="hospital.id">
+            {{hospital.name}}
           </option>
         </select>
         <label for="hospital">Hospital</label>
-      </div> -->
-
+      </div>
+    </div>
+    <div class="row">
       <div class="input-field col s6">
+        <select materialize="material_select" [(ngModel)]="user.userType" name="type" id="type">
+          <option value="disabled" disabled selected>
+            Choose user type
+          </option>
+          <option *ngFor="let type of userTypes" [value]="type.id">
+            {{type.name}}
+          </option>
+        </select>
+        <label for="type">User Type</label>
+      </div>
+      <div class="input-field col s6" *ngIf="user.userType == 0">
         <select materialize="material_select" [(ngModel)]="user.specialty" name="specialty" required>
           <option value="disabled" disabled selected>Choose specialty</option>
-          <option *ngFor="let specialty of specialties" [ngValue]="specialty">{{specialty }}</option>
+          <option *ngFor="let specialty of specialties" [ngValue]="specialty.id">{{specialty.name}}</option>
         </select>
         <label>Specialty</label>
       </div>
-
     </div>
+
 
     <button type="submit" [disabled]="!(signForm.valid) ||
         !(user.password == user.passwordConfirmation) ||

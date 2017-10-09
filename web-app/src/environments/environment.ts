@@ -8,10 +8,9 @@ export const environment = {
   token_auth_config: {
     apiBase: 'http://localhost:3000',
     signInPath: 'auth/sign_in',
-    
     // userTypes: [
-    //     { name: 'DOCTOR', path: 'doctor' },
-    //     { name: 'PATIENT', path: 'patient' }
+    //     { name: 'doctor', path: 'doctor' },
+    //     { name: 'patient', path: 'patient' }
     // ]
   }
 };
