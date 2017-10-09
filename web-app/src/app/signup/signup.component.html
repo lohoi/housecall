@@ -36,7 +36,7 @@
     </div>
     <div class="row">
       <div class="input-field col s12">
-        <select materialize="material_select" [(ngModel)]="user.hospital" name="hospital" id="hospital">
+        <select materialize="material_select" [(ngModel)]="user.hospital_id" name="hospital" id="hospital" required>
           <option value="disabled" disabled selected>
             Choose associated hospital
           </option>
@@ -49,17 +49,17 @@
     </div>
     <div class="row">
       <div class="input-field col s6">
-        <select materialize="material_select" [(ngModel)]="user.userType" name="type" id="type">
+        <select materialize="material_select" [(ngModel)]="user.user_type" name="type" id="type" required>
           <option value="disabled" disabled selected>
             Choose user type
           </option>
-          <option *ngFor="let type of userTypes" [value]="type.id">
+          <option *ngFor="let type of userTypes" [value]="type.name">
             {{type.name}}
           </option>
         </select>
         <label for="type">User Type</label>
       </div>
-      <div class="input-field col s6" *ngIf="user.userType == 0">
+      <div class="input-field col s6" *ngIf="user.user_type === 'doctor'">
         <select materialize="material_select" [(ngModel)]="user.specialty" name="specialty" required>
           <option value="disabled" disabled selected>Choose specialty</option>
           <option *ngFor="let specialty of specialties" [ngValue]="specialty.id">{{specialty.name}}</option>

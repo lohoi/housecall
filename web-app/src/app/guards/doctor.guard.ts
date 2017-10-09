@@ -10,6 +10,7 @@ export class DoctorGuard implements CanActivate {
 
   canActivate() {
     if(this.userService.userSignedIn$ && this.userService.isDoctor()) {
+      console.log("inside can activate of doctr guard")
       return true
     } else {
       this.router.navigate(['/'])

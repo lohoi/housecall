@@ -38,8 +38,8 @@ export class SignupComponent implements OnInit {
       {'id': 6, 'name': 'Plastic Surgery'}
     ]
     this.userTypes = [
-      {'id': 0, 'name': 'Doctor'},
-      {'id': 1, 'name': 'Patient'}
+      {'id': 0, 'name': 'doctor'},
+      {'id': 1, 'name': 'patient'}
     ]
 
   }
@@ -48,6 +48,7 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit = function() {    
+    console.log("registering with params: ", this.user);
     this.userService.registerUser(this.user)
     .subscribe(
       res => {

@@ -13,8 +13,8 @@ import { SignupComponent } from './signup/signup.component'
 import { Angular2TokenService } from 'angular2-token'
 import { UserService } from './user.service'
 import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.component'
-import {AuthGuard} from './guards/auth.guard'
-import {DoctorGuard} from './guards/doctor.guard';
+import { AuthGuard } from './guards/auth.guard'
+import { DoctorGuard } from './guards/doctor.guard';
 import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard.component'
 
 
@@ -35,7 +35,7 @@ import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard
     AppRoutingModule,
     MaterializeModule,
   ],
-  providers: [ Angular2TokenService, UserService, AuthGuard ],
+  providers: [ Angular2TokenService, UserService, AuthGuard, DoctorGuard ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
