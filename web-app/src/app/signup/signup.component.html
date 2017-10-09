@@ -37,8 +37,8 @@
     </div>
     <div class="row">
       <div class="input-field col s6">
-        <select [(ngModel)]="user.hospital" name="hospital" id="hospital" required (ngModelChange)="onChange($event)">
-          <option value="" disabled selected>
+        <select materialize="material_select" [(ngModel)]="user.hospital" name="hospital" id="hospital">
+          <option value="disabled" disabled selected>
             Choose associated hospital
           </option>
           <option *ngFor="let hospital of hospitals" [value]="hospital">
@@ -50,17 +50,14 @@
       </div>
 
       <div class="input-field col s6">
-<!--         <select [(ngModel)]="user.specialty" name="specialties">
-          <option value="" disabled selected>Choose specialty</option>
+        <select materialize="material_select" [(ngModel)]="user.specialty" name="specialty">
+          <option value="disabled" disabled selected>Choose specialty</option>
           <option *ngFor="let specialty of specialties" [ngValue]="specialty">{{specialty}}</option>
         </select>
         <label>Specialty</label>
- -->  </div>
+      </div>
 
     </div>
-
-    <!-- {{user | json}} -->
-
 
     <button type="submit" [disabled]="!(signForm.valid) ||
         !(user.password == user.passwordConfirmation) ||

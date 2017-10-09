@@ -17,7 +17,7 @@ export class SignupComponent implements OnInit {
   public user: any;
   public hospitals: any;
   public specialties: any;
-  // public userTypes: any;
+z  // public userTypes: any;
 
   constructor(private http: Http, private userService: UserService) {
     this.http = http;
@@ -29,16 +29,7 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit() {
-    $(document).ready(function() {
-      $('select').material_select();
-    });
-
     // this.userTypes = ["Doctor", "Patient", "Admin"];
-  }
-
-
-  onChange(value: any) {
-    console.log("hello", value);
   }
 
   onSubmit = function() {    
