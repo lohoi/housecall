@@ -1,24 +1,23 @@
 <div class="notes">
+    <p style="font-weight:bold; font-size: 20px">Notes</p>
   <div class="table-scroll">
-    <table class="table">
+    <table class="table" [(ngModel)]= "notes" name="notes" ngDefaultControl>
       <tr *ngFor="let note of notes">
         <div class="tableElement">
-          <span>
-            <td>{{note.name}}</td>
-            <td>{{note.text}}</td>
+            <p style="font-weight:bold;">{{note.title}}</p>
+            <p>{{note.text}}</p>
             <div class="icon">
-              <button class="fa fa-pencil fa-lg"></button>
-              <button class="fa fa-trash-o" (click)='deleteNote()'></button>
+              <button class="fa fa-envelope" (click)="emailNote()"></button>
+              <button class="fa fa-trash-o" (click)='deleteNote(note.id)'></button>
             </div>
-          </span>
         </div>
       </tr>
     </table>
   </div>
 
   <form class="addNote" (ngSubmit)='saveNote()'>
-    <textarea class="noteName" name="noteName" placeholder="New note name"></textarea>
-    <textarea class="noteText" name="noteText" [(ngModel)]="noteText" placeholder="New note..."></textarea>  
+    <textarea class="noteTitle" [(ngModel)]="newNoteTitle" name="noteTitle" placeholder="New note title"></textarea>
+    <textarea class="noteText" [(ngModel)]="newNoteText" name="noteText" placeholder="New note text"></textarea>  
     <button type="submit" class="btn btn-success">Save</button>
   </form>
 </div>
