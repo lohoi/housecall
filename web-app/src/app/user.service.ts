@@ -3,12 +3,13 @@ import { Angular2TokenService } from "angular2-token"
 import { environment } from "../environments/environment"
 import { Router } from '@angular/router'
 import { Subject, Observable } from "rxjs"
-import { Response } from "@angular/http"
+import { Http, URLSearchParams, RequestOptions, Response, Headers } from '@angular/http';
+
 
 
 @Injectable()
 export class UserService {
-	constructor(private authService: Angular2TokenService, private router: Router) {
+	constructor(private authService: Angular2TokenService, private router: Router, private http: Http) {
     // this.authService.init(environment.token_auth_config);
     this.authService.validateToken().subscribe(
         res => res.status == 200 ? this.userSignedIn$.next(res.json().success) : this.userSignedIn$.next(false)
@@ -23,7 +24,7 @@ export class UserService {
     return this.authService.signOut().map(
         res => {
           this.userSignedIn$.next(false);
-          return res
+          return res;
         }
     );
   }
@@ -31,42 +32,51 @@ export class UserService {
   registerUser(user_):Observable<Response>{
     return this.authService.registerAccount(user_).map(
       res => {
-        return res
+        return res;
       }
     );
   }
 
-  logInUser(email_, password_):Observable<Response>{
-    return this.authService.signIn({email: email_, password: password_}).map(
+  logInUser(email_, password_, userType_):Observable<Response>{
+    return this.authService.signIn({email: email_, password: password_, userType: userType_}).map(
       res => {
         this.userSignedIn$.next(true)
-        return res
+        return res;
       },
 
       err => {
-        console.error('auth error:', err)
+        console.error('auth error:', err);
       }
     );
   }
 
   isDoctor(): boolean {
-    if (!this.authService.userSignedIn()) { 
-      return false
+    if (!this.authService.userSignedIn() || this.authService.currentUserType !== "doctor") { 
+      return false;
     } else {
-      return this.authService.currentUserData["user_type"] === "doctor"
+      return true;
     }
   }
 
   isPatient():boolean {
-    if (!this.authService.userSignedIn()) { 
+    if (!this.authService.userSignedIn() || this.authService.currentUserType !== "patient") { 
       return false
     } else {
-      return this.authService.currentUserData["user_type"] === "patient"
+      return true;
     }
   }
 
   getUser(): any {
     return this.authService.currentUserData;
+  }
+
+  getUserType(email_): any {
+    let options = new RequestOptions({
+      // Have to make a URLSearchParams with a query string
+      search: new URLSearchParams('email=' + email_)
+    });
+    
+    return this.http.get('http://localhost:3000/user_type', options)
   }
 
 

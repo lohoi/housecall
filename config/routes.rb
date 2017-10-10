@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   post '/user',   to: 'users#create'
 
+  get '/user_type', to: 'users#get_type'
+
   resources :users
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

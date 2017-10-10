@@ -19,31 +19,41 @@ export class LoginComponent {
 
   onSubmit = function() {
     event.preventDefault();
-    this.userService.logInUser(this.user.email, this.user.password)
+
+    // need to query the dB to get user type
+    this.userService.getUserType(this.user.email)
     .subscribe(
       res => {
-        if (res.status === 200) {
-          let data = JSON.parse(res._body).data
+        this.userType = res.text();
+        this.userService.logInUser(this.user.email, this.user.password, this.userType)
+          .subscribe(
+            res => {
+              if (res.status === 200) {
+                let data = JSON.parse(res._body).data
 
-          this.onFormResult.emit({signedIn: true, res})
+                this.onFormResult.emit({signedIn: true, res})
 
-          switch(data.user_type) {
-            case 'doctor':
-              this.router.navigate(['/doctor-dashboard'])
-              break  
-            case 'patient':
-              this.router.navigate(['/patient-dashboard'])
-              break
-            default:
-              this.router.navigate(['/'])
-              break
-          }
-        }
-      },
-      err => {
-          this.onFormResult.emit({signedIn: false, err})
-        
+                switch(data.user_type) {
+                  case 'doctor':
+                    this.router.navigate(['/doctor-dashboard'])
+                    break  
+                  case 'patient':
+                    this.router.navigate(['/patient-dashboard'])
+                    break
+                  default:
+                    this.router.navigate(['/'])
+                    break
+                }
+              }
+            },
+            err => {
+              this.onFormResult.emit({signedIn: false, err})
+            }
+          )
       }
-    );   
+
+
+
+    )
   }
 }

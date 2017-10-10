@@ -9,8 +9,8 @@ export const environment = {
     apiBase: 'http://localhost:3000',
     signInPath: 'auth/sign_in',
     userTypes: [
-        { name: 'doctor', path: 'doctor' },
-        { name: 'patient', path: 'patient' }
+        { name: 'doctor', path: '' },
+        { name: 'patient', path: '' }
     ]
   }
 };

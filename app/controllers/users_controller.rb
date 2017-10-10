@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  # skip_before_action :verify_authenticity_token
   def new
     @user = User.new()
   end
@@ -44,6 +44,14 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
   end
+
+
+  def get_type
+    # return user type
+    user = User.find_by(:email => params[:email]) 
+    render json: user.user_type, status: :ok
+  end
+
 
   private
 
