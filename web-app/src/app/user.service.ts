@@ -9,7 +9,7 @@ import { Response } from "@angular/http"
 @Injectable()
 export class UserService {
 	constructor(private authService: Angular2TokenService, private router: Router) {
-    this.authService.init(environment.token_auth_config);
+    // this.authService.init(environment.token_auth_config);
     this.authService.validateToken().subscribe(
         res => res.status == 200 ? this.userSignedIn$.next(res.json().success) : this.userSignedIn$.next(false)
     )
@@ -50,10 +50,18 @@ export class UserService {
   }
 
   isDoctor(): boolean {
-    if (!this.authService.userSignedIn() || !this.authService.currentUserData) { 
+    if (!this.authService.userSignedIn()) { 
       return false
     } else {
       return this.authService.currentUserData["user_type"] === "doctor"
+    }
+  }
+
+  isPatient():boolean {
+    if (!this.authService.userSignedIn()) { 
+      return false
+    } else {
+      return this.authService.currentUserData["user_type"] === "patient"
     }
   }
 
