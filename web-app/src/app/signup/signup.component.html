@@ -1,3 +1,83 @@
-<p>
-  signup works!
-</p>
+<br/>
+<div class="row">
+  <form class="col s12" #signForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="email" type="email" class="validate" required [(ngModel)]="user.email" name="email">
+        <label for="email">Email</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="skype" type="text" class="validate" required [(ngModel)]="user.skype" name="skype">
+        <label for="skype">Skype</label>
+      </div>
+    </div>
+  	<div class="row">
+    	<div class="input-field col s6">
+      	<input id="first_name" type="text" class="validate" [(ngModel)]="user.firstname" name="firstname" required>
+        <label for="first_name">First Name</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="last_name" type="text" class="validate" [(ngModel)]="user.lastname" name="lastname" required>
+        <label for="last_name">Last Name</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="password" type="password" class="validate" [(ngModel)]="user.password" name="password" minlength=8 required>
+        <label for="password" data-error="Passwords must be atleast 8 characters long">Password</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="passwordConfirmation" type="password" class="validate" [(ngModel)]="user.passwordConfirmation" name="passwordConfirmation" required="user.password == user.passwordConfirmation" style="margin-bottom: 0px">
+        <small *ngIf="user.password != user.passwordConfirmation" style="color:red; margin-top: 0px;">
+          Passwords must match
+        </small>
+        <label for="passwordConfirmation" style="margin-bottom: 20px">Confirm Password</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <select materialize="material_select" [(ngModel)]="user.hospital_id" name="hospital" id="hospital" required>
+          <option value="disabled" disabled selected>
+            Choose associated hospital
+          </option>
+          <option *ngFor="let hospital of hospitals" [value]="hospital.id">
+            {{hospital.name}}
+          </option>
+        </select>
+        <label for="hospital">Hospital</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <select materialize="material_select" [(ngModel)]="user.user_type" name="type" id="type" required>
+          <option value="disabled" disabled selected>
+            Choose user type
+          </option>
+          <option *ngFor="let type of userTypes" [value]="type.name">
+            {{type.name}}
+          </option>
+        </select>
+        <label for="type">User Type</label>
+      </div>
+      <div class="input-field col s6" *ngIf="user.user_type === 'doctor'">
+        <select materialize="material_select" [(ngModel)]="user.specialty" name="specialty" required>
+          <option value="disabled" disabled selected>Choose specialty</option>
+          <option *ngFor="let specialty of specialties" [ngValue]="specialty.id">{{specialty.name}}</option>
+        </select>
+        <label>Specialty</label>
+      </div>
+    </div>
+
+
+    <button type="submit" [disabled]="!(signForm.valid) ||
+        !(user.password == user.passwordConfirmation) ||
+        !user.password"
+        class="waves-effect waves-light btn blue right">
+      Submit
+    </button>
+  </form>
+  <div class="row">
+    Already have an account? <a [routerLink]="['/login']">Click here to login</a>
+  </div>
+
+</div>
