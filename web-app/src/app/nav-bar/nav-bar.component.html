@@ -1,11 +1,11 @@
 <nav>
   <div class="nav-wrapper indigo darken-2">
     <a *ngIf="!(userService.userSignedIn$ | async)" [routerLink]="['login']" class="brand-logo"><i class="large material-icons">home</i>Housecall</a>
-    <a *ngIf="(userService.userSignedIn$ && userService.isDoctor())" [routerLink]="['doctor-dashboard']" class="brand-logo"> <i class="large material-icons">home</i>House Call</a>
-    <a *ngIf="(userService.userSignedIn$ | async) && !userService.isDoctor()" [routerLink]="['patient-dashboard']" class="brand-logo"> <i class="large material-icons">home</i>House Call</a>
+    <a *ngIf="(userService.userSignedIn$ | async) && userService.isDoctor()" [routerLink]="['doctor-dashboard']" class="brand-logo"> <i class="large material-icons">home</i>House Call</a>
+    <a *ngIf="(userService.userSignedIn$ | async) && userService.isPatient()" [routerLink]="['patient-dashboard']" class="brand-logo"> <i class="large material-icons">home</i>House Call</a>
     <ul class="right">
-      <!-- <li *ngIf="(userService.userSignedIn$ | async) && userService.isDoctor()"><a [routerLink]="['/doctor-dashboard']"><i class="medium material-icons">dashboard</i></a></li>
-      <li *ngIf="(userService.userSignedIn$ | async) && !userService.isDoctor()"><a [routerLink]="['/patient-dashboard']"><i class="medium material-icons">dashboard</i></a></li> -->
+      <li *ngIf="(userService.userSignedIn$ | async) && userService.isDoctor()"><a [routerLink]="['/doctor-dashboard']"><i class="medium material-icons">dashboard</i></a></li>
+      <li *ngIf="(userService.userSignedIn$ | async) && !userService.isDoctor()"><a [routerLink]="['/patient-dashboard']"><i class="medium material-icons">dashboard</i></a></li>
       <li *ngIf="(userService.userSignedIn$ | async)"><a (click)="logOut()"><b>LOGOUT</b></a></li>
       <li *ngIf="!(userService.userSignedIn$ | async)"><a [routerLink]="['/about']"><i class="large material-icons">info</i></a></li>
     </ul>
