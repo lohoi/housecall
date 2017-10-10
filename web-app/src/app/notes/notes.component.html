@@ -7,7 +7,7 @@
             <p style="font-weight:bold;">{{note.title}}</p>
             <p>{{note.text}}</p>
             <div class="icon">
-              <button class="fa fa-envelope" (click)="emailNote()"></button>
+              <button class="fa fa-pencil fa-lg" (click)="editNote(note.id)"></button>
               <button class="fa fa-trash-o" (click)='deleteNote(note.id)'></button>
             </div>
         </div>

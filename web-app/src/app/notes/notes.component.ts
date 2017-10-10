@@ -42,17 +42,18 @@ export class NotesComponent implements OnInit {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     this.http.post('http://localhost:3000/notes.json', JSON.stringify(note), { headers: headers }).subscribe((ok) => console.log(ok));
-    //this.getData();
+    this.newNoteText = "";
+    this.newNoteTitle = "";
   }
 
-  deleteNote = function(id:number){
-    console.log("delete", id);
+  deleteNote = function(id: number){
+    console.log("delete note");
     this.http.delete('http://localhost:3000/notes/' + id + '.json').subscribe((res: Response) => console.log(res.json));
 
   }
 
-  emailNote = function(){
-    console.log("email");
+  editNote = function(id: number){
+    console.log("edit");
   }
 
 }
