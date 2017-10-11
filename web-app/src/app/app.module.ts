@@ -15,7 +15,8 @@ import { UserService } from './user.service'
 import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.component'
 import { AuthGuard } from './guards/auth.guard'
 import { DoctorGuard } from './guards/doctor.guard';
-import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard.component'
+import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard.component';
+import { ProfileComponent } from './profile/profile.component'
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard
     SignupComponent,
     DoctorDashboardComponent,
     PatientDashboardComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
