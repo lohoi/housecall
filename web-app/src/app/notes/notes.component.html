@@ -1,7 +1,7 @@
 <div class="notes">
     <p style="font-weight:bold; font-size: 20px">Notes</p>
   <div class="table-scroll">
-    <table class="table" name="notes" ngDefaultControl>
+    <table id="table" class="table" name="notes" ngDefaultControl>
       <tr *ngFor="let note of notes">
         <div class="tableElement" id='tableElement-{{note.id}}'>
             <div class="icon">
@@ -10,10 +10,10 @@
               <button id='trash-{{note.id}}' display="block" class="fa fa-trash-o" (click)='deleteNote(note.id)'></button>
             </div>
             <div id='title-{{note.id}}' class="markdown-title" ng-model="note.title" style="font-weight:bold;" 
-              markdown-editable contenteditable="true">{{ note.title }}
+              contenteditable="false">{{ note.title }}
             </div>
             <div id='text-{{note.id}}' class="markdown-text" ng-model="note.text" 
-              markdown-editable contenteditable="true">{{ note.text }}
+              contenteditable="false">{{ note.text }}
             </div>
         </div>
       </tr>
