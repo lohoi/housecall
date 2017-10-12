@@ -50,12 +50,13 @@ export class NotesComponent implements OnInit {
     this.http.post('http://localhost:3000/notes.json', JSON.stringify(note), { headers: headers }).subscribe((ok) => console.log(ok));
     this.newNoteText = "";
     this.newNoteTitle = "";
+    location.reload();
   }
 
   deleteNote = function(id: number){
     console.log("delete note");
     this.http.delete('http://localhost:3000/notes/' + id + '.json').subscribe((res: Response) => console.log(res.json));
-
+    location.reload();
   }
 
   editNote = function(id: number){
@@ -75,16 +76,22 @@ export class NotesComponent implements OnInit {
     var pencilIcon = document.getElementById('pencil-'+id);
     var checkIcon = document.getElementById('check-'+id);
     var tableElement = document.getElementById('tableElement-'+id);
+    var titleElement = document.getElementById('title-'+id);
+    var textElement = document.getElementById('text-'+id);
     if(icon === "pencil"){
       tableElement.style.border = "1.8px solid #dcad51";
       tableElement.style.fontFamily = 'Courier New';
       pencilIcon.style.display = "none";
       checkIcon.style.display = "block";
+      textElement.contentEditable = "true";
+      titleElement.contentEditable = "true";
     } else {
       tableElement.style.border = ".6px solid #000";
       tableElement.style.fontFamily = 'Roboto';
       checkIcon.style.display = "none";
       pencilIcon.style.display = "block";
+      textElement.contentEditable = "false";
+      titleElement.contentEditable = "false";
     }
   }
 
