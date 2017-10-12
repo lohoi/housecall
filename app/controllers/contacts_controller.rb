@@ -11,11 +11,28 @@ class ContactsController < ApplicationController
     # mailer
   end
 
+  # /contacts?user_id=user_id
   def index
     user = User.find(params[:user_id])
-    @contacts = Contact.where(user_id: user.id)
+    @contacts = []
+    if user.doctor?
+      # all the patients this doctor has
+      user_contacts = Contact.where(doctor_id: user.id)
+      user_contacts.each do |contact|
+        @contacts.append(User.find(contact.patient_id))
+      end
+    else
+      # the doctor(s) this patient can communicate with
+      user_contacts = Contact.where(patient_id: user.id)
+      user_contacts.each do |contact|
+        @contacts.append(User.find(contact.doctor_id))
+      end
+    end
+
+    puts @contacts
+
     respond_to do |format|
-      format.json {render json: @contacts}
+      format.json
     end
   end
 
