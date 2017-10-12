@@ -32,7 +32,7 @@ class ContactsController < ApplicationController
     puts @contacts
 
     respond_to do |format|
-      format.json
+      format.json { render :json => @contacts}
     end
   end
 
