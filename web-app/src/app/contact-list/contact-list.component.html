@@ -1,27 +1,26 @@
 <div class="contact-list">
 
-
-  <form class="addContact" (ngSubmit)='AddContact()'>
-    <input type="text" class="patientFirstName" name="patientFirstName" placeholder="New patient first name">
-    <input type="text" class="patientLastName" name="patientLastName" placeholder="New patient last name">
+  <button (click)="show = !show">{{show ? 'Hide new patient form' : 'Add a new Patient'}}</button>
+  <form *ngIf="show" class="addContact" (ngSubmit)='addContact()'>
+    <input type="text" class="patientFirstName" name="patientFirstName" [(ngModel)]="patientFirstName"placeholder="New patient first name">
+    <input type="text" class="patientLastName" name="patientLastName" [(ngModel)]="patientLastName" placeholder="New patient last name">
     <input type="email"  name="patientEmail" [(ngModel)]="patientEmail" placeholder="New patient email address">
-    <input type="text" class="patientSkype" name="patientSkype" placeholder="New patient skype username">
-    <button type="submit" class="btn btn-success">Save</button>
+    <input type="text" class="patientSkype" name="patientSkype" [(ngModel)]="patientSkype" placeholder="New patient skype username">
+    <button type="submit" class="btn btn-success">Add patient</button>
   </form>
 
 
 
   <div class="table-scroll">
     <table class="table">
+      <th>Contact List</th>
       <tr *ngFor="let contact of contacts">
         <div class="tableElement">
           <span>
             <td>{{contact.firstname}}</td>
             <td>{{contact.lastname}}</td>
             <td>{{contact.skype}}</td>
-            <div class="icon">
-              <button class="fa fa-phone" (click)='callOnSkype()'></button>
-            </div>
+            <td><i class="fa fa-phone" aria-hidden="true"></i></td>
           </span>
         </div>
       </tr>

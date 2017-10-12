@@ -9,7 +9,7 @@ import { Contact } from '../contact'
 })
 export class ContactListComponent implements OnInit {
   user_id;
-
+  show;
   contacts: [Contact];
 
   constructor(private http: Http) {
@@ -17,9 +17,15 @@ export class ContactListComponent implements OnInit {
     // user_id = UserService.getUser().id;
     this.user_id = 2;
     this.getContacts();
+    this.show = false;
   }
 
   ngOnInit() {
+  }
+
+  callSkype(){
+    // TODO
+    //
   }
 
   getContacts() {
@@ -37,6 +43,7 @@ export class ContactListComponent implements OnInit {
   addContact = function(patientFirstName: string, patientLastName: string,
                         patientEmail: string, patientSkype: string){
     let contact = new Contact();
+    console.log(this.patientFirstName);
     contact.firstname = this.patientFirstName;
     contact.lastname = this.patientLastName;
     contact.email = this.patientEmail;
