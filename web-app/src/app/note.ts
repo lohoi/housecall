@@ -5,4 +5,5 @@ export class Note {
     title: string
     user_id: number
     active: boolean
+    edit: boolean
 }
