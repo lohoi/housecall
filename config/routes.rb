@@ -17,6 +17,10 @@ Rails.application.routes.draw do
 
   get '/user_type', to: 'users#get_type'
 
+  get '/resetPasswordToken', to: 'users#password_token'
+
+  post '/updateUser', to: 'users#update_user'
+
   resources :users
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
