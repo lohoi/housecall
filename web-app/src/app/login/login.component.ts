@@ -30,9 +30,6 @@ export class LoginComponent {
             res => {
               if (res.status === 200) {
                 let data = JSON.parse(res._body).data
-
-                this.onFormResult.emit({signedIn: true, res})
-
                 switch(data.user_type) {
                   case 'doctor':
                     this.router.navigate(['/doctor-dashboard'])

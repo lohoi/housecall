@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core'
+import { Injectable} from '@angular/core'
 import { Angular2TokenService } from "angular2-token"
 import { environment } from "../environments/environment"
 import { Router } from '@angular/router'
@@ -15,7 +15,6 @@ export class UserService {
         res => res.status == 200 ? this.userSignedIn$.next(res.json().success) : this.userSignedIn$.next(false)
     )
 	}
-
 
   userSignedIn$:Subject<boolean> = new Subject()
 
@@ -46,6 +45,7 @@ export class UserService {
 
       err => {
         console.error('auth error:', err);
+        return err;
       }
     );
   }
@@ -77,6 +77,39 @@ export class UserService {
     });
     
     return this.http.get('http://localhost:3000/user_type', options)
+  }
+
+  requestResetToken(email_) : any {
+    return this.authService.resetPassword({
+        email: email_
+    })
+  }
+
+  getResetToken(email_): any {
+     let options = new RequestOptions({
+      // Have to make a URLSearchParams with a query string
+      search: new URLSearchParams('email=' + email_)
+    });
+    return this.http.get('http://localhost:3000/resetPasswordToken', options);
+  }
+
+  changePassword(password_, passwordConfirmation_, passwordCurrent_, resetPasswordToken_): any {
+    return this.authService.updatePassword({
+        password:             password_,
+        passwordConfirmation: passwordCurrent_,
+        passwordCurrent:      password_,
+        resetPasswordToken:   resetPasswordToken_,
+    });
+  }
+
+  updateUser(userID_, firstname_, lastname_, skype_): any {
+    let params = {
+      id: userID_,
+      firstname: firstname_,
+      lastname: lastname_,
+      skype: skype_
+    }
+    return this.http.post('http://localhost:3000/updateUser', params)
   }
 
 

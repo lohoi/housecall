@@ -3,17 +3,17 @@ import { CanActivate, Router} from "@angular/router"
 import { UserService } from "../user.service"
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class PatientGuard implements CanActivate {
 
   constructor(private userService:UserService,
               private router:Router){}
 
   canActivate() {
-    if(this.userService.userSignedIn()) {
-      return true
+    if(this.userService.userSignedIn() && this.userService.isPatient()) {
+      return true;
     } else {
       this.router.navigate(['about'])
-      return false
+      return false;
     }
   }
 }

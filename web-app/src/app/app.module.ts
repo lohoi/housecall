@@ -16,7 +16,8 @@ import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.co
 import { AuthGuard } from './guards/auth.guard'
 import { DoctorGuard } from './guards/doctor.guard';
 import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard.component';
-import { ProfileComponent } from './profile/profile.component'
+import { ProfileComponent } from './profile/profile.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ProfileComponent } from './profile/profile.component'
     DoctorDashboardComponent,
     PatientDashboardComponent,
     ProfileComponent,
+    ResetpasswordComponent,
   ],
   imports: [
     BrowserModule,
