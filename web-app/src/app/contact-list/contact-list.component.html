@@ -20,7 +20,11 @@
             <td>{{contact.firstname}}</td>
             <td>{{contact.lastname}}</td>
             <td>{{contact.skype}}</td>
-            <td><i class="fa fa-phone" aria-hidden="true"></i></td>
+            <td>
+              <button (ng-click)='callSkype()'>
+                <i class="fa fa-phone" aria-hidden="true"></i>
+              </button>
+            </td>
           </span>
         </div>
       </tr>

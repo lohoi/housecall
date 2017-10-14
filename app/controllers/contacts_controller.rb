@@ -32,11 +32,14 @@ class ContactsController < ApplicationController
   # /contacts?user_id=user_id
   def index
     user = User.find(params[:user_id])
+    puts user.user_type
     @contacts = []
     if user.doctor?
       # all the patients this doctor has
       user_contacts = Contact.where(doctor_id: user.id)
       user_contacts.each do |contact|
+        puts "doctor_id: #{contact.doctor_id}"
+        puts "patient_id: #{contact.patient_id}"
         @contacts.append(User.find(contact.patient_id))
       end
     else

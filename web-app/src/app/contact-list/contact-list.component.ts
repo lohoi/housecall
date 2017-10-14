@@ -24,8 +24,7 @@ export class ContactListComponent implements OnInit {
   }
 
   callSkype(){
-    // TODO
-    //
+    console.log("hey!");
   }
 
   getContacts() {
@@ -52,8 +51,14 @@ export class ContactListComponent implements OnInit {
 
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    this.http.post('http://localhost:3000/contacts.json', JSON.stringify(contact), { headers: headers }).subscribe((ok) => console.log(ok));
-
+    this.http.post('http://localhost:3000/contacts.json', JSON.stringify(contact), { headers: headers }).subscribe(
+      res=> {
+        this.router.navigate(['/doctor-dashboard'])
+      },
+      err => {
+        alert("Registration failed! Please double check all fields are correct")
+      });
+    
     this.patientFirstName = "";
     this.patientLastName = "";
     this.patientEmail = "";
