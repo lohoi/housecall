@@ -13,13 +13,8 @@ import { User } from "../user";
 })
 export class NotesComponent implements OnInit {
   notes: [Note];
-<<<<<<< HEAD
-  user: any;
-  patient_id;
-=======
   user: User;
   patient_id = -1 ;
->>>>>>> Disable button, set patient_id = -1 initially
 
   constructor(public userService:UserService, private http: Http, private authService: Angular2TokenService) { 
     this.http = http;
@@ -81,16 +76,12 @@ export class NotesComponent implements OnInit {
       console.log("patient_id is not set");
     }
     else{
-      console.log("save note called!")
       let note = new Note();
       note.title = this.newNoteTitle;
       note.text = this.newNoteText;
       note.user_id = this.user.id;
       note.patient_id = this.patient_id;
       let dic = {note: note};
-      console.log(dic);
-      console.log(note.title);
-      console.log(note.text);
       
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
@@ -112,8 +103,7 @@ export class NotesComponent implements OnInit {
   }
 
   editNote = function(id: number){
-    console.log(id);
-    console.log("edit");
+    console.log("edit note");
     let note = new Note();
     note.title = document.getElementById('title-'+id).innerHTML;
     note.text = document.getElementById('text-'+id).innerHTML;
