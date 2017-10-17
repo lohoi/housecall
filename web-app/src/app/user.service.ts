@@ -3,6 +3,7 @@ import { Angular2TokenService } from "angular2-token"
 import { environment } from "../environments/environment"
 import { Router } from '@angular/router'
 import { Subject, Observable } from "rxjs"
+import { Contact } from './contact'
 import { Http, URLSearchParams, RequestOptions, Response, Headers } from '@angular/http';
 
 
@@ -14,8 +15,9 @@ export class UserService {
     this.authService.validateToken().subscribe(
         res => res.status == 200 ? this.userSignedIn$.next(res.json().success) : this.userSignedIn$.next(false)
     )
-	}
-
+  }
+  
+  static selectedContact:Contact;
 
   userSignedIn$:Subject<boolean> = new Subject()
 
@@ -77,6 +79,20 @@ export class UserService {
     });
     
     return this.http.get('http://localhost:3000/user_type', options)
+  }
+
+  setSelectedContact(c: Contact) {
+    console.log(c);
+    UserService.selectedContact = c;
+    console.log("Selected contact: " + this.getSelectedContact());
+  }
+
+  getSelectedContact() {
+    console.log("Selected contact is: " + UserService.selectedContact);
+    if (!UserService.selectedContact) {
+      return null;
+    }
+    return UserService.selectedContact;
   }
 
 

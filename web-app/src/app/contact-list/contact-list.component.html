@@ -11,24 +11,21 @@
 
 
 
-  <div class="table-scroll">
-    <table class="table">
-      <th>Contact List</th>
-      <tr *ngFor="let contact of contacts">
-        <div class="tableElement">
-          <span>
-            <td>{{contact.firstname}}</td>
-            <td>{{contact.lastname}}</td>
-            <td>{{contact.skype}}</td>
-            <td>
-              <button (ng-click)='callSkype()'>
-                <i class="fa fa-phone" aria-hidden="true"></i>
-              </button>
-            </td>
-          </span>
-        </div>
-      </tr>
-    </table>
-  </div>
 
+  <table class="table table-hover">
+    <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Skype Username</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let contact of contacts; let i = index" (click)="setClickedRow(i)" [class.active]="i == selectedRow">
+          <td>{{contact.firstname}}</td>
+          <td>{{contact.lastname}}</td>
+          <td>{{contact.skype}}</td>
+        </tr>
+    </tbody>
+  </table>
 </div>
