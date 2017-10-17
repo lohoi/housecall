@@ -35,12 +35,12 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[5.1]
 
       ## User Info
       t.string :email
-      t.string "skype"
-      t.string "firstname"
-      t.string "lastname"
-      t.integer "specialty"
-      t.integer "hospital_id"
-      t.integer "user_type"
+      t.string :skype
+      t.string :firstname
+      t.string :lastname
+      t.integer :specialty
+      t.integer :hospital_id
+      t.integer :user_type
       t.timestamps
       
 

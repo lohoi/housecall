@@ -17,6 +17,8 @@ import { AuthGuard } from './guards/auth.guard'
 import { DoctorGuard } from './guards/doctor.guard';
 import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard.component'
 import { NotesComponent } from './notes/notes.component';
+import { ContactListComponent } from './contact-list/contact-list.component';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { NotesComponent } from './notes/notes.component';
     DoctorDashboardComponent,
     PatientDashboardComponent,
     NotesComponent,
+    ContactListComponent,
   ],
   imports: [
     BrowserModule,
