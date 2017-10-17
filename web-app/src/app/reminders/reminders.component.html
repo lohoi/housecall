@@ -1,0 +1,18 @@
+<div class="reminders">
+  <p>Reminders</p>
+  <div class="table-scroll">
+    <table id="table" class="table" name="reminders" ngDefaultControl>
+      <tr *ngFor="let reminder of reminders">
+        <div class="tableElement" id='tableElement-{{reminder.id}}'>
+            <div class="icon">
+              <!-- TODO: change button to checkbox -->
+              <button id='check-{{reminder.id}}' style='display:none' class="fa fa-check fa-lg" (click)='showIcon("check", reminder.id); editReminder(reminder.id); '></button>
+            </div>
+            <div id='text-{{reminder.id}}' class="markdown-text" ng-model="reminder.text" 
+              contenteditable="false">{{ reminder.text }}
+            </div>
+        </div>
+      </tr>
+    </table>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 <div class="notes">
-    <p style="font-weight:bold; font-size: 20px">Notes</p>
+    <p>Notes</p>
   <div class="table-scroll">
     <table id="table" class="table" name="notes" ngDefaultControl>
       <tr *ngFor="let note of notes">
@@ -20,7 +20,7 @@
     </table>
   </div>
 
-  <form class="addNote" (ngSubmit)='saveNote()'>
+  <form class="addNote" (ngSubmit)='saveNote()'>New Note:
     <textarea class="noteTitle" [(ngModel)]="newNoteTitle" name="noteTitle" placeholder="New note title"></textarea>
     <textarea class="noteText" [(ngModel)]="newNoteText" name="noteText" placeholder="New note text"></textarea>  
     <button type="submit" class="btn btn-success">Save</button>

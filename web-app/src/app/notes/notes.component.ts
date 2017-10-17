@@ -32,6 +32,7 @@ export class NotesComponent implements OnInit {
     console.log(this.notes);
   }
 
+    // TODO setEdit doctor or patient tag if we want to display both
   setEdit(){
     this.notes.forEach(note => {
       note.edit = false;

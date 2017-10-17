@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AboutComponent } from './about/about.component';
 import { SignupComponent } from './signup/signup.component';
 import { NotesComponent } from './notes/notes.component';
+import { RemindersComponent } from './reminders/reminders.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { NotesComponent } from './notes/notes.component';
     AboutComponent,
     SignupComponent,
     NotesComponent,
+    RemindersComponent,
   ],
   imports: [
     BrowserModule,

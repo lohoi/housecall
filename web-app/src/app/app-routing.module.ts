@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
 import { SignupComponent } from './signup/signup.component';
 import { NotesComponent } from './notes/notes.component';
+import { RemindersComponent } from './reminders/reminders.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'notes',
     component: NotesComponent
+  },
+  {
+    path: 'reminders',
+    component: RemindersComponent
   }
 ];
 
