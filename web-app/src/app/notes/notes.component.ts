@@ -101,7 +101,7 @@ export class NotesComponent implements OnInit {
 
     let delete_idx = this.notes.findIndex(note => note.id == id);
     this.notes.splice(delete_idx,1);
-    this.http.delete('http://localhost:3000/notes/' + id + '.json').subscribe((res: Response) => console.log(res.json()));
+    this.http.delete('http://localhost:3000/notes/' + id + '.json').subscribe();
   }
 
   editNote = function(id: number){
