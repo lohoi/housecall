@@ -33,12 +33,12 @@ const routes: Routes = [
     component: SignupComponent,
   }, 
   {
-    path: 'doctor-dashboard',
+    path: 'doctor-dashboard/:id',
     component: DoctorDashboardComponent,
     canActivate: [ DoctorGuard ],
   },
   {
-    path: 'patient-dashboard',
+    path: 'patient-dashboard/:id',
     component: PatientDashboardComponent,
     canActivate: [ PatientGuard ],
   },

@@ -29,13 +29,16 @@ export class LoginComponent {
           .subscribe(
             res => {
               if (res.status === 200) {
-                let data = JSON.parse(res._body).data
-                switch(data.user_type) {
+                this.user = JSON.parse(res._body).data;
+                console.log("SUCCESS!");
+                console.log(this.user);
+                console.log("id:", this.user.id);
+                switch(this.user.user_type) {
                   case 'doctor':
-                    this.router.navigate(['/doctor-dashboard'])
+                    this.router.navigate(['/doctor-dashboard', this.user.id])
                     break  
                   case 'patient':
-                    this.router.navigate(['/patient-dashboard'])
+                    this.router.navigate(['/patient-dashboard', this.user.id])
                     break
                   default:
                     this.router.navigate(['/'])
