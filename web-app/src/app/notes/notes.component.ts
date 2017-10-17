@@ -21,13 +21,18 @@ export class NotesComponent implements OnInit {
     this.userService.getUser().subscribe((res) => {
       this.user = this.authService.currentUserData;
       if(this.user.user_type === "doctor") {
-        this.patient_id = userService.getSelectedContact().id;
+        this.userService.getSelectedContact().subscribe(
+          res => {
+            console.log("returning with res: ", res)
+            this.patient_id =  res.id; 
+          }
+        )
       }
       else {
         this.patient_id = this.user.id;
       }
     }); 
-    
+    this.getData();
   }
 
   ngOnInit() {
