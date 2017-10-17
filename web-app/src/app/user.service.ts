@@ -116,7 +116,6 @@ export class UserService {
   }
 
    setSelectedContact(c: Contact) {
-    console.log(c);
     UserService.selectedContact$.next(c);
     // console.log("set user service to be...", UserService.selectedContact$)
     // console.log("Selected contact: " + this.getSelectedContact());
