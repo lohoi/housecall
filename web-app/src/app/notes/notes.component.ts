@@ -22,7 +22,7 @@ export class NotesComponent implements OnInit {
       this.user = this.authService.currentUserData;
       this.getData();
       if(this.user.user_type === "doctor") {
-        //this.patient_id = 
+        this.patient_id = userService.getSelectedContact().id;
       }
       else {
         this.patient_id = this.user.id;
