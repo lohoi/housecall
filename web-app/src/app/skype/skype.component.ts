@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone} from '@angular/core';
-
+import { UserService } from '../user.service';
 import { Directive, ElementRef, Input } from '@angular/core';
 
 @Directive({ selector: '[skype-contact-id]' })
