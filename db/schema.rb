@@ -28,20 +28,16 @@ ActiveRecord::Schema.define(version: 20171005170534) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.string "email"
-    t.string "skype"
-    t.string "firstname"
-    t.string "lastname"
-    t.integer "specialty"
-    t.integer "hospital_id"
-    t.integer "user_type"
+
+ActiveRecord::Schema.define(version: 20171009164414) do
+
+  create_table "notes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "title"
+    t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "tokens"
-    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
+    t.integer "user_id"
+    t.boolean "active", default: true
   end
 
 end
