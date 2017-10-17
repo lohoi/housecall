@@ -1,6 +1,9 @@
+import { Angular2TokenService } from 'angular2-token'
+import { UserService } from "../user.service";
 import { Component, OnInit } from '@angular/core';
 import { Http, URLSearchParams, RequestOptions, Response, Headers } from '@angular/http';
-import { Contact } from '../contact'
+import { Contact } from '../contact';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact-list',
@@ -12,12 +15,13 @@ export class ContactListComponent implements OnInit {
   show;
   contacts: [Contact];
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private authService: Angular2TokenService, private userService: UserService, private router:Router) {
     this.http = http;
-    // user_id = UserService.getUser().id;
-    this.user_id = 2;
-    this.getContacts();
-    this.show = false;
+    this.userService.getUser().subscribe((res) => {
+      this.user_id = this.authService.currentUserData.id;
+      this.getContacts();
+      this.show = false;
+    }); 
   }
 
   ngOnInit() {
