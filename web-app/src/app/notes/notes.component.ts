@@ -20,7 +20,6 @@ export class NotesComponent implements OnInit {
     this.http = http;
     this.userService.getUser().subscribe((res) => {
       this.user = this.authService.currentUserData;
-      this.getData();
       if(this.user.user_type === "doctor") {
         this.patient_id = userService.getSelectedContact().id;
       }
@@ -55,7 +54,7 @@ export class NotesComponent implements OnInit {
     });
   }
 
-  saveNote = function(noteTitle: string, noteText: string){
+  saveNote = function(){
     console.log("save note called!")
     let note = new Note();
     note.title = this.newNoteTitle;
