@@ -25,10 +25,10 @@
   <form class="addNote" (ngSubmit)='saveNote()'>
     <p style="font-weight:bold; font-size: 20px">Add Note</p>
     <div class="card" style="margin: 0.2rem 0 .4rem 0 !important; background-color:#607d8b;">
-        <div class="card-content" style="color:#dedede" contenteditable="true" [(ngModel)]="newNoteTitle" name="noteTitle">New note title</div>
+        <div class="card-content" style="color:#dedede" contenteditable="true" ng-model="newNoteTitle" name="newNoteTitle">New note title</div>
     </div>
     <div class="card" style="background-color:#607d8b;">
-        <div class="card-content" style="color:#dedede" contenteditable="true" [(ngModel)]="newNoteText" name="noteText">New note text</div>  
+        <div class="card-content" style="color:#dedede" contenteditable="true" ng-model="newNoteText" name="newNoteText">New note text</div>  
       </div>
     <button style="background-color:#ffb300" type="submit" class="btn btn-success">Save</button>
   </form>
