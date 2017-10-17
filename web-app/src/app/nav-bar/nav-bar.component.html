@@ -1,5 +1,5 @@
 <nav>
-  <div class="nav-wrapper indigo darken-2">
+  <div class="nav-wrapper" style="background-color:#34515e">
     <a *ngIf="!(userService.userSignedIn$ | async)" [routerLink]="['login']" class="brand-logo"><i class="large material-icons">home</i>Housecall</a>
     <a *ngIf="(userService.userSignedIn$ | async) && userService.isDoctor()" [routerLink]="['doctor-dashboard']" class="brand-logo"> <i class="large material-icons">home</i>House Call</a>
     <a *ngIf="(userService.userSignedIn$ | async) && userService.isPatient()" [routerLink]="['patient-dashboard']" class="brand-logo"> <i class="large material-icons">home</i>House Call</a>

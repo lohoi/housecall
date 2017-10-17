@@ -63,11 +63,11 @@ p {
     margin-top: 5px; 
 }
 
-textarea {
-    background-color:whitesmoke;
-    color:darkslategray;
-    border-radius: 7px;
-}
+// textarea {
+//     background-color:whitesmoke;
+//     color:darkslategray;
+//     border-radius: 7px;
+// }
 
 textarea.noteTitle {
     height: 2rem;
@@ -78,4 +78,8 @@ textarea.noteTitle {
 textarea.noteText {
     height: 12rem;
     padding: 5px;
+}
+
+.card .card-content {
+    padding: 8px !important;
 }
