@@ -84,12 +84,12 @@ export class UserService {
   setSelectedContact(c: Contact) {
     console.log(c);
     UserService.selectedContact$.next(c);
-    console.log("set user service to be...", UserService.selectedContact$)
+    // console.log("set user service to be...", UserService.selectedContact$)
     // console.log("Selected contact: " + this.getSelectedContact());
   }
 
   getSelectedContact(): any {
-    console.log("called get Selected Contact")
+    // console.log("called get Selected Contact")
     return UserService.selectedContact$;
     // console.log("Selected contact is: " + UserService.selectedContact$);
     // if (!UserService.selectedContact) {

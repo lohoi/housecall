@@ -34,6 +34,7 @@ export class NotesComponent implements OnInit {
         )
       }
       else {
+        console.log("patient?")
         this.patient_id = this.user.id;
         this.getData();
       }
@@ -73,14 +74,15 @@ export class NotesComponent implements OnInit {
     note.patient_id = this.patient_id;
     let dic = {note: note};
     console.log(dic);
-
-    this.notes.push(note);
+    console.log(note.title);
+    console.log(note.text);
+    // this.notes.push(note);
     
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    this.http.post('http://localhost:3000/notes.json', JSON.stringify(dic), { headers: headers }).subscribe((ok) => console.log(ok));
-    this.newNoteText = "";
-    this.newNoteTitle = "";
+    // let headers = new Headers();
+    // headers.append('Content-Type', 'application/json');
+    // this.http.post('http://localhost:3000/notes.json', JSON.stringify(dic), { headers: headers }).subscribe((ok) => console.log(ok));
+    // this.newNoteText = "";
+    // this.newNoteTitle = "";
   }
 
   deleteNote = function(id: number){
