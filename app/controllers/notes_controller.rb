@@ -2,7 +2,7 @@ class NotesController < ApplicationController
     # skip_before_action :verify_authenticity_token
     def create
         @note = Note.new(note_params)
-        @note.save
+        @note.save!
         respond_to do |format|
             format.json
         end
@@ -49,7 +49,7 @@ class NotesController < ApplicationController
 
     private
       def note_params
-        params.require(:note).permit(:title, :text, :user_id)
+        params.require(:note).permit(:title, :text, :user_id, :patient_id)
         {title: params[:note][:title], text: params[:note][:text], user_id: params[:note][:user_id], patient_id: params[:note][:patient_id]}
       end
 end
