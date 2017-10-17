@@ -48,6 +48,7 @@ export class LoginComponent {
             },
             err => {
               this.onFormResult.emit({signedIn: false, err})
+              alert("Incorrect user credentials");
             }
           )
       }
