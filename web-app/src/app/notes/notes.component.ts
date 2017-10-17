@@ -13,7 +13,7 @@ import { User } from "../user";
 })
 export class NotesComponent implements OnInit {
   notes: [Note];
-  user: User;
+  user: any;
   patient_id = -1 ;
 
   constructor(public userService:UserService, private http: Http, private authService: Angular2TokenService) { 
