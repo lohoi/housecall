@@ -1,0 +1,26 @@
+<div class="patient-description">
+    <p style="font-weight:bold; font-size: 20px">Patient Description</p>
+        <div class="card" style="margin: 0.2rem 0 .4rem 0 !important; background-color:#607d8b;" id='patient-description'>
+          <div class="card-content white-text" >
+            <div class="icon">
+              <button id='pencil-patient-description' class="fa fa-pencil fa-lg" (click)='showIcon("pencil", patient-description.patient_id)'></button>
+              <button id='check-patient-description' style='display:none' class="fa fa-check fa-lg" (click)='showIcon("check", patient-description.patient_id); editNote(patient-description.patient_id); '></button>
+              <button id='trash-patient-description' display="block" class="fa fa-trash-o" (click)='deleteNote(patient-description.patient_id)'></button>
+            </div>
+            <div id='text-patient-description' class="markdown-text" ng-model="patient-description.text" 
+              contenteditable="false">{{ patient-description.text }}
+            </div>
+          </div>
+        </div>
+      </tr>
+    </table>
+  </div>
+
+  <form class="addPatientDescription" (ngSubmit)='savePatientDescription()'>
+    <p style="font-weight:bold; font-size: 20px">Add patient description</p>
+    <div class="card" style="background-color:#607d8b;">
+        <div class="card-content" style="color:#dedede" contenteditable="true" ng-model="newPatientDescription" name="newPatientDescription">New patient description</div>  
+      </div>
+    <button style="background-color:#ffb300" type="submit" class="btn btn-success">Save</button>
+  </form>
+</div>

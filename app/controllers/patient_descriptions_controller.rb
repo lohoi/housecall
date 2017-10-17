@@ -6,7 +6,7 @@ class PatientDescriptionsController < ApplicationController
 
   # get /patient_descriptions/id
   def show
-    @description = PatientDescription.find(params[:patient_id])
+    @description = PatientDescription.find(params[:id])
   end
 
   # put/patch patient_descriptions/id 
