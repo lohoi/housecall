@@ -1,0 +1,29 @@
+<div class="notes">
+    <p style="font-weight:bold; font-size: 20px">Notes</p>
+  <div class="table-scroll">
+    <table id="table" class="table" name="notes" ngDefaultControl>
+      <tr *ngFor="let note of notes">
+        <div class="tableElement" id='tableElement-{{note.id}}'>
+            <div class="icon">
+              <button id='pencil-{{note.id}}' class="fa fa-pencil fa-lg" (click)='showIcon("pencil", note.id)'></button>
+              <button id='check-{{note.id}}' style='display:none' class="fa fa-check fa-lg" (click)='showIcon("check", note.id); editNote(note.id); '></button>
+              <button id='trash-{{note.id}}' display="block" class="fa fa-trash-o" (click)='deleteNote(note.id)'></button>
+            </div>
+            <div id='title-{{note.id}}' class="markdown-title" ng-model="note.title" style="font-weight:bold;" 
+              contenteditable="false">{{ note.title }}
+            </div>
+            <div id='text-{{note.id}}' class="markdown-text" ng-model="note.text" 
+              contenteditable="false">{{ note.text }}
+            </div>
+        </div>
+      </tr>
+    </table>
+  </div>
+
+  <form class="addNote" (ngSubmit)='saveNote()'>
+    <textarea class="noteTitle" [(ngModel)]="newNoteTitle" name="noteTitle" placeholder="New note title"></textarea>
+    <textarea class="noteText" [(ngModel)]="newNoteText" name="noteText" placeholder="New note text"></textarea>  
+    <button type="submit" class="btn btn-success">Save</button>
+  </form>
+</div>
+

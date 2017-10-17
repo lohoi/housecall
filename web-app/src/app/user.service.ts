@@ -67,7 +67,7 @@ export class UserService {
   }
 
   getUser(): any {
-    return this.authService.currentUserData;
+    return this.authService.validateToken()
   }
 
   getUserType(email_): any {

@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core'
-import { Routes, RouterModule } from '@angular/router'
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
+import { NotesComponent } from './notes/notes.component';
 import { LoginComponent } from './login/login.component'
 import { AboutComponent } from './about/about.component'
 import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard.component'
@@ -38,6 +39,10 @@ const routes: Routes = [
     path: 'patient-dashboard',
     component: PatientDashboardComponent,
     canActivate: [ AuthGuard ],
+  },
+  {
+    path: 'notes',
+    component: NotesComponent
   }
 ];
 
