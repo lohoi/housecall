@@ -42,9 +42,9 @@ export class ContactListComponent implements OnInit {
 
     console.log("get all contacts");
 
-    this.http.get('http://localhost:3000/contacts.json', options).subscribe((res: Response) => {this.contacts = res.json()});
-
-    console.log(this);
+    this.http.get('http://localhost:3000/contacts.json', options).subscribe((res: Response) => {
+      this.contacts = res.json();
+    });
   }
 
   addContact = function(patientFirstName: string, patientLastName: string,
@@ -61,7 +61,7 @@ export class ContactListComponent implements OnInit {
     headers.append('Content-Type', 'application/json');
     this.http.post('http://localhost:3000/contacts.json', JSON.stringify(contact), { headers: headers }).subscribe(
       res=> {
-        this.router.navigate(['/doctor-dashboard'])
+        this.router.navigate(['/doctor-dashboard']);
       },
       err => {
         alert("Registration failed! Please double check all fields are correct")

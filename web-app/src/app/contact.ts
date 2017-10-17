@@ -5,4 +5,5 @@ export class Contact {
     password: string
     skype: string
     doctor_id: number
+    id: number
 }
