@@ -3,17 +3,22 @@ class ContactsController < ApplicationController
     doctor = User.find(params[:doctor_id])
 
     password = Devise.friendly_token.first(8)
+    puts password
 
     patient = User.new(firstname: params[:firstname], lastname: params[:lastname], email: params[:email],
                       skype: params[:skype], password: password, user_type: 1)
-    if not patient.save
+    
+
+    if patient.save
+      contact = Contact.new(doctor_id: doctor.id, patient_id: patient.id)
+      contact.save
+
+      # need prod mode to send actual emails
+      PatientMailer.account_activation(patient, password).deliver_now
+    else
       puts patient.errors.full_messages
     end
 
-    contact = Contact.new(doctor_id: doctor.id, patient_id: patient.id)
-    contact.save
-
-    PatientMailer.account_activation(patient, password).deliver_now
 
     # respond_to do |format|
     #   if patient.save
