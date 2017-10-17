@@ -35,9 +35,10 @@ export class NotesComponent implements OnInit {
           }
         )
       }
-      else {
-        console.log("patient?")
+      else if(this.user.user_type === "patient") {
         this.patient_id = this.user.id;
+        console.log("PATIENT ID", this.patient_id);
+        document.getElementById("saveButton").removeAttribute("disabled");
         this.getData();
       }
     }); 
@@ -48,13 +49,14 @@ export class NotesComponent implements OnInit {
 
   getData(){
     if(this.patient_id === -1){
+      console.log("patient id is not set");
     }
     else {
       let options = new RequestOptions({
         // Have to make a URLSearchParams with a query string
-        search: new URLSearchParams('user_id=' + this.user.id + ' patient_id=' + this.patient_id)
+        search: new URLSearchParams('user_id=' + this.user.id + '&patient_id=' + this.patient_id)
       });
-      console.log("get notes");
+      console.log("get notes", options);
       this.http.get('http://localhost:3000/notes.json', options).subscribe(
         (res: Response) => {
             this.notes = res.json();
