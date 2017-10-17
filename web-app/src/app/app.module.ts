@@ -18,7 +18,7 @@ import { DoctorGuard } from './guards/doctor.guard';
 import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard.component'
 import { NotesComponent } from './notes/notes.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
-
+import { SkypeComponent } from './skype/skype.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +31,7 @@ import { ContactListComponent } from './contact-list/contact-list.component';
     PatientDashboardComponent,
     NotesComponent,
     ContactListComponent,
+    SkypeComponent,
   ],
   imports: [
     BrowserModule,
