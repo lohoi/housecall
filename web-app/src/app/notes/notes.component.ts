@@ -25,7 +25,8 @@ export class NotesComponent implements OnInit {
         this.userService.getSelectedContact().subscribe(
           res => {
             console.log("returning with res: ", res)
-            // this.patient_id =  res.id; 
+            this.patient_id =  res.id; 
+            this.getData();
           },
           error => {
             console.log("ERROR!");
@@ -34,9 +35,9 @@ export class NotesComponent implements OnInit {
       }
       else {
         this.patient_id = this.user.id;
+        this.getData();
       }
     }); 
-    this.getData();
   }
 
   ngOnInit() {

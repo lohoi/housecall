@@ -11,10 +11,10 @@
               <button id='trash-{{note.id}}' display="block" class="fa fa-trash-o" (click)='deleteNote(note.id)'></button>
             </div>
             <div id='title-{{note.id}}' class="markdown-title" ng-model="note.title" style="font-size:20px;" 
-              contenteditable="false">{{ note.title }}
+              contenteditable="false"><pre>{{ note.title }}</pre>
             </div>
             <div id='text-{{note.id}}' class="markdown-text" ng-model="note.text" 
-              contenteditable="false">{{ note.text }}
+              contenteditable="false"><pre>{{ note.text }}</pre>
             </div>
           </div>
         </div>
