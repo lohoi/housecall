@@ -14,13 +14,21 @@ import { User } from "../user";
 export class NotesComponent implements OnInit {
   notes: [Note];
   user: User;
+  patient_id;
 
   constructor(public userService:UserService, private http: Http, private authService: Angular2TokenService) { 
     this.http = http;
     this.userService.getUser().subscribe((res) => {
       this.user = this.authService.currentUserData;
       this.getData();
+      if(this.user.user_type === "doctor") {
+        //this.patient_id = 
+      }
+      else {
+        this.patient_id = this.user.id;
+      }
     }); 
+    
   }
 
   ngOnInit() {
@@ -29,10 +37,9 @@ export class NotesComponent implements OnInit {
   getData(){
     let options = new RequestOptions({
       // Have to make a URLSearchParams with a query string
-      search: new URLSearchParams('user_id=' + this.user.id)
+      search: new URLSearchParams('user_id=' + this.user.id + ' patient_id=' + this.patient_id)
     });
     console.log("get notes");
-    console.log(this.user.id)
     this.http.get('http://localhost:3000/notes.json', options).subscribe(
       (res: Response) => {
           this.notes = res.json();
@@ -46,7 +53,6 @@ export class NotesComponent implements OnInit {
     this.notes.forEach(note => {
       note.edit = false;
     });
-
   }
 
   saveNote = function(noteTitle: string, noteText: string){
@@ -55,6 +61,7 @@ export class NotesComponent implements OnInit {
     note.title = this.newNoteTitle;
     note.text = this.newNoteText;
     note.user_id = this.user.id;
+    note.patient_id = this.patient_id;
     let dic = {note: note};
     console.log(dic);
 
@@ -82,6 +89,7 @@ export class NotesComponent implements OnInit {
     note.title = document.getElementById('title-'+id).innerHTML;
     note.text = document.getElementById('text-'+id).innerHTML;
     note.user_id = this.user.id;
+    note.patient_id = this.patient_id;
     note.id = id;
     let dic = {note: note}
     let headers = new Headers();

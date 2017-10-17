@@ -30,7 +30,8 @@ class NotesController < ApplicationController
     # get all notes for user
     def index
         user = User.find(params[:user_id])
-        @notes = Note.where(user_id: user.id, active: true)
+        patient_id = params[:patient_id]
+        @notes = Note.where(user_id: user.id, patient_id: patient_id, active: true)
         respond_to do |format|
             format.json { render json: @notes}
         end
@@ -49,6 +50,6 @@ class NotesController < ApplicationController
     private
       def note_params
         params.require(:note).permit(:title, :text, :user_id)
-        {title: params[:note][:title], text: params[:note][:text], user_id: params[:note][:user_id]}
+        {title: params[:note][:title], text: params[:note][:text], user_id: params[:note][:user_id], patient_id: params[:note][:patient_id]}
       end
 end

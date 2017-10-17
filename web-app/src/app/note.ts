@@ -6,4 +6,5 @@ export class Note {
     user_id: number
     active: boolean
     edit: boolean
+    patient_id: number
 }
