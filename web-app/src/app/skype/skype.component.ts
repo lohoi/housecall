@@ -18,7 +18,7 @@ export class SkypeComponent implements OnInit {
   static reloaded:boolean = true;
   contactID:string;
 
-  constructor(private zone: NgZone) { 
+  constructor(private zone: NgZone, private userService:UserService) { 
   }
 
   ngOnInit() {
@@ -29,7 +29,14 @@ export class SkypeComponent implements OnInit {
     }
     SkypeComponent.reloaded = true
     // Get the username of the person to contact here
-    this.contactID = "remingtonsr"
+    // this.contactID = "remingtonsr"
+
+    this.userService.getSelectedContact().subscribe(
+      res => {
+        console.log("returning with res: ", res)
+        this.contactID =  res.skype; 
+        }
+      )
   }
 
   ngOnDestroy() {

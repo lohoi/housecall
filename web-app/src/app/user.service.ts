@@ -17,7 +17,7 @@ export class UserService {
     )
   }
   
-  static selectedContact:Contact;
+  static selectedContact$:Subject<Contact> = new Subject();
 
   userSignedIn$:Subject<boolean> = new Subject()
 
@@ -83,16 +83,19 @@ export class UserService {
 
   setSelectedContact(c: Contact) {
     console.log(c);
-    UserService.selectedContact = c;
-    console.log("Selected contact: " + this.getSelectedContact());
+    UserService.selectedContact$.next(c);
+    console.log("set user service to be...", UserService.selectedContact$)
+    // console.log("Selected contact: " + this.getSelectedContact());
   }
 
-  getSelectedContact() {
-    console.log("Selected contact is: " + UserService.selectedContact);
-    if (!UserService.selectedContact) {
-      return null;
-    }
-    return UserService.selectedContact;
+  getSelectedContact(): any {
+    console.log("called get Selected Contact")
+    return UserService.selectedContact$;
+    // console.log("Selected contact is: " + UserService.selectedContact$);
+    // if (!UserService.selectedContact) {
+    //   return null;
+    // }
+    // return UserService.selectedContact;
   }
 
 
