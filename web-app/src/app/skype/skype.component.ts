@@ -39,9 +39,9 @@ export class SkypeComponent implements OnInit {
         // var child = document.getElementById("skype-chat");
         // parent.removeChild(child);
 
-        // // var x = document.getElementsByTagName("BODY")[0];
-        // // var skypeChat = document.getElementsByClassName("skype-chat")[0];
-        // // x.removeChild(skypeChat);
+        // var x = document.getElementsByTagName("BODY")[0];
+        // var skypeChat = document.getElementsByClassName("skype-chat")[0];
+        // x.removeChild(skypeChat);
         
         // var skypeSpan = document.createElement("span");
         // skypeSpan.setAttribute("id", "skype-chat")
