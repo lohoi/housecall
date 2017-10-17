@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Angular2TokenService } from 'angular2-token'
 import { Http, URLSearchParams, RequestOptions, Response, Headers } from '@angular/http';
 import { Note } from "../note"
-//import { UserService } from "../user.service";
+import { UserService } from "../user.service";
 
 @Component({
   selector: 'app-notes',
@@ -12,11 +13,12 @@ export class NotesComponent implements OnInit {
   notes: [Note];
   user_id;
 
-  constructor(private http: Http) { 
+  constructor(public userService:UserService, private http: Http, private authService: Angular2TokenService) { 
     this.http = http;
-    //user_id = UserService.getUser().id;
-    this.user_id = 2;
-    this.getData();
+    this.userService.getUser().subscribe((res) => {
+      this.user_id = this.authService.currentUserData.id;
+      this.getData();
+    }); 
   }
 
   ngOnInit() {
@@ -28,6 +30,7 @@ export class NotesComponent implements OnInit {
       search: new URLSearchParams('user_id=' + this.user_id)
     });
     console.log("get notes");
+    console.log(this.user_id)
     this.http.get('http://localhost:3000/notes.json', options).subscribe((res: Response) => {this.notes = res.json(); this.setEdit()});
     console.log(this.notes);
   }
@@ -43,11 +46,12 @@ export class NotesComponent implements OnInit {
     note.title = this.newNoteTitle;
     note.text = this.newNoteText;
     note.user_id = this.user_id;
-    //let obj = {title: this.newNoteTitle, text: this.newNoteText};
-    console.log(note);
+    let dic = {note: note};
+    console.log(dic);
+    
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    this.http.post('http://localhost:3000/notes.json', JSON.stringify(note), { headers: headers }).subscribe((ok) => console.log(ok));
+    this.http.post('http://localhost:3000/notes.json', JSON.stringify(dic), { headers: headers }).subscribe((ok) => console.log(ok));
     this.newNoteText = "";
     this.newNoteTitle = "";
     location.reload();
@@ -67,9 +71,10 @@ export class NotesComponent implements OnInit {
     note.text = document.getElementById('text-'+id).innerHTML;
     note.user_id = this.user_id;
     note.id = id;
+    let dic = {note: note}
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    this.http.patch('http://localhost:3000/notes/' + id + '.json', JSON.stringify(note), { headers: headers }).subscribe((ok) => console.log(ok));      
+    this.http.patch('http://localhost:3000/notes/' + id + '.json', JSON.stringify(dic), { headers: headers }).subscribe((ok) => console.log(ok));      
   }
 
   showIcon = function(icon:string, id:number) {
