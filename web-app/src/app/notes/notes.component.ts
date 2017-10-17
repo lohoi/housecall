@@ -13,8 +13,13 @@ import { User } from "../user";
 })
 export class NotesComponent implements OnInit {
   notes: [Note];
+<<<<<<< HEAD
   user: any;
   patient_id;
+=======
+  user: User;
+  patient_id = -1 ;
+>>>>>>> Disable button, set patient_id = -1 initially
 
   constructor(public userService:UserService, private http: Http, private authService: Angular2TokenService) { 
     this.http = http;
@@ -26,7 +31,8 @@ export class NotesComponent implements OnInit {
         this.userService.getSelectedContact().subscribe(
           res => {
             console.log("returning with res: ", res)
-            this.patient_id =  res.id; 
+            this.patient_id = res.id; 
+            document.getElementById("saveButton").removeAttribute("disabled");
             this.getData();
           },
           error => {
@@ -46,18 +52,22 @@ export class NotesComponent implements OnInit {
   }
 
   getData(){
-    let options = new RequestOptions({
-      // Have to make a URLSearchParams with a query string
-      search: new URLSearchParams('user_id=' + this.user.id + ' patient_id=' + this.patient_id)
-    });
-    console.log("get notes");
-    this.http.get('http://localhost:3000/notes.json', options).subscribe(
-      (res: Response) => {
-          this.notes = res.json();
-          this.setEdit();
-          console.log("notes: ", this.notes);
-        }
-    );
+    if(this.patient_id === -1){
+    }
+    else {
+      let options = new RequestOptions({
+        // Have to make a URLSearchParams with a query string
+        search: new URLSearchParams('user_id=' + this.user.id + ' patient_id=' + this.patient_id)
+      });
+      console.log("get notes");
+      this.http.get('http://localhost:3000/notes.json', options).subscribe(
+        (res: Response) => {
+            this.notes = res.json();
+            this.setEdit();
+            console.log("notes: ", this.notes);
+          }
+      );
+    }
   }
 
   setEdit(){
@@ -67,25 +77,30 @@ export class NotesComponent implements OnInit {
   }
 
   saveNote = function(){
-    console.log("save note called!")
-    let note = new Note();
-    note.title = this.newNoteTitle;
-    note.text = this.newNoteText;
-    note.user_id = this.user.id;
-    note.patient_id = this.patient_id;
-    let dic = {note: note};
-    console.log(dic);
-    console.log(note.title);
-    console.log(note.text);
-    
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    this.http.post('http://localhost:3000/notes.json', JSON.stringify(dic), { headers: headers }).subscribe((res: Response) => {
-      console.log("response", res.json().id)
-      this.notes.push(res.json());
-    });
-    this.newNoteText = "";
-    this.newNoteTitle = "";
+    if(this.patient_id === -1){
+      console.log("patient_id is not set");
+    }
+    else{
+      console.log("save note called!")
+      let note = new Note();
+      note.title = this.newNoteTitle;
+      note.text = this.newNoteText;
+      note.user_id = this.user.id;
+      note.patient_id = this.patient_id;
+      let dic = {note: note};
+      console.log(dic);
+      console.log(note.title);
+      console.log(note.text);
+      
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.post('http://localhost:3000/notes.json', JSON.stringify(dic), { headers: headers }).subscribe((res: Response) => {
+        console.log("response", res.json().id)
+        this.notes.push(res.json());
+      });
+      this.newNoteText = "";
+      this.newNoteTitle = "";
+    }
   }
 
   deleteNote = function(id: number){
