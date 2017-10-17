@@ -24,6 +24,10 @@ export class ContactListComponent implements OnInit {
     }); 
   }
 
+  setClickedRow (index){
+    this.userService.setSelectedContact(this.contacts[index]);
+  }
+
   ngOnInit() {
   }
 
