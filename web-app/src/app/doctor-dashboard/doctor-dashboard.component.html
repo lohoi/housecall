@@ -1,6 +1,6 @@
 <app-contact-list></app-contact-list>
 <hr style="margin:15px;">
-<div class="Doctor_PatientProfile" style="display:flex;">
+<div *ngIf="(userService.getSelectedContact() | async)" class="Doctor_PatientProfile" style="display:flex;">
     <app-notes></app-notes>
     <app-skype></app-skype>
 </div>

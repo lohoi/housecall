@@ -21,10 +21,14 @@ export class NotesComponent implements OnInit {
     this.userService.getUser().subscribe((res) => {
       this.user = this.authService.currentUserData;
       if(this.user.user_type === "doctor") {
+        console.log("HITTING THIS!")
         this.userService.getSelectedContact().subscribe(
           res => {
             console.log("returning with res: ", res)
-            this.patient_id =  res.id; 
+            // this.patient_id =  res.id; 
+          },
+          error => {
+            console.log("ERROR!");
           }
         )
       }
