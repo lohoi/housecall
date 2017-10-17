@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   post '/updateUser', to: 'users#update_user'
 
   resources :users
+  resources :notes
+  resources :contacts
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :static_pages

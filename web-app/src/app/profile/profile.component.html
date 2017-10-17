@@ -1,10 +1,10 @@
 <br/>
-<div class="row">
+<div *ngIf="isSet" class="row">
   <form class="col s12" (ngSubmit)="onSubmit()">
     <div class="row">
       <div class="input-field col s6">
         <i class="material-icons prefix">email</i>
-        <input id="disabled" type="email" class="validate" disabled value="user.email"  [(ngModel)]="user.email" name="disabled">
+        <input id="disabled" type="email" class="validate" value="{{user.email}}" disabled>
         <label for="disabled">Email</label>
       </div>
       <div class="input-field col s6">

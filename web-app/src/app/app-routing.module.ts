@@ -40,7 +40,7 @@ const routes: Routes = [
   {
     path: 'patient-dashboard',
     component: PatientDashboardComponent,
-    canActivate: [ PatientGuard ],
+    canActivate: [ AuthGuard ],
   },
   {
     path: 'profile',

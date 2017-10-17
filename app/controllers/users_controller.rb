@@ -20,7 +20,6 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     respond_to do |format|
-      format.html {render :edit}
       format.json {render json: @user}
     end
   end
@@ -32,7 +31,6 @@ class UsersController < ApplicationController
         format.html {redirect_to @user, notice: 'User successfully updated.'}
         format.json {render :show, status: :updated, location: @user}
       else
-        format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -43,6 +41,15 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @contacts = 
+      if @user.patient? 
+        Contact.where(patient_id: @user.id) 
+      else 
+        Contact.where(doctor_id: @user.id) 
+      end
+    respond_to do |format|
+      format.json
+    end
   end
 
 

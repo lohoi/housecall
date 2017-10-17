@@ -19,17 +19,23 @@ export class ProfileComponent implements OnInit {
   public hospitals: any;
   public specialties: any;
   public userTypes: any;
+  public isSet: boolean;
 
   constructor(private http: Http, private userService: UserService, private router: Router) {
-    this.http = http
     this.user = new User();
+    this.isSet = false;
   }
 
   ngOnInit() {
-  	if(this.userService.getUser()) {
-  		this.user = this.userService.getUser();
-  		console.log(this.user)
-  	}
+  	this.userService.getUser().subscribe(
+      res => {
+        this.user = res.json().data;
+        console.log("credentials!", this.user)
+        this.isSet = true;
+      }, error => {
+        alert("ERROR")!
+      }
+    )
   }
 
   onSubmit = function() {    
