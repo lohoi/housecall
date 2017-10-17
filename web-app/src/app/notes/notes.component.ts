@@ -13,13 +13,14 @@ import { User } from "../user";
 })
 export class NotesComponent implements OnInit {
   notes: [Note];
-  user: User;
+  user: any;
   patient_id;
 
   constructor(public userService:UserService, private http: Http, private authService: Angular2TokenService) { 
     this.http = http;
     this.userService.getUser().subscribe((res) => {
       this.user = this.authService.currentUserData;
+      this.getData();
       if(this.user.user_type === "doctor") {
         console.log("HITTING THIS!")
         this.userService.getSelectedContact().subscribe(
@@ -76,13 +77,15 @@ export class NotesComponent implements OnInit {
     console.log(dic);
     console.log(note.title);
     console.log(note.text);
-    // this.notes.push(note);
     
-    // let headers = new Headers();
-    // headers.append('Content-Type', 'application/json');
-    // this.http.post('http://localhost:3000/notes.json', JSON.stringify(dic), { headers: headers }).subscribe((ok) => console.log(ok));
-    // this.newNoteText = "";
-    // this.newNoteTitle = "";
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    this.http.post('http://localhost:3000/notes.json', JSON.stringify(dic), { headers: headers }).subscribe((res: Response) => {
+      console.log("response", res.json().id)
+      this.notes.push(res.json());
+    });
+    this.newNoteText = "";
+    this.newNoteTitle = "";
   }
 
   deleteNote = function(id: number){
@@ -90,7 +93,7 @@ export class NotesComponent implements OnInit {
 
     let delete_idx = this.notes.findIndex(note => note.id == id);
     this.notes.splice(delete_idx,1);
-    this.http.delete('http://localhost:3000/notes/' + id + '.json').subscribe((res: Response) => console.log(res.json));
+    this.http.delete('http://localhost:3000/notes/' + id + '.json').subscribe((res: Response) => console.log(res.json()));
   }
 
   editNote = function(id: number){

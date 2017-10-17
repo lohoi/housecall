@@ -4,7 +4,7 @@ class NotesController < ApplicationController
         @note = Note.new(note_params)
         @note.save!
         respond_to do |format|
-            format.json
+            format.json { render json: @note, status: :ok}
         end
     end
 
