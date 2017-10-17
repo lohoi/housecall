@@ -34,9 +34,24 @@ export class SkypeComponent implements OnInit {
     this.userService.getSelectedContact().subscribe(
       res => {
         console.log("returning with res: ", res)
-        this.contactID =  res.skype; 
-        }
-      )
+        this.contactID = res.skype;
+        // var parent = document.getElementById("app-skype");
+        // var child = document.getElementById("skype-chat");
+        // parent.removeChild(child);
+
+        // // var x = document.getElementsByTagName("BODY")[0];
+        // // var skypeChat = document.getElementsByClassName("skype-chat")[0];
+        // // x.removeChild(skypeChat);
+        
+        // var skypeSpan = document.createElement("span");
+        // skypeSpan.setAttribute("id", "skype-chat")
+        // skypeSpan.classList.add("skype-button");
+        // skypeSpan.classList.add("bubble");
+        // skypeSpan.setAttribute("data-contact-id", this.contactID);
+        // parent.appendChild(skypeSpan);
+      }
+    );
+    this.contactID = "remingtonsr"
   }
 
   ngOnDestroy() {
