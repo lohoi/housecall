@@ -15,6 +15,7 @@ import { UserService } from './user.service'
 import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.component'
 import { AuthGuard } from './guards/auth.guard'
 import { DoctorGuard } from './guards/doctor.guard';
+import { PreventLoggedInAccess } from './guards/preventLoggedInAccess';
 import { ProfileComponent } from './profile/profile.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
 import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard.component'
@@ -44,7 +45,7 @@ import { SkypeComponent } from './skype/skype.component';
     AppRoutingModule,
     MaterializeModule,
   ],
-  providers: [ Angular2TokenService, UserService, AuthGuard, DoctorGuard ],
+  providers: [ Angular2TokenService, UserService, AuthGuard, DoctorGuard, PreventLoggedInAccess ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
