@@ -90,7 +90,8 @@ Doctor:
 * Once logged in, the doctor will be brought to their Home Page with a list of all of their patient contacts on the top 
 * The doctor can press button to add a new patient as their client. A form will appear on the top of the page and a login key will be emailed to the user to finish registration. 
     * For the Alpha release, our servers are in local development mode so they don't support emailing. This means that a doctor can add new patients to their contact list, but those patients can't log in yet. You can still create a new user as a patient to see the application from the patient side but they won't be associated to a doctor yet. 
-* The doctor can select a patient from the contact list to view the Patient Dashboard page on the lower half of the screen. The notes list, Skype contact, and patient description will update based on the selected user.
+* The doctor can select a patient from the contact list to view the Patient Dashboard page on the lower half of the screen. If no patient is selected from the list, the components below the list will not populate. The notes list, Skype contact, and patient description will update based on the selected user.
+* If the doctor clicks to a new patient, the notes, skype, and patient description components will update to reflect the information from the selected user. 
 * The doctor can create and save a new note, click the yellow pencil to edit a note and the green checkmark to save it, or delete a note using the red garbage icon.
 * The doctor can Skype chat the patient or Skype call the patient using the Skype bubble in the lower right hand side of the screen.
 * The doctor can update and save the Patient Description box 
