@@ -1,6 +1,6 @@
 # README
-
 Welcome to Housecall! The following is how to set up the project locally.
+
 
 ## Rails Setup: 
 * Install ruby 2.4.2
@@ -37,8 +37,8 @@ $ rake db:seed
 $ rails s
 ```  
 
-## Angular Setup
 
+## Angular Setup
 * Inside of `/web-app` run `npm install` then the following should give the output:
 ```console
 $ ng -v
@@ -67,6 +67,7 @@ typescript: 2.0.10
 
 * Visit `localhost:4200` and play around in the app!
 
+
 ## Dev Notes:
 * `ng new <application name>`: Creates new AngularJS 2 application
    <br/> Note that there are additional flags that you can specify
@@ -81,11 +82,6 @@ typescript: 2.0.10
 
 * Routing
 Add your routes to app-routing.module.ts
-
-* Authentication
-TODO...
-
-* This application seems to require two servers, one to run the Angular webapp and other to run the Rails backend server. 
 
 
 ## Features
