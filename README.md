@@ -1,34 +1,69 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Welcome to Housecall! The following is how to set up the project locally.
 
-Things you may want to cover:
+## Rails Setup: 
+* Install ruby 2.4.2
+* Install rails 5.1.4
+* Clone the directory
+* Install mysql and check the mysql socket  
+```console
+$ mysqladmin -u root -p variables | grep socket
+```
+* Then update `config/database.yml` to use that socket (change SOCKET_VARIABLE):
 
-* Ruby version: 2.4.2 
+```
+default: &default
+    adapter: mysql2
+    encoding: utf8
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    username: root
+    password: root
+    socket: {{SOCKET_VARIABLE}}
+```
+* In the root directory run
 
-* Rails version: 5.1.4
+```console
+$ bundle install
+```
+* To set up the database schema, run the following:
+```console 
+$ rake db:create
+$ rake db:migrate
+$ rake db:seed
+```
+* Navigate into the root directory and run the following to bootup the rails backend server:
+```console
+$ rails s
+```  
 
-* System dependencies
+## Angular Setup
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-## Setup Instructions: 
-1. Install ruby 2.4.2
-2. Install rails 5.1.4
-3. Clone the directory
-4. Navigate into the directory and run `rails s` to bootup the rails backend server
-5. Navigate into the web-app directory and run `npm install` followed by `ng serve` to bootup the Angular app.
+* Inside of `/web-app` run `npm install` then the following should give the output:
+```console
+$ ng -v
+    _                      _                 ____ _     ___
+   / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
+  / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
+ / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
+/_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
+               |___/
+@angular/cli: 1.4.5
+node: 6.11.3
+os: darwin x64
+@angular/common: 2.4.10
+@angular/compiler: 2.4.10
+@angular/core: 2.4.10
+@angular/forms: 2.4.10
+@angular/http: 2.4.10
+@angular/platform-browser: 2.4.10
+@angular/platform-browser-dynamic: 2.4.10
+@angular/router: 3.4.10
+@angular/cli: 1.4.5
+@angular/compiler-cli: 2.4.10
+typescript: 2.0.10
+```
+* Navigate into the web-app directory and run `npm install` followed by `ng serve` to bootup the Angular app.
 
 ## Dev Notes:
 * `ng new <application name>`: Creates new AngularJS 2 application
