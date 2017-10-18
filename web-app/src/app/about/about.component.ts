@@ -14,7 +14,6 @@ export class AboutComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("HERE")
     this.text = "Woo ay"
   }
 }
