@@ -117,6 +117,7 @@ Additional:
 * We have basic error checks for user registration input with feedback for the user.
 * The login page also has error checks for email and password formatting with feedback for the user.
 * The login page will send the user an alert if their login information is incorrect.
+* There are validation checks that the doctor inputs the required information when registering a new patient.
 * We have tooltips for the Navigation bar icons to help the user navigate the site easily.
 * The user will be navigated to the About page if they try to access something they aren't authorized to view.
 * The About page has useful site tips and feature descriptions to help users use the site easily.
