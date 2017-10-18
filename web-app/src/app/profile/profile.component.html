@@ -28,13 +28,8 @@
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">local_hospital</i>
-        <select materialize="material_select" [(ngModel)]="user.hospital_id" value="user.hospital" name="hospital" id="hospital" disabled>
-          <option value="disabled" disabled selected>
-            {{user.hospital}}
-          </option>
-          <option *ngFor="let hospital of hospitals" [value]="hospital.id">
-            {{hospital.name}}
-          </option>
+        <select materialize="material_select" name="hospital" id="hospital" disabled>
+           <option value="disabled" disabled selected>{{ hospitals[user.hospital_id].name }}</option>
         </select>
         <label for="hospital">Hospital</label>
       </div>
@@ -42,16 +37,12 @@
     <div class="row">
       <div class="input-field col s6">
         <i class="material-icons prefix">contacts</i>
-        <select materialize="material_select" [(ngModel)]="user.user_type"  name="type" id="type" disabled>
-          <option value="disabled" disabled selected>
-            {{user.user_type}}
-          </option>
-        </select>
+        <input id="type" type="text" class="validate" value="{{user.user_type}}" name="type" disabled>
         <label for="type">User Type</label>
       </div>
       <div class="input-field col s6" *ngIf="user.user_type === 'doctor'">
         <i class="material-icons prefix">healing</i>
-        <select materialize="material_select" [(ngModel)]="user.specialty" name="specialty" disabled>
+        <select materialize="material_select" name="specialty" disabled>
           <option value="disabled" disabled selected>{{user.specialty}}</option>
           <option *ngFor="let specialty of specialties" [ngValue]="specialty.id">{{specialty.name}}</option>
         </select>

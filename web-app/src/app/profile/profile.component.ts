@@ -24,6 +24,25 @@ export class ProfileComponent implements OnInit {
   constructor(private http: Http, private userService: UserService, private router: Router) {
     this.user = new User();
     this.isSet = false;
+    
+    this.hospitals = [
+      {'id': 0, 'name': 'Mott Children\'s Hospital'},
+      {'id': 1, 'name': 'Kellogg Eye Center'}
+    ]
+    this.specialties = [
+      {'id': 0, 'name':' General'}, 
+      {'id': 1, 'name': 'Cardiology'},
+      {'id': 2, 'name': 'Orthopedic Surgery'},
+      {'id': 3, 'name': 'Gastroentrerology'},
+      {'id': 4, 'name': 'Dermatology'},
+      {'id': 5, 'name': 'Anesthesiology'},
+      {'id': 6, 'name': 'Plastic Surgery'}
+    ]
+    this.userTypes = [
+      {'id': 0, 'name': 'doctor'},
+      {'id': 1, 'name': 'patient'}
+    ]
+
   }
 
   ngOnInit() {
