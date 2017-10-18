@@ -65,6 +65,8 @@ typescript: 2.0.10
 ```
 * Navigate into the web-app directory and run `npm install` followed by `ng serve` to bootup the Angular app.
 
+* Visit `localhost:4200` and play around in the app!
+
 ## Dev Notes:
 * `ng new <application name>`: Creates new AngularJS 2 application
    <br/> Note that there are additional flags that you can specify
