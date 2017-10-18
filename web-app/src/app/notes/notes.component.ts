@@ -13,44 +13,58 @@ import { User } from "../user";
 })
 export class NotesComponent implements OnInit {
   notes: [Note];
-  user: User;
-  patient_id;
+  user: any;
+  patient_id = -1 ;
 
   constructor(public userService:UserService, private http: Http, private authService: Angular2TokenService) { 
     this.http = http;
     this.userService.getUser().subscribe((res) => {
       this.user = this.authService.currentUserData;
+      this.getData();
       if(this.user.user_type === "doctor") {
+        console.log("HITTING THIS!")
         this.userService.getSelectedContact().subscribe(
           res => {
             console.log("returning with res: ", res)
-            this.patient_id =  res.id; 
+            this.patient_id = res.id; 
+            document.getElementById("saveButton").removeAttribute("disabled");
+            this.getData();
+          },
+          error => {
+            console.log("ERROR!");
           }
         )
       }
-      else {
+      else if(this.user.user_type === "patient") {
         this.patient_id = this.user.id;
+        console.log("PATIENT ID", this.patient_id);
+        document.getElementById("saveButton").removeAttribute("disabled");
+        this.getData();
       }
     }); 
-    this.getData();
   }
 
   ngOnInit() {
   }
 
   getData(){
-    let options = new RequestOptions({
-      // Have to make a URLSearchParams with a query string
-      search: new URLSearchParams('user_id=' + this.user.id + ' patient_id=' + this.patient_id)
-    });
-    console.log("get notes");
-    this.http.get('http://localhost:3000/notes.json', options).subscribe(
-      (res: Response) => {
-          this.notes = res.json();
-          this.setEdit();
-          console.log("notes: ", this.notes);
-        }
-    );
+    if(this.patient_id === -1){
+      console.log("patient id is not set");
+    }
+    else {
+      let options = new RequestOptions({
+        // Have to make a URLSearchParams with a query string
+        search: new URLSearchParams('user_id=' + this.user.id + '&patient_id=' + this.patient_id)
+      });
+      console.log("get notes", options);
+      this.http.get('http://localhost:3000/notes.json', options).subscribe(
+        (res: Response) => {
+            this.notes = res.json();
+            this.setEdit();
+            console.log("notes: ", this.notes);
+          }
+      );
+    }
   }
 
   setEdit(){
@@ -60,22 +74,26 @@ export class NotesComponent implements OnInit {
   }
 
   saveNote = function(){
-    console.log("save note called!")
-    let note = new Note();
-    note.title = this.newNoteTitle;
-    note.text = this.newNoteText;
-    note.user_id = this.user.id;
-    note.patient_id = this.patient_id;
-    let dic = {note: note};
-    console.log(dic);
-
-    this.notes.push(note);
-    
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    this.http.post('http://localhost:3000/notes.json', JSON.stringify(dic), { headers: headers }).subscribe((ok) => console.log(ok));
-    this.newNoteText = "";
-    this.newNoteTitle = "";
+    if(this.patient_id === -1){
+      console.log("patient_id is not set");
+    }
+    else{
+      let note = new Note();
+      note.title = this.newNoteTitle;
+      note.text = this.newNoteText;
+      note.user_id = this.user.id;
+      note.patient_id = this.patient_id;
+      let dic = {note: note};
+      
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.post('http://localhost:3000/notes.json', JSON.stringify(dic), { headers: headers }).subscribe((res: Response) => {
+        console.log("response", res.json().id)
+        this.notes.push(res.json());
+      });
+      this.newNoteText = "";
+      this.newNoteTitle = "";
+    }
   }
 
   deleteNote = function(id: number){
@@ -83,12 +101,11 @@ export class NotesComponent implements OnInit {
 
     let delete_idx = this.notes.findIndex(note => note.id == id);
     this.notes.splice(delete_idx,1);
-    this.http.delete('http://localhost:3000/notes/' + id + '.json').subscribe((res: Response) => console.log(res.json));
+    this.http.delete('http://localhost:3000/notes/' + id + '.json').subscribe();
   }
 
   editNote = function(id: number){
-    console.log(id);
-    console.log("edit");
+    console.log("edit note");
     let note = new Note();
     note.title = document.getElementById('title-'+id).innerHTML;
     note.text = document.getElementById('text-'+id).innerHTML;

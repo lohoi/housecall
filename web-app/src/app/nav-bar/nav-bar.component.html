@@ -6,6 +6,7 @@
     <ul class="right">
       <li *ngIf="(userService.userSignedIn$ | async) && userService.isDoctor()"><a [routerLink]="['/doctor-dashboard']"><i class="medium material-icons">dashboard</i></a></li>
       <li *ngIf="(userService.userSignedIn$ | async) && !userService.isDoctor()"><a [routerLink]="['/patient-dashboard']"><i class="medium material-icons">dashboard</i></a></li>
+      <li *ngIf="(userService.userSignedIn$ | async)"><a [routerLink]="['/profile']"><i class="medium material-icons">settings</i></a></li>
       <li *ngIf="(userService.userSignedIn$ | async)"><a (click)="logOut()"><b>LOGOUT</b></a></li>
       <li *ngIf="!(userService.userSignedIn$ | async)"><a [routerLink]="['/about']"><i class="large material-icons">info</i></a></li>
     </ul>

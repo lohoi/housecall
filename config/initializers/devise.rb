@@ -275,5 +275,7 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
+  config.mailer_sender = 'housecall@gmail.com'
+
   # config.authentication_keys = [ :email ]
 end

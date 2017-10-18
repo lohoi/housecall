@@ -56,7 +56,23 @@ class UsersController < ApplicationController
   def get_type
     # return user type
     user = User.find_by(:email => params[:email]) 
+
+    # error handling
+
     render json: user.user_type, status: :ok
+  end
+
+  def password_token
+    user = User.find_by(:email => params[:email])
+    render json: user.reset_password_token, status: :ok
+  end
+
+  def update_user
+    user = User.find(params[:id])
+    user.skype = params[:skype] if params.key?(:skype)
+    user.firstname = params[:firstname] if params.key?(:firstname)
+    user.lastname = params[:lastname] if params.key?(:lastname)
+    user.save!
   end
 
 

@@ -15,6 +15,8 @@ import { UserService } from './user.service'
 import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.component'
 import { AuthGuard } from './guards/auth.guard'
 import { DoctorGuard } from './guards/doctor.guard';
+import { ProfileComponent } from './profile/profile.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
 import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard.component'
 import { NotesComponent } from './notes/notes.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
@@ -30,6 +32,8 @@ import { PatientDescriptionComponent } from './patient-description/patient-descr
     SignupComponent,
     DoctorDashboardComponent,
     PatientDashboardComponent,
+    ProfileComponent,
+    ResetpasswordComponent,
     NotesComponent,
     ContactListComponent,
     SkypeComponent,

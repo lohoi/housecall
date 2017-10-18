@@ -14,6 +14,7 @@ export class ContactListComponent implements OnInit {
   user_id;
   show;
   contacts: [Contact];
+  selectedRow;
 
   constructor(private http: Http, private authService: Angular2TokenService, private userService: UserService, private router:Router) {
     this.http = http;
@@ -25,6 +26,7 @@ export class ContactListComponent implements OnInit {
   }
 
   setClickedRow (index){
+    this.selectedRow = index;
     this.userService.setSelectedContact(this.contacts[index]);
   }
 
@@ -61,6 +63,8 @@ export class ContactListComponent implements OnInit {
     headers.append('Content-Type', 'application/json');
     this.http.post('http://localhost:3000/contacts.json', JSON.stringify(contact), { headers: headers }).subscribe(
       res=> {
+        this.contacts.push(contact);
+        this.show = !this.show;
         this.router.navigate(['/doctor-dashboard']);
       },
       err => {

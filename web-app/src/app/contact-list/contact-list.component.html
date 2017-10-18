@@ -6,11 +6,8 @@
     <input type="text" class="patientLastName" name="patientLastName" [(ngModel)]="patientLastName" placeholder="New patient last name">
     <input type="email"  name="patientEmail" [(ngModel)]="patientEmail" placeholder="New patient email address">
     <input type="text" class="patientSkype" name="patientSkype" [(ngModel)]="patientSkype" placeholder="New patient skype username">
-    <button type="submit" class="btn btn-success">Add patient</button>
+    <button type="submit" style="background-color:#ffb300;" class="btn btn-success">Add patient</button>
   </form>
-
-
-
 
   <table class="table table-hover" style="margin-top:10px;">
     <thead>
@@ -21,7 +18,15 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let contact of contacts; let i = index" (click)="setClickedRow(i)" [class.active]="i == selectedRow">
+        <tr class="table-option" *ngFor="let contact of contacts; let i = index" 
+        onclick=
+        "function cl () {
+          setTimeout(function() {
+            SkypeWebControl.SDK.start();
+          }, 200);
+        };
+        cl();" 
+        (click)="setClickedRow(i)" [class.active]="i == selectedRow">
             <td>{{contact.firstname}}</td>
             <td>{{contact.lastname}}</td>
             <td>{{contact.skype}}</td>
