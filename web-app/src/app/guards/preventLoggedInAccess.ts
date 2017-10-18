@@ -10,7 +10,7 @@ export class PreventLoggedInAccess implements CanActivate {
 
   canActivate() {
   	if (!this.userService.userSignedIn()) {
-  		return false;
+  		return true;
   	} else {
   		this.router.navigate(['/about'])
   	}
