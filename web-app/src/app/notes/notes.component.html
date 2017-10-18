@@ -24,12 +24,8 @@
 
   <form class="addNote" (ngSubmit)='saveNote()'>
       <p style="font-weight:bold; font-size: 20px">Add Note</p>
-      <div class="card" style="margin: 0.2rem 0 .4rem 0 !important; background-color:#607d8b ;">
-          <span class="card-title" style="color:#dedede ">
-            <input type="text" [(ngModel)]="newNoteTitle" name="newNoteTitle" placeholder="New note title"/>
-          </span>
-          <input type="text" [(ngModel)]="newNoteText" name="newNoteText" placeholder="New note text"/>
-      </div>      
+        <textarea type="text" [(ngModel)]="newNoteTitle" name="newNoteTitle" class="newNoteTitle" placeholder="New note title"></textarea>
+        <textarea type="text" [(ngModel)]="newNoteText" name="newNoteText" class="newNoteText" placeholder="New note text"></textarea>    
       <button style="background-color:#ffb300" id="saveButton" type="submit" disabled=disabled class="btn btn-success">Save</button>
     </form>
 </div>

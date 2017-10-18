@@ -35,7 +35,7 @@ button.fa.fa-check {
     width: 33.3%;
     display: flex;
     flex-direction: column;
-    height: 500px;
+    height: 600px;
     flex: 1 100%;
     margin: 15px;
 }
@@ -51,34 +51,32 @@ button.fa.fa-check {
 }
 
 p {
-    margin: 0px;
     padding: 2px;
 }
 
 .table-scroll {
-    max-height:200px;
+    max-height:500px;
     width: 100%;
     overflow: auto; 
     margin-bottom: 5px;
     margin-top: 5px; 
 }
 
-// textarea {
-//     background-color:whitesmoke;
-//     color:darkslategray;
-//     border-radius: 7px;
-// }
+textarea.newNoteTitle {
+    height: 2rem;
+    margin-top: 8px;
+    padding: 4px;
+    color:#dedede; 
+    background-color:#607d8b ;
+}
 
-// textarea.noteTitle {
-//     height: 2rem;
-//     margin-top: 10px;
-//     padding: 4px;
-// }
-
-// textarea.noteText {
-//     height: 12rem;
-//     padding: 5px;
-// }
+textarea.newNoteText {
+    height: 10rem;
+    padding: 5px;
+    color:#dedede; 
+    margin: 0.2rem 0 .4rem 0 !important; 
+    background-color:#607d8b ;
+}
 
 .card .card-content {
     padding: 8px !important;
