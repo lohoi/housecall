@@ -19,7 +19,8 @@ const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
-    pathMatch: 'full' 
+    pathMatch: 'full',
+    canActivate: [ PreventLoggedInAccess ]
   },
   {
     path: 'login',
