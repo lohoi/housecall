@@ -115,3 +115,9 @@ Patient/Caretaker:
 * There is a grid icon in the nav bar that brings them back to the Dashboard page
 * The user can press the Logout button to be logged out and navigate back to the login page
 * The user can press the information i icon to be navigated to the About page. It will later hold a site tutorial and helping information.
+
+Additional:
+* We have basic error checks for user registration input with feedback for the user.
+* We have tooltips for the Navigation bar icons to help the user navigate the site easily.
+* The user will be navigated to the About page if they try to access something they aren't authorized to view.
+* The About page has useful site tips and feature descriptions to help users use the site easily.
