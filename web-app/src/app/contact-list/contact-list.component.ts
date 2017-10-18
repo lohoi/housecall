@@ -34,7 +34,7 @@ export class ContactListComponent implements OnInit {
   }
 
   callSkype(){
-    console.log("hey!");
+    console.log("Call skype");
   }
 
   getContacts() {
@@ -42,7 +42,7 @@ export class ContactListComponent implements OnInit {
       search: new URLSearchParams('user_id=' + this.user_id)
     });
 
-    console.log("get all contacts");
+    console.log("Get all contacts");
 
     this.http.get('http://localhost:3000/contacts.json', options).subscribe((res: Response) => {
       this.contacts = res.json();
@@ -52,7 +52,6 @@ export class ContactListComponent implements OnInit {
   addContact = function(patientFirstName: string, patientLastName: string,
                         patientEmail: string, patientSkype: string){
     let contact = new Contact();
-    console.log(this.patientFirstName);
     contact.firstname = this.patientFirstName;
     contact.lastname = this.patientLastName;
     contact.email = this.patientEmail;
