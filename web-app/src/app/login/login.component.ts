@@ -50,6 +50,8 @@ export class LoginComponent {
               alert("Incorrect user credentials");
             }
           )
+      }, err => {
+        alert("Invalid Credentials");
       }
 
 

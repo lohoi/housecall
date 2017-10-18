@@ -30,12 +30,12 @@
       <div class="input-field col s6">
         <i class="material-icons prefix">lock</i>
         <input id="password" type="password" class="validate" [(ngModel)]="user.password" name="password" minlength=8 required>
-        <label for="password" data-error="Passwords must be atleast 8 characters long">Password</label>
+        <label for="password" data-error="Passwords must be at least 8 characters long">Password</label>
       </div>
       <div class="input-field col s6">
         <i class="material-icons prefix">lock_outline</i>
         <input id="passwordConfirmation" type="password" class="validate" [(ngModel)]="user.passwordConfirmation" name="passwordConfirmation" required="user.password == user.passwordConfirmation" style="margin-bottom: 0px">
-        <small *ngIf="user.password != user.passwordConfirmation" style="color:red; margin-top: 0px;">
+        <small *ngIf="user.password != user.passwordConfirmation && (user.passwordConfirmation && user.password)" style="color:red; margin-top: 0px;">
           Passwords must match
         </small>
         <label for="passwordConfirmation" style="margin-bottom: 20px">Confirm Password</label>
