@@ -86,3 +86,40 @@ Add your routes to app-routing.module.ts
 TODO...
 
 * This application seems to require two servers, one to run the Angular webapp and other to run the Rails backend server. 
+
+
+## Features
+Doctor:
+* A doctor can register as a user and then will be redirected to the login page 
+* Once logged in, the doctor will be brought to their Home Page with a list of all of their patient contacts on the top 
+* The doctor can press button to add a new patient as their client. A form will appear on the top of the page and a login key will be emailed to the user to finish registration. 
+    * For the Alpha release, our servers are in local development mode so they don't support emailing. This means that a doctor can add new patients to their contact list, but those patients can't log in yet. You can still create a new user as a patient to see the application from the patient side but they won't be associated to a doctor yet. 
+* The doctor can select a patient from the contact list to view the Patient Dashboard page on the lower half of the screen. The notes list, Skype contact, and patient description will update based on the selected user.
+* The doctor can create and save a new note, click the yellow pencil to edit a note and the green checkmark to save it, or delete a note using the red garbage icon.
+* The doctor can Skype chat the patient or Skype call the patient using the Skype bubble in the lower right hand side of the screen.
+* The doctor can update and save the Patient Description box 
+* The doctor can navigate to their Account Profile page using the gear in the upper right corner of the nav bar. They can then edit their name and skype account and view their other information.
+* There is a grid icon in the nav bar that brings them back to the Dashboard page
+* The doctor can press the Logout button to be logged out and navigate back to the login page
+* The doctor can press the information i icon to be navigated to the About page. It will later hold a site tutorial and helping information.
+
+Patient/Caretaker:
+* A patient/caretaker will be emailed a key to finish registering to associate them with their doctor. 
+    * We don't currently have our site hosted so it is not in production mode so the email functionality is turned off
+* After regiserting, a user will be redirected to the login page to log in
+* Once logged in, the user will be brought to their Dashboard Home Page that currenty contains a notes component where they can create, save, edit, and delete notes
+* They also have a Skype bubble that can be used to chat or video call their doctor.
+    * Currently, the default is Remington's Skype until we get the patient/doctor association from the patient side built.
+* The user can update and save the Patient Description box 
+* The user can navigate to their Account Profile page using the gear in the upper right corner of the nav bar. They can then edit their name and skype account and view their other information.
+* There is a grid icon in the nav bar that brings them back to the Dashboard page
+* The user can press the Logout button to be logged out and navigate back to the login page
+* The user can press the information i icon to be navigated to the About page. It will later hold a site tutorial and helping information.
+
+Additional:
+* We have basic error checks for user registration input with feedback for the user.
+* The login page also has error checks for email and password formatting with feedback for the user.
+* The login page will send the user an alert if their login information is incorrect.
+* We have tooltips for the Navigation bar icons to help the user navigate the site easily.
+* The user will be navigated to the About page if they try to access something they aren't authorized to view.
+* The About page has useful site tips and feature descriptions to help users use the site easily.
