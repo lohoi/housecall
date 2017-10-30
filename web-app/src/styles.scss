@@ -1,0 +1,34 @@
+.input-field .prefix.active {
+    color: #ffe54c !important;
+}
+
+.input-field .prefix.active {
+    color: #ffe54c !important;
+}
+
+.input-field .prefix.active:active {
+    color: #ffe54c !important;
+}
+
+label.label.active:active {
+    color: #ffe54c !important;
+}
+
+
+label.label.active {
+    color: #ffe54c !important;
+}
+
+label.label.active::after {
+    color: #ffe54c !important;
+}
+
+input.validate:focus {
+    border-bottom: 1px solid #ffe54c !important;
+    box-shadow: 0 1px 0 0 #ffe54c !important;
+}
+
+input:focus {
+    border-bottom: 1px solid #ffe54c !important;
+    box-shadow: 0 1px 0 0 #ffe54c !important;
+}

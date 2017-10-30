@@ -47,7 +47,7 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit = function() {    
-    console.log("registering with params: ", this.user);
+    console.log("Registering");
     this.userService.registerUser(this.user)
     .subscribe(
       res => {

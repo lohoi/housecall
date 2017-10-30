@@ -7,8 +7,8 @@
       <li [hidden]="!((userService.userSignedIn$ | async) && userService.isDoctor())"><a materialize [routerLink]="['/doctor-dashboard']" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Dashboard"><i class="medium material-icons">dashboard</i></a></li>
       <li [hidden]="!((userService.userSignedIn$ | async) && !userService.isDoctor())"><a materialize [routerLink]="['/patient-dashboard']" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Dashboard"><i class="medium material-icons">dashboard</i></a></li>
       <li [hidden]="!(userService.userSignedIn$ | async)"><a materialize [routerLink]="['/profile']" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Account Profile"><i class="medium material-icons">settings</i></a></li>
+      <li><a materialize [routerLink]="['/about']" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="About" ><i class="large material-icons">info</i></a></li>
       <li [hidden]="!(userService.userSignedIn$ | async)"><a (click)="logOut()"><b>LOGOUT</b></a></li>
-      <li [hidden]="(userService.userSignedIn$ | async)"><a materialize [routerLink]="['/about']" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="About" ><i class="large material-icons">info</i></a></li>
     </ul>
   </div>
 </nav>

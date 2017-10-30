@@ -22,10 +22,9 @@ export class NotesComponent implements OnInit {
       this.user = this.authService.currentUserData;
       this.getData();
       if(this.user.user_type === "doctor") {
-        console.log("HITTING THIS!")
         this.userService.getSelectedContact().subscribe(
           res => {
-            console.log("returning with res: ", res)
+            //console.log("returning with res: ", res)
             this.patient_id = res.id; 
             document.getElementById("saveButton").removeAttribute("disabled");
             this.getData();
@@ -37,7 +36,7 @@ export class NotesComponent implements OnInit {
       }
       else if(this.user.user_type === "patient") {
         this.patient_id = this.user.id;
-        console.log("PATIENT ID", this.patient_id);
+        //console.log("PATIENT ID", this.patient_id);
         document.getElementById("saveButton").removeAttribute("disabled");
         this.getData();
       }
@@ -56,12 +55,12 @@ export class NotesComponent implements OnInit {
         // Have to make a URLSearchParams with a query string
         search: new URLSearchParams('user_id=' + this.user.id + '&patient_id=' + this.patient_id)
       });
-      console.log("get notes", options);
+      console.log("get notes");
       this.http.get('http://localhost:3000/notes.json', options).subscribe(
         (res: Response) => {
             this.notes = res.json();
             this.setEdit();
-            console.log("notes: ", this.notes);
+            //console.log("notes: ", this.notes);
           }
       );
     }
@@ -88,7 +87,7 @@ export class NotesComponent implements OnInit {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       this.http.post('http://localhost:3000/notes.json', JSON.stringify(dic), { headers: headers }).subscribe((res: Response) => {
-        console.log("response", res.json().id)
+        //console.log("response", res.json().id)
         this.notes.push(res.json());
       });
       this.newNoteText = "";

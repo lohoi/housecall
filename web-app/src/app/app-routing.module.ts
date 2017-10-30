@@ -10,7 +10,8 @@ import { UserService } from './user.service';
 import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.component';
 import { AuthGuard } from './guards/auth.guard';
 import { DoctorGuard } from './guards/doctor.guard';
-import { PatientGuard } from './guards/patient.guard';
+import { PreventLoggedInAccess } from './guards/preventLoggedInAccess';
+
 import { ProfileComponent } from './profile/profile.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
@@ -18,11 +19,13 @@ const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
-    pathMatch: 'full' 
+    pathMatch: 'full',
+    canActivate: [ PreventLoggedInAccess ]
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [ PreventLoggedInAccess ]
   },
   { 
     path: 'about',
@@ -59,4 +62,5 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: []
 })
-export class AppRoutingModule { }
+
+export class AppRoutingModule {}

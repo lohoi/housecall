@@ -49,7 +49,7 @@ export class ProfileComponent implements OnInit {
   	this.userService.getUser().subscribe(
       res => {
         this.user = res.json().data;
-        console.log("credentials!", this.user)
+        //console.log("credentials!", this.user)
         this.isSet = true;
       }, error => {
         alert("ERROR")!
@@ -58,7 +58,7 @@ export class ProfileComponent implements OnInit {
   }
 
   onSubmit = function() {    
-    console.log("registering with params: ", this.user);
+    //console.log("registering with params: ", this.user);
     this.userService.updateUser(this.user.id, this.user.firstname, this.user.lastname, this.user.skype)
     .subscribe(
       res => {
