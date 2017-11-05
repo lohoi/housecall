@@ -19,13 +19,11 @@ const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
-    pathMatch: 'full',
-    canActivate: [ PreventLoggedInAccess ]
+    pathMatch: 'full'
   },
   {
     path: 'login',
-    component: LoginComponent,
-    canActivate: [ PreventLoggedInAccess ]
+    component: LoginComponent
   },
   { 
     path: 'about',
