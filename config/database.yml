@@ -49,5 +49,5 @@ test:
 production:
   <<: *default
   database: housecall_production
-  username: housecall
-  password: <%= ENV['HOUSECALL_DATABASE_PASSWORD'] %>
+#  username: housecall
+#  password: <%= ENV['HOUSECALL_DATABASE_PASSWORD'] %>
