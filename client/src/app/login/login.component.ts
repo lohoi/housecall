@@ -25,11 +25,14 @@ export class LoginComponent {
     .subscribe(
       res => {
         this.userType = res.text();
+        console.log('usertype: ', this.userType)
         this.userService.logInUser(this.user.email, this.user.password, this.userType)
           .subscribe(
             res => {
               if (res.status === 200) {
-                let data = JSON.parse(res._body).data
+                this.userService.setSignIn(true);
+                let data = JSON.parse(res._body).data;
+                console.log('success! data:', data)
                 switch(data.user_type) {
                   case 'doctor':
                     console.log("navigating to doctor dashboard");
@@ -47,6 +50,7 @@ export class LoginComponent {
             },
             err => {
               this.onFormResult.emit({signedIn: false, err})
+              this.userService.setSignIn(false);
               alert("Incorrect user credentials");
             }
           )

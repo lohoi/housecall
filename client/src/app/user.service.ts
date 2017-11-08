@@ -21,11 +21,11 @@ export class UserService {
 
   userSignedIn$:Subject<boolean> = new Subject()
 
-  logOutUser():Observable<Response>{
-
-    return this.authService.signOut().map(
+  logOutUser():any {
+    this.authService.signOut().subscribe(
         res => {
           this.userSignedIn$.next(false);
+          this.router.navigate(['/login']);
           return res;
         }
     );
@@ -39,18 +39,16 @@ export class UserService {
     );
   }
 
-  logInUser(email_, password_, userType_):Observable<Response>{
-    return this.authService.signIn({email: email_, password: password_, userType: userType_}).map(
-      res => {
-        this.userSignedIn$.next(true)
-        return res;
-      },
+  logInUser(email_, password_, userType_):any {
+    console.log('email:', email_);
+    console.log('password: ', password_);
+    console.log('usertype: ', userType_);
+    return this.authService.signIn({email: email_, password: password_, userType: userType_});
+  }
 
-      err => {
-        console.error('auth error:', err);
-        return err;
-      }
-    );
+  setSignIn(sign_in_):any {
+    // changes emitter 
+    this.userSignedIn$.next(sign_in_);
   }
 
   isDoctor(): boolean {
@@ -131,6 +129,11 @@ export class UserService {
     // return UserService.selectedContact;
   }
 
+   userSignedIn = function() {
+      console.log('within userSigned in:', this.authService.userSignedIn());
+      return this.authService.userSignedIn();
+  }
+
 
  //  login = function(email_, password_) {
  //    return this.authToken.signIn({ email: email_, password: password_}).subscribe(
@@ -162,8 +165,4 @@ export class UserService {
  //    	res =>      console.log(res),
  //    	error =>    console.log(error)
 	// )}
-
-  userSignedIn = function() {
-    return this.authService.userSignedIn();
-  }
 }

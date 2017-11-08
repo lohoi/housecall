@@ -9,13 +9,13 @@ export class PreventLoggedInAccess implements CanActivate {
               private router:Router) {}
 
   canActivate() {
-  	console.log("this.userService.userSignedIn$: ", !this.userService.userSignedIn());
-  	if (!this.userService.userSignedIn()) {
-  		return true;
+  	console.log("this.userService.userSignedIn$: ", this.userService.userSignedIn());
+  	if (this.userService.userSignedIn()) {
+      console.log("waaaat: ",this.userService.userSignedIn$.subscribe(res=> {console.log(res)}))
+      this.router.navigate(['/about']);
+      return false;
   	} else {
-  		
-  		console.log("waaaat: ",this.userService.userSignedIn$.subscribe(res=> {console.log(res)}))
-  		this.router.navigate(['/about']);
+      return true;
   	}
   }
 } 

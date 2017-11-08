@@ -11,6 +11,7 @@ import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.co
 import { AuthGuard } from './guards/auth.guard';
 import { DoctorGuard } from './guards/doctor.guard';
 import { PreventLoggedInAccess } from './guards/preventLoggedInAccess';
+import { PatientGuard } from './guards/patient.guard';
 
 import { ProfileComponent } from './profile/profile.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
@@ -19,11 +20,13 @@ const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
+    canActivate: [ PreventLoggedInAccess ]
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [ PreventLoggedInAccess ]
   },
   { 
     path: 'about',
@@ -41,7 +44,7 @@ const routes: Routes = [
   {
     path: 'patient-dashboard',
     component: PatientDashboardComponent,
-    canActivate: [ AuthGuard ],
+    canActivate: [ PatientGuard ],
   },
   {
     path: 'profile',

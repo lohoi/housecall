@@ -10,10 +10,11 @@ export class DoctorGuard implements CanActivate {
 
   canActivate() {
     if(this.userService.userSignedIn() && this.userService.isDoctor()) {
-      return true
+      console.log('isDoctor');
+      return true;
     } else {
-      this.router.navigate(['about'])
-      return false
+      this.router.navigate(['/about']);
+      console.log('notDoctor');
     }
   }
 }
