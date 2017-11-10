@@ -15,30 +15,29 @@ import { environment } from '../../environments/environment';
 export class NotesComponent implements OnInit {
   notes: [Note];
   user: any;
-  patient_id = -1 ;
+  patient_id = -1;
 
   constructor(public userService:UserService, private http: Http, private authService: Angular2TokenService) { 
     this.http = http;
     this.userService.getUser().subscribe((res) => {
       this.user = this.authService.currentUserData;
       this.getData();
-      if(this.user.user_type === "doctor") {
+      if(this.user.user_type === 'doctor') {
         this.userService.getSelectedContact().subscribe(
           res => {
-            //console.log("returning with res: ", res)
             this.patient_id = res.id; 
-            document.getElementById("saveButton").removeAttribute("disabled");
+            document.getElementById('saveButton').removeAttribute('disabled');
             this.getData();
           },
           error => {
-            console.log("ERROR!");
+            console.log('ERROR!');
           }
         )
       }
-      else if(this.user.user_type === "patient") {
+      else if(this.user.user_type === 'patient') {
         this.patient_id = this.user.id;
-        //console.log("PATIENT ID", this.patient_id);
-        document.getElementById("saveButton").removeAttribute("disabled");
+        //console.log('PATIENT ID', this.patient_id);
+        document.getElementById('saveButton').removeAttribute('disabled');
         this.getData();
       }
     }); 
@@ -49,7 +48,7 @@ export class NotesComponent implements OnInit {
 
   getData(){
     if(this.patient_id === -1){
-      console.log("patient id is not set");
+      console.log('patient id is not set');
     }
     else {
       let options = new RequestOptions({
@@ -61,7 +60,7 @@ export class NotesComponent implements OnInit {
         (res: Response) => {
             this.notes = res.json();
             this.setEdit();
-            //console.log("notes: ", this.notes);
+            //console.log('notes: ', this.notes);
           }
       );
     }
@@ -75,7 +74,7 @@ export class NotesComponent implements OnInit {
 
   saveNote = function(){
     if(this.patient_id === -1){
-      console.log("patient_id is not set");
+      console.log('patient_id is not set');
     }
     else{
       let note = new Note();
@@ -88,16 +87,15 @@ export class NotesComponent implements OnInit {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       this.http.post(environment.apiUrl + 'notes.json', JSON.stringify(dic), { headers: headers }).subscribe((res: Response) => {
-        //console.log("response", res.json().id)
         this.notes.push(res.json());
       });
-      this.newNoteText = "";
-      this.newNoteTitle = "";
+      this.newNoteText = '';
+      this.newNoteTitle = '';
     }
   }
 
   deleteNote = function(id: number){
-    console.log("delete note");
+    console.log('delete note');
 
     let delete_idx = this.notes.findIndex(note => note.id == id);
     this.notes.splice(delete_idx,1);
@@ -105,7 +103,7 @@ export class NotesComponent implements OnInit {
   }
 
   editNote = function(id: number){
-    console.log("edit note");
+    console.log('edit note');
     let note = new Note();
     note.title = document.getElementById('title-'+id).innerHTML;
     note.text = document.getElementById('text-'+id).innerHTML;
@@ -138,20 +136,20 @@ export class NotesComponent implements OnInit {
     var tableElement = document.getElementById('tableElement-'+id);
     var titleElement = document.getElementById('title-'+id);
     var textElement = document.getElementById('text-'+id);
-    if(icon === "pencil"){
-      tableElement.style.border = "1.8px solid #dcad51";
+    if(icon === 'pencil'){
+      tableElement.style.border = '1.8px solid #dcad51';
       tableElement.style.fontFamily = 'Courier New';
-      pencilIcon.style.display = "none";
-      checkIcon.style.display = "block";
-      textElement.contentEditable = "true";
-      titleElement.contentEditable = "true";
+      pencilIcon.style.display = 'none';
+      checkIcon.style.display = 'block';
+      textElement.contentEditable = 'true';
+      titleElement.contentEditable = 'true';
     } else {
-      tableElement.style.border = ".6px solid #000";
+      tableElement.style.border = '.6px solid #000';
       tableElement.style.fontFamily = 'Roboto';
-      checkIcon.style.display = "none";
-      pencilIcon.style.display = "block";
-      textElement.contentEditable = "false";
-      titleElement.contentEditable = "false";
+      checkIcon.style.display = 'none';
+      pencilIcon.style.display = 'block';
+      textElement.contentEditable = 'false';
+      titleElement.contentEditable = 'false';
     }
   }
 

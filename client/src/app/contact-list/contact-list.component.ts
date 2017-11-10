@@ -14,7 +14,7 @@ import { environment }  from '../../environments/environment';
 export class ContactListComponent implements OnInit {
   user_id;
   show;
-  contacts: [Contact];
+  contacts: [any];
   selectedRow;
   searchTerm;
 
@@ -25,18 +25,25 @@ export class ContactListComponent implements OnInit {
       this.getContacts();
       this.show = false;
     });
+
+    this.userService.getSelectedContact().subscribe((res) => {
+      let c = this.contacts.find(c => c.id === res.id);
+      let idx = this.contacts.indexOf(c);
+      this.selectedRow = idx;
+    });
   }
 
-  setClickedRow (index){
-    this.selectedRow = index;
+  setClickedRow (index) {
+
     this.userService.setSelectedContact(this.contacts[index]);
+    this.selectedRow = index;
   }
 
   ngOnInit() {
   }
 
-  callSkype(){
-    console.log("Call skype");
+  callSkype() {
+    console.log('Call skype');
   }
 
   getContacts() {
@@ -47,6 +54,7 @@ export class ContactListComponent implements OnInit {
     // console.log("Get all contacts");
 
     this.http.get(environment.apiUrl + 'contacts.json', options).subscribe((res: Response) => {
+      this.userService.setAllConacts(res.json());
       this.contacts = res.json();
       // console.log(this.contacts)
     });
