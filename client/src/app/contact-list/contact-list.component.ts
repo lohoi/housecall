@@ -15,6 +15,7 @@ export class ContactListComponent implements OnInit {
   show;
   contacts: [Contact];
   selectedRow;
+  searchTerm;
 
   constructor(private http: Http, private authService: Angular2TokenService, private userService: UserService, private router:Router) {
     this.http = http;
@@ -22,7 +23,7 @@ export class ContactListComponent implements OnInit {
       this.user_id = this.authService.currentUserData.id;
       this.getContacts();
       this.show = false;
-    }); 
+    });
   }
 
   setClickedRow (index){
@@ -42,10 +43,11 @@ export class ContactListComponent implements OnInit {
       search: new URLSearchParams('user_id=' + this.user_id)
     });
 
-    console.log("Get all contacts");
+    // console.log("Get all contacts");
 
     this.http.get('http://localhost:3000/contacts.json', options).subscribe((res: Response) => {
       this.contacts = res.json();
+      // console.log(this.contacts)
     });
   }
 

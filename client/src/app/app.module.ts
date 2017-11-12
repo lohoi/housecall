@@ -23,6 +23,8 @@ import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard
 import { NotesComponent } from './notes/notes.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { SkypeComponent } from './skype/skype.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { SkypeComponent } from './skype/skype.component';
     NotesComponent,
     ContactListComponent,
     SkypeComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,7 @@ import { SkypeComponent } from './skype/skype.component';
     HttpModule,
     AppRoutingModule,
     MaterializeModule,
+    Ng2SearchPipeModule,
   ],
   providers: [ Angular2TokenService, UserService, AuthGuard, DoctorGuard, PreventLoggedInAccess, PatientGuard ],
   bootstrap: [ AppComponent ]
