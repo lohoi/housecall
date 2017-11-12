@@ -30,6 +30,11 @@
             <td>{{contact.firstname}}</td>
             <td>{{contact.lastname}}</td>
             <td>{{contact.skype}}</td>
+            <td>
+              <div class="icon">
+                <button id='trash-{{contact.id}}' display="block" class="fa fa-trash-o" (click)='deleteContact(contact.id)'></button>
+              </div>
+            <td>
         </tr>
     </tbody>
   </table>

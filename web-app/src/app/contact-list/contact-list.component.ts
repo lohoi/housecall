@@ -76,4 +76,14 @@ export class ContactListComponent implements OnInit {
     this.patientSkype ="";
   }
 
+   deleteContact = function(id: number){
+    console.log("delete contact");
+    let delete_idx = this.contacts.findIndex(contact => contact.id == id);
+    var namestring = this.contacts[delete_idx].firstname + ' ' + this.contacts[delete_idx].lastname
+    if(confirm("Are you sure you want to delete " + namestring + "'s contact?")) {
+      this.contacts.splice(delete_idx, 1);
+      this.http.delete('http://localhost:3000/contacts/' + id + '.json').subscribe();
+    }
+  }
+
 }

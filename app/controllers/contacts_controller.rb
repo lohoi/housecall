@@ -10,7 +10,7 @@ class ContactsController < ApplicationController
     
 
     if patient.save
-      contact = Contact.new(doctor_id: doctor.id, patient_id: patient.id)
+      contact = Contact.new(doctor_id: doctor.id, patient_id: patient.id, active: true)
       contact.save
 
       # need prod mode to send actual emails
@@ -18,21 +18,6 @@ class ContactsController < ApplicationController
     else
       puts patient.errors.full_messages
     end
-
-
-    # respond_to do |format|
-    #   if patient.save
-
-    #     contact = Contact.new(doctor_id: doctor.id, patient_id: patient.id)
-    #     if contact.save
-    #       format.json {head :ok}
-    #     else
-    #       format.json {status :unprocessable_entity}
-    #     end
-    #   else
-    #     format.json {status :unprocessable_entity}
-    #   end
-    # end
   end
 
   # /contacts?user_id=user_id
@@ -42,7 +27,7 @@ class ContactsController < ApplicationController
     @contacts = []
     if user.doctor?
       # all the patients this doctor has
-      user_contacts = Contact.where(doctor_id: user.id)
+      user_contacts = Contact.where(doctor_id: user.id, active: true)
       user_contacts.each do |contact|
         puts "doctor_id: #{contact.doctor_id}"
         puts "patient_id: #{contact.patient_id}"
@@ -50,7 +35,7 @@ class ContactsController < ApplicationController
       end
     else
       # the doctor(s) this patient can communicate with
-      user_contacts = Contact.where(patient_id: user.id)
+      user_contacts = Contact.where(patient_id: user.id, active: true)
       user_contacts.each do |contact|
         @contacts.append(User.find(contact.doctor_id))
       end
@@ -61,6 +46,13 @@ class ContactsController < ApplicationController
     respond_to do |format|
       format.json { render :json => @contacts}
     end
+  end
+
+  def destroy
+    contact = Contact.find_by_patient_id(params[:id])
+    contact.active = false
+    contact.save
+    puts contact
   end
 
   private
