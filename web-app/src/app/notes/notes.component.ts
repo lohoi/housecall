@@ -117,6 +117,20 @@ export class NotesComponent implements OnInit {
     this.http.patch('http://localhost:3000/notes/' + id + '.json', JSON.stringify(dic), { headers: headers }).subscribe((ok) => console.log(ok));      
   }
 
+  emailNote = function(id: number){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let idx = this.notes.findIndex(note => note.id == id)
+    let note = this.notes[idx]
+    let dic = {note: note};
+    console.log(note)
+    this.http.post('http://localhost:3000/notes/mail.json', JSON.stringify(dic), { headers: headers }).subscribe((res: Response) => {
+        console.log(res.json());
+    });
+
+
+  }
+
   showIcon = function(icon:string, id:number) {
     var pencilIcon = document.getElementById('pencil-'+id);
     var checkIcon = document.getElementById('check-'+id);

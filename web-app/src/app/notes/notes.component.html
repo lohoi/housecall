@@ -8,6 +8,7 @@
             <div class="icon">
               <button id='pencil-{{note.id}}' class="fa fa-pencil fa-lg" (click)='showIcon("pencil", note.id)'></button>
               <button id='check-{{note.id}}' style='display:none' class="fa fa-check fa-lg" (click)='showIcon("check", note.id); editNote(note.id); '></button>
+              <button id='email-{{note.id}}' display="block" class="fa fa-envelope-o" (click)='emailNote(note.id)' aria-hidden="true"></button>
               <button id='trash-{{note.id}}' display="block" class="fa fa-trash-o" (click)='deleteNote(note.id)'></button>
             </div>
             <div id='title-{{note.id}}' class="markdown-title" ng-model="note.title" style="font-size:20px;" 
