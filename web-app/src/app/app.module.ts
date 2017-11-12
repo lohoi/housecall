@@ -22,6 +22,7 @@ import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard
 import { NotesComponent } from './notes/notes.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { SkypeComponent } from './skype/skype.component';
+import { RemindersComponent } from './reminders/reminders.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { SkypeComponent } from './skype/skype.component';
     NotesComponent,
     ContactListComponent,
     SkypeComponent,
+    RemindersComponent,
   ],
   imports: [
     BrowserModule,

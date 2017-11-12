@@ -1,0 +1,18 @@
+.reminders {
+    display: flex;
+    flex-direction: column;
+    flex: 1 100%;
+    margin: 15px;
+}
+
+th {
+    text-align: center;
+}
+
+td {
+    text-align: center;
+}
+
+.addReminder {
+    padding-top: 3px;
+}

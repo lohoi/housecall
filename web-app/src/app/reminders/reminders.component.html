@@ -1,0 +1,23 @@
+<div class="reminders">
+    <p style="font-weight:bold; font-size: 20px">Tasks:</p>
+  <table class="table table-hover" style="margin-top:10px; width: 100%">
+    <thead>
+        <tr>
+          <th>Completed</th>
+          <th>Task</th>
+          <th>Repeat</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="table-option" *ngFor="let reminder of reminders;">
+            <th><input type='checkbox' id='checkbox' class='checkbox' ng-model='checkbox{reminder.id}' (click)='setCompleted(reminder.id)' value="{{reminder.completed}}" style="opacity:100;" ></th>
+            <td>{{reminder.text}}</td>
+            <td>{{reminder.user_id}}</td>
+        </tr>
+    </tbody>
+  </table>
+  <form *ngIf="is_doctor" class="addReminder" (ngSubmit)='addReminder(new_reminder_text); new_reminder_text= ""'>
+    <input type="text" id="new_reminder_text" class="new_reminder_text" name="new_reminder_text" [(ngModel)]="new_reminder_text" placeholder="Enter new task" required>
+    <button type="submit" id="task_submit" style="background-color:#ffb300;" disabled=disabled class="btn btn-success">Add task</button>
+  </form>
+</div>
