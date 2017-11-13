@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Angular2TokenService } from "angular2-token"
-import { environment } from "../environments/environment"
+import { UserService } from "./user.service";
+import { environment } from "../environments/environment";
 
 
 
@@ -10,7 +10,7 @@ import { environment } from "../environments/environment"
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-	constructor(private authService: Angular2TokenService) {
-		this.authService.init(environment.token_auth_config);
+	constructor(private userService:UserService) {
+		// this.authService.init(environment.token_auth_config);
 	}
 }

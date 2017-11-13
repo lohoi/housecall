@@ -6,12 +6,10 @@ import { Subject, Observable } from "rxjs"
 import { Contact } from './contact'
 import { Http, URLSearchParams, RequestOptions, Response, Headers } from '@angular/http';
 
-
-
 @Injectable()
 export class UserService {
 	constructor(private authService: Angular2TokenService, private router: Router, private http: Http) {
-    // this.authService.init(environment.token_auth_config);
+    this.authService.init(environment.token_auth_config);
     this.authService.validateToken().subscribe(
         res => res.status == 200 ? this.userSignedIn$.next(res.json().success) : this.userSignedIn$.next(false)
     )
@@ -22,12 +20,18 @@ export class UserService {
   userSignedIn$:Subject<boolean> = new Subject()
 
   logOutUser():any {
+    console.log('called logOutUser')
     this.authService.signOut().subscribe(
-        res => {
-          this.userSignedIn$.next(false);
-          this.router.navigate(['/login']);
-          return res;
-        }
+      res => {
+        console.log('emitting..')
+        this.userSignedIn$.next(false);
+        this.router.navigate(['/login']);
+      },
+      err => {
+        console.log('err?');
+        this.userSignedIn$.next(false);
+        this.router.navigate(['/login']);
+      }
     );
   }
 

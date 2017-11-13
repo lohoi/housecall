@@ -5,6 +5,8 @@ import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
 import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard.component';
 import { SignupComponent } from './signup/signup.component';
+import { LogoutComponent } from './logout/logout.component';
+
 import { Angular2TokenService } from 'angular2-token';
 import { UserService } from './user.service';
 import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.component';
@@ -13,6 +15,7 @@ import { DoctorGuard } from './guards/doctor.guard';
 import { PreventLoggedInAccess } from './guards/preventLoggedInAccess';
 import { PatientGuard } from './guards/patient.guard';
 
+
 import { ProfileComponent } from './profile/profile.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
@@ -20,13 +23,11 @@ const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
-    pathMatch: 'full',
-    canActivate: [ PreventLoggedInAccess ]
+    pathMatch: 'full'
   },
   {
     path: 'login',
-    component: LoginComponent,
-    canActivate: [ PreventLoggedInAccess ]
+    component: LoginComponent
   },
   { 
     path: 'about',
@@ -54,6 +55,11 @@ const routes: Routes = [
   {
     path: 'change-password',
     component: ResetpasswordComponent,
+    canActivate: [ AuthGuard ]
+  },
+  {
+    path: 'logout',
+    component: LogoutComponent,
     canActivate: [ AuthGuard ]
   }
 ];

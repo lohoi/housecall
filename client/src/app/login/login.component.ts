@@ -8,13 +8,17 @@ import { Router } from "@angular/router"
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   public user: User;
 
   @Output() onFormResult = new EventEmitter<any>()
 
   constructor(private userService:UserService, private router: Router) {
     this.user = new User()
+  }
+
+  ngOnInit() {
+    this.userService.logOutUser();
   }
 
   onSubmit = function() {
