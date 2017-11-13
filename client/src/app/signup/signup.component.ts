@@ -52,7 +52,7 @@ export class SignupComponent implements OnInit {
     .subscribe(
       res => {
         alert("registration successful!")
-        // this.router.navigate(['/login']) 
+        this.router.navigate(['/login']) 
       },
       err => {
           alert("Registration failed! Please double check all fields are correct")
