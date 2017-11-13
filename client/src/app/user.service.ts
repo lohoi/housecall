@@ -79,7 +79,7 @@ export class UserService {
       search: new URLSearchParams('email=' + email_)
     });
     
-    return this.http.get('http://localhost:3000/user_type', options)
+    return this.http.get('https://housecall.herokuapp.com/user_type', options)
   }
 
   requestResetToken(email_) : any {
