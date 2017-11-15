@@ -1,7 +1,7 @@
 class RemindersController < ApplicationController
     # skip_before_action :verify_authenticity_token
     def create
-        @reminders = Reminders.new(reminder_params)
+        @reminders = Reminder.new(reminder_params)
         @reminders.save!
         respond_to do |format|
             format.json { render json: @reminders, status: :ok}
@@ -9,13 +9,13 @@ class RemindersController < ApplicationController
     end
 
     def destroy
-        reminders = Reminders.find(params[:id])
+        reminders = Reminder.find(params[:id])
         reminders.active = false
         reminders.save()
     end
 
     def show
-        @reminders = Reminders.find(params[:id], active: true)
+        @reminders = Reminder.find(params[:id], active: true)
         respond_to do |format|
             format.json
         end
@@ -33,8 +33,7 @@ class RemindersController < ApplicationController
 
     def update
         @reminder = Reminder.find(params[:reminder][:id])
-        @reminder.title = params[:reminder][:title]
-        @reminder.text = params[:reminder][:text]
+        @reminder.completed = params[:reminder][:completed]
         @reminder.save
         respond_to do |format|
             format.json
@@ -43,7 +42,7 @@ class RemindersController < ApplicationController
 
     private
       def reminder_params
-        params.require(:reminder).permit(:text, :user_id, :patient_id)
-        {text: params[:reminder][:text], user_id: params[:reminder][:user_id], patient_id: params[:reminder][:patient_id]}
+        params.require(:reminder).permit(:text, :user_id, :patient_id, :completed)
+        {text: params[:reminder][:text], user_id: params[:reminder][:user_id], patient_id: params[:reminder][:patient_id], completed: params[:reminder][:completed]}
       end
 end

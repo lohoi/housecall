@@ -35,13 +35,24 @@ export class RemindersComponent implements OnInit {
           }
         )
       }
-      if(this.user.user_type === "patient") {
-        this.patient_id = this.user.id;
-        document.getElementById("task_submit").removeAttribute("disabled");
+      else {
         this.is_doctor = false;
+        this.patient_id = this.user.id;
         this.getReminders();
       }
     }); 
+  }
+
+  updateCheckboxValue(){
+    console.log("____UPDATE CHECKBOX VALUE____");
+    // set checkbox values to checked or unchecked
+    if(this.reminders != null){
+      for(var i = 0; i < this.reminders.length; i++){
+        if(this.reminders[i].completed == false ){
+          document.getElementById('checkbox-'+this.reminders[i].id).removeAttribute("checked");
+        }
+      }
+    }
   }
 
   ngOnInit() {
@@ -56,6 +67,8 @@ export class RemindersComponent implements OnInit {
       reminder.text = new_reminder_text;
       reminder.user_id = this.user.id;
       reminder.patient_id = this.patient_id;
+      reminder.completed = false;
+
       let dic = {reminder: reminder};
       
       let headers = new Headers();
@@ -68,22 +81,6 @@ export class RemindersComponent implements OnInit {
   }
 
   getReminders() {
-    // let reminder = new Reminder();
-    // reminder.id = 0;
-    // reminder.text = "test1";
-    // reminder.user_id = this.user.id;
-    // reminder.patient_id = this.patient_id;
-    // reminder.completed = false;
-    // this.reminders = ([reminder]);
-
-    // let reminder2 = new Reminder();
-    // reminder2.id = 0;
-    // reminder2.text = "test2";
-    // reminder2.user_id = this.user.id;
-    // reminder2.patient_id = this.patient_id;
-    // reminder2.completed = false;
-    // this.reminders.push(reminder2);
-
     if(this.patient_id === -1){
       console.log("patient id is not set");
     }
@@ -96,31 +93,22 @@ export class RemindersComponent implements OnInit {
       this.http.get('http://localhost:3000/reminders.json', options).subscribe(
         (res: Response) => {
             this.reminders = res.json();
-            //console.log("notes: ", this.notes);
-          }
+        }
       );
     }
   }
 
-  setCompleted(id: number) {
-    console.log("hit");
-
+  setCompleted(id: number, checked: boolean) {
+    console.log("Change completed status");
     let reminder = new Reminder();
-    // reminder.completed = 
-    // reminder.id = id;
-    // reminder.text = 
-    // note.title = document.getElementById('title-'+id).innerHTML;
-    // note.text = document.getElementById('text-'+id).innerHTML;
-    // note.user_id = this.user.id;
-    // note.patient_id = this.patient_id;
-    // note.id = id;
+    reminder.id = id;
+    reminder.completed = checked;
 
     let dic = {reminder: reminder}
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     this.http.patch('http://localhost:3000/reminders/' + id + '.json', JSON.stringify(dic), { headers: headers }).subscribe((ok) => console.log(ok));      
-    console.log("edit note");
-  
+
   }
 
 

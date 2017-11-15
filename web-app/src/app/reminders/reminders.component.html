@@ -1,6 +1,6 @@
 <div class="reminders">
     <p style="font-weight:bold; font-size: 20px">Tasks:</p>
-  <table class="table table-hover" style="margin-top:10px; width: 100%">
+  <table class="table table-hover" style="margin-top:10px; width: 100%" (onload)='updateCheckboxValue();'>
     <thead>
         <tr>
           <th>Completed</th>
@@ -8,10 +8,10 @@
           <th>Repeat</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody >
         <tr class="table-option" *ngFor="let reminder of reminders;">
-            <th><input type='checkbox' id='checkbox' class='checkbox' ng-model='checkbox{reminder.id}' (click)='setCompleted(reminder.id)' value="{{reminder.completed}}" style="opacity:100;" ></th>
-            <td>{{reminder.text}}</td>
+            <th><input type='checkbox' id='checkbox-{{reminder.id}}' class='checkbox' (change)='setCompleted(reminder.id, !reminder.completed);' checked style="opacity:100;pointer-events:auto;" ></th>
+            <td>{{reminder.completed}}</td>
             <td>{{reminder.user_id}}</td>
         </tr>
     </tbody>
