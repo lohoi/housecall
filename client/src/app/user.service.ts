@@ -68,7 +68,16 @@ export class UserService {
   }
 
   getUser(): any {
-    return this.authService.validateToken()
+    return this.authService.validateToken().subscribe(
+      res => {
+        console.log('res from getUser(): ', res);
+        return this.authService.currentUserData;
+      },
+      error => {
+        console.log('error! could not get user info.. error: ', error);
+        return undefined;
+      }
+    )
   }
 
   getUserType(email_): any {
