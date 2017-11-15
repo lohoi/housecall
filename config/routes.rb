@@ -29,4 +29,6 @@ Rails.application.routes.draw do
   resources :contacts
   resources :static_pages
 
+  match '*path' => redirect("/")
+
 end
