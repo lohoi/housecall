@@ -70,8 +70,8 @@ export class UserService {
   getUser(): any {
     return this.authService.validateToken().subscribe(
       res => {
-        console.log('res from getUser(): ', res);
-        return this.authService.currentUserData;
+        console.log('res from getUser(): ', res.json());
+        return res.json();
       },
       error => {
         console.log('error! could not get user info.. error: ', error);
