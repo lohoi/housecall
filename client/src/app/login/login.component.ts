@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
               if (res.status === 200) {
                 this.userService.setSignIn(true);
                 let data = JSON.parse(res._body).data;
-                console.log('success! data:', data)
+                console.log('success! data:', data);
                 switch(data.user_type) {
                   case 'doctor':
                     console.log("navigating to doctor dashboard");
