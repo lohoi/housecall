@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   # devise_for :users
   resources :users
   # root :controller => 'static', :action => '/public/index.html'
-  root 'application#index'
 
   # get '/about', to: 'static_pages#about'
 
@@ -30,5 +29,5 @@ Rails.application.routes.draw do
   resources :contacts
   resources :static_pages
 
-  get '*' , to: "/public/index.html"
+  # get '*' , to: "/public/index.html"
 end
