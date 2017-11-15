@@ -36,11 +36,7 @@ export class UserService {
   }
 
   registerUser(user_):Observable<Response>{
-    return this.authService.registerAccount(user_).map(
-      res => {
-        return res;
-      }
-    );
+    return this.authService.registerAccount(user_);
   }
 
   logInUser(email_, password_, userType_):any {
