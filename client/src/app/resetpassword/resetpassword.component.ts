@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { Router } from "@angular/router"
+import { Router } from "@angular/router";
+import { Angular2TokenService } from 'angular2-token';
 
 @Component({
   selector: 'app-resetpassword',
@@ -14,10 +15,18 @@ export class ResetpasswordComponent implements OnInit {
   passwordConfirmation: string;
   passwordCurrent: string;
   
-  constructor(private userService:UserService, private router:Router) {}
+  constructor(private userService:UserService, private router:Router,private authService: Angular2TokenService) {}
 
   ngOnInit() {
-    this.email = this.userService.getUser().email;
+    this.email = this.userService.getUser().subscribe(
+      res => {
+        this.email = this.authService.currentUserData.email;
+        console.log('email:',this.email);
+      },
+      error => {
+        console.log('ERROR! Could not find user info??', error);
+      }
+    )
   }
 
   sendResetToken() {
