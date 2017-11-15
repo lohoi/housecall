@@ -81,8 +81,10 @@ export class UserService {
   }
 
   requestResetToken(email_) : any {
+    let url = environment.apiUrl + '/password/edit';
     return this.authService.resetPassword({
-        email: email_
+        email: email_,
+        redirect_url: url,
     })
   }
 
