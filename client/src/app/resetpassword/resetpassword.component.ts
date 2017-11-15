@@ -18,7 +18,7 @@ export class ResetpasswordComponent implements OnInit {
 
   ngOnInit() {
     this.email = this.userService.getUser().email;
-    //console.log("email: ", this.email)
+    console.log("email: ", this.email)
   }
 
   sendResetToken() {
@@ -35,12 +35,12 @@ export class ResetpasswordComponent implements OnInit {
 
   resetPassword() {
     this.userService.changePassword(this.password, this.passwordConfirmation, this.passwordCurrent, this.resetPasswordToken).subscribe(
-    res => {
-      this.userService.logOutUser();
-      this.router.navigate(['/login']);
-    },
-    error => {
-      alert("ERROR?");
-    })
+      res => {
+        this.userService.logOutUser();
+        this.router.navigate(['/login']);
+      },
+      error => {
+        alert("ERROR?");
+      })
   }
 }
