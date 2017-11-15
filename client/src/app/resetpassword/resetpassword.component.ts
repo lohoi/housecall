@@ -8,7 +8,7 @@ import { Router } from "@angular/router"
   styleUrls: ['./resetpassword.component.scss']
 })
 export class ResetpasswordComponent implements OnInit {
-  reset_password_token: string;
+  resetPasswordToken: string;
   email: string;
   password: string;
   passwordConfirmation: string;
@@ -21,28 +21,10 @@ export class ResetpasswordComponent implements OnInit {
     //console.log("email: ", this.email)
   }
 
-  onSubmit() {
+  sendResetToken() {
     this.userService.requestResetToken(this.email).subscribe(
       res => {
-        console.log("requestResetToken: ", res);
-        this.userService.getResetToken(this.email).subscribe(
-          res => {
-            this.reset_password_token = res.text();
-            console.log("token: ", this.reset_password_token);
-            this.userService.changePassword(this.password, this.passwordConfirmation, this.passwordCurrent, this.reset_password_token).subscribe(
-              res => {
-                this.userService.logOutUser();
-                this.router.navigate(['/login']);
-              },
-              error => {
-                alert("ERROR?");
-              }
-            )
-          }, 
-          err => {
-            console.log("error");
-          }
-        )
+        alert('An email with a password reset token has been set! Please check your email');          
       }, 
       err => {
         console.log("error: ", err);
@@ -51,4 +33,14 @@ export class ResetpasswordComponent implements OnInit {
     );
   }
 
+  resetPassword() {
+    this.userService.changePassword(this.password, this.passwordConfirmation, this.passwordCurrent, this.resetPasswordToken).subscribe(
+    res => {
+      this.userService.logOutUser();
+      this.router.navigate(['/login']);
+    },
+    error => {
+      alert("ERROR?");
+    })
+  }
 }
