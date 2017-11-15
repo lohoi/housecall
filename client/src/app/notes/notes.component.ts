@@ -4,6 +4,7 @@ import { Http, URLSearchParams, RequestOptions, Response, Headers } from '@angul
 import { Note } from "../note"
 import { UserService } from "../user.service";
 import { User } from "../user";
+import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -56,7 +57,7 @@ export class NotesComponent implements OnInit {
         search: new URLSearchParams('user_id=' + this.user.id + '&patient_id=' + this.patient_id)
       });
       console.log("get notes");
-      this.http.get('http://localhost:3000/notes.json', options).subscribe(
+      this.http.get(environment.apiUrl + 'notes.json', options).subscribe(
         (res: Response) => {
             this.notes = res.json();
             this.setEdit();
@@ -86,7 +87,7 @@ export class NotesComponent implements OnInit {
       
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      this.http.post('http://localhost:3000/notes.json', JSON.stringify(dic), { headers: headers }).subscribe((res: Response) => {
+      this.http.post(environment.apiUrl + 'notes.json', JSON.stringify(dic), { headers: headers }).subscribe((res: Response) => {
         //console.log("response", res.json().id)
         this.notes.push(res.json());
       });
@@ -100,7 +101,7 @@ export class NotesComponent implements OnInit {
 
     let delete_idx = this.notes.findIndex(note => note.id == id);
     this.notes.splice(delete_idx,1);
-    this.http.delete('http://localhost:3000/notes/' + id + '.json').subscribe();
+    this.http.delete(environment.apiUrl + 'notes/' + id + '.json').subscribe();
   }
 
   editNote = function(id: number){
@@ -114,7 +115,7 @@ export class NotesComponent implements OnInit {
     let dic = {note: note}
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    this.http.patch('http://localhost:3000/notes/' + id + '.json', JSON.stringify(dic), { headers: headers }).subscribe((ok) => console.log(ok));      
+    this.http.patch(environment.apiUrl + 'notes/' + id + '.json', JSON.stringify(dic), { headers: headers }).subscribe((ok) => console.log(ok));      
   }
 
   emailNote = function(id: number){
@@ -124,7 +125,7 @@ export class NotesComponent implements OnInit {
     let note = this.notes[idx]
     let dic = {note: note};
     console.log(note)
-    this.http.post('http://localhost:3000/notes/mail.json', JSON.stringify(dic), { headers: headers }).subscribe((res: Response) => {
+    this.http.post(environment.apiUrl + 'notes/mail.json', JSON.stringify(dic), { headers: headers }).subscribe((res: Response) => {
         console.log(res.json());
     });
 

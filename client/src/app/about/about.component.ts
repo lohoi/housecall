@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-about',
@@ -10,7 +11,7 @@ export class AboutComponent implements OnInit {
   text:string;
   
   constructor(private http: Http) { 
-    http.get('http://localhost:3000/about.json').subscribe(res => this.text = res.json().message);
+    http.get(environment.apiUrl + 'about.json').subscribe(res => this.text = res.json().message);
   }
 
   ngOnInit() {

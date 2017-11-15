@@ -81,7 +81,7 @@ export class UserService {
       search: new URLSearchParams('email=' + email_)
     });
     
-    return this.http.get('https://housecall.herokuapp.com/user_type', options)
+    return this.http.get(environment.apiUrl + 'user_type', options)
   }
 
   requestResetToken(email_) : any {
@@ -95,7 +95,7 @@ export class UserService {
       // Have to make a URLSearchParams with a query string
       search: new URLSearchParams('email=' + email_)
     });
-    return this.http.get('http://localhost:3000/resetPasswordToken', options);
+    return this.http.get(environment.apiUrl + 'resetPasswordToken', options);
   }
 
   changePassword(password_, passwordConfirmation_, passwordCurrent_, resetPasswordToken_): any {
@@ -114,7 +114,7 @@ export class UserService {
       lastname: lastname_,
       skype: skype_
     }
-    return this.http.post('http://localhost:3000/updateUser', params)
+    return this.http.post(environment.apiUrl + 'updateUser', params)
   }
 
    setSelectedContact(c: Contact) {

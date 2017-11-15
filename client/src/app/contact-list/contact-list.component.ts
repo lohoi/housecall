@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Http, URLSearchParams, RequestOptions, Response, Headers } from '@angular/http';
 import { Contact } from '../contact';
 import { Router } from '@angular/router';
+import { environment }  from '../../environments/environment';
 
 @Component({
   selector: 'app-contact-list',
@@ -45,7 +46,7 @@ export class ContactListComponent implements OnInit {
 
     // console.log("Get all contacts");
 
-    this.http.get('http://localhost:3000/contacts.json', options).subscribe((res: Response) => {
+    this.http.get(environment.apiUrl + 'contacts.json', options).subscribe((res: Response) => {
       this.contacts = res.json();
       // console.log(this.contacts)
     });
@@ -62,7 +63,7 @@ export class ContactListComponent implements OnInit {
 
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    this.http.post('http://localhost:3000/contacts.json', JSON.stringify(contact), { headers: headers }).subscribe(
+    this.http.post(environment.apiUrl + 'contacts.json', JSON.stringify(contact), { headers: headers }).subscribe(
       res=> {
         this.contacts.push(contact);
         this.show = !this.show;
