@@ -59,7 +59,7 @@ const routes: Routes = [
     canActivate: [ AuthGuard ]
   },
   {
-    path: 'password/edit',
+    path: '/auth/password/edit',
     component: ChangePasswordComponent,
     canActivate: [ AuthGuard ]
   },
