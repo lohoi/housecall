@@ -3,7 +3,7 @@
 require_relative 'config/environment'
 
 use Rack::Rewrite do
-  rewrite %r{^(?!.*(api|\.)).*$}, '/index.html'
+  rewrite %r{^(?!.*(api|\.|auth)).*$}, '/index.html'
 end
  
 require ::File.expand_path('../config/environment',  __FILE__)

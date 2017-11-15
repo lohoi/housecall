@@ -15,15 +15,15 @@ Rails.application.routes.draw do
 
   post    '/user',   to: 'users#create'
 
-  get     '/user_type', to: 'users#get_type'
+  get     '/api/user_type', to: 'users#get_type'
 
-  get     '/resetPasswordToken', to: 'users#password_token'
+  get     '/api/resetPasswordToken', to: 'users#password_token'
 
-  post    '/updateUser', to: 'users#update_user'
+  post    '/api/updateUser', to: 'users#update_user'
 
-  post     'notes/mail', to: 'notes#mail'
+  post     '/api/notes/mail', to: 'notes#mail'
 
-  get     '/about', to: 'static_pages#about'
+  get     '/api/about', to: 'static_pages#about'
 
   resources :notes
   resources :contacts

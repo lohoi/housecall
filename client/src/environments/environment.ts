@@ -4,7 +4,7 @@
 // The list of which env maps to which file can be found in `angular-cli.json`.
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000/',
+  apiUrl: 'http://localhost:3000/api/',
   token_auth_config: {
     apiBase: 'http://localhost:3000/',
     signInPath: 'auth/sign_in',
