@@ -124,6 +124,6 @@ Additional:
 
 
 ## To push to production:
-* Go into /client directory and run:`ng build --prod --aot=false`.
+* Go into /client directory and run:`ng build --prod --aot=false --env=prod`.
 * Wait for build to succeed
 * navigate to: `https://housecall.herokuapp.com/`
