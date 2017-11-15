@@ -18,6 +18,7 @@ import { PatientGuard } from './guards/patient.guard';
 
 import { ProfileComponent } from './profile/profile.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
   {
@@ -53,8 +54,13 @@ const routes: Routes = [
     canActivate: [ AuthGuard ],
   }, 
   {
-    path: 'change-password',
+    path: 'password',
     component: ResetpasswordComponent,
+    canActivate: [ AuthGuard ]
+  },
+  {
+    path: 'password/edit',
+    component: ChangePasswordComponent,
     canActivate: [ AuthGuard ]
   },
   {

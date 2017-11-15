@@ -25,6 +25,7 @@ import { ContactListComponent } from './contact-list/contact-list.component';
 import { SkypeComponent } from './skype/skype.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { LogoutComponent } from './logout/logout.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { LogoutComponent } from './logout/logout.component';
     ContactListComponent,
     SkypeComponent,
     LogoutComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,

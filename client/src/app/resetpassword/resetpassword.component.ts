@@ -9,13 +9,9 @@ import { Angular2TokenService } from 'angular2-token';
   styleUrls: ['./resetpassword.component.scss']
 })
 export class ResetpasswordComponent implements OnInit {
-  resetPasswordToken: string;
   email: string;
-  password: string;
-  passwordConfirmation: string;
-  passwordCurrent: string;
   
-  constructor(private userService:UserService, private router:Router,private authService: Angular2TokenService) {}
+  constructor(private userService:UserService, private router:Router ,private authService: Angular2TokenService) {}
 
   ngOnInit() {
     this.email = this.userService.getUser().subscribe(
@@ -32,23 +28,13 @@ export class ResetpasswordComponent implements OnInit {
   sendResetToken() {
     this.userService.requestResetToken(this.email).subscribe(
       res => {
-        alert('An email with a password reset token has been set! Please check your email');          
+        alert('An email with a password reset token has been set! Please check your email');     
+        console.log('res', res);     
       }, 
       err => {
         console.log("error: ", err);
         alert("ERROR getting password reset token?");
       }
     );
-  }
-
-  resetPassword() {
-    this.userService.changePassword(this.password, this.passwordConfirmation, this.passwordCurrent, this.resetPasswordToken).subscribe(
-      res => {
-        this.userService.logOutUser();
-        this.router.navigate(['/login']);
-      },
-      error => {
-        alert("ERROR?");
-      })
   }
 }
