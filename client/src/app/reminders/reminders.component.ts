@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Http, URLSearchParams, RequestOptions, Response, Headers } from '@angular/http';
 import { Reminder } from "../reminder";
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment'
 
 @Component({
   selector: 'app-reminders',
@@ -83,7 +84,7 @@ export class RemindersComponent implements OnInit {
       
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      this.http.post('http://localhost:3000/reminders.json', JSON.stringify(dic), { headers: headers }).subscribe((res: Response) => {
+      this.http.post(environment.apiUrl + 'reminders.json', JSON.stringify(dic), { headers: headers }).subscribe((res: Response) => {
         //console.log("response", res.json().id)
         this.reminders.push(res.json());
       });
@@ -100,7 +101,7 @@ export class RemindersComponent implements OnInit {
         search: new URLSearchParams('user_id=' + this.user.id + '&patient_id=' + this.patient_id)
       });
       console.log("get reminders");
-      this.http.get('http://localhost:3000/reminders.json', options).subscribe(
+      this.http.get(environment.apiUrl + 'reminders.json', options).subscribe(
         (res: Response) => {
             this.reminders = res.json();
         }
@@ -117,7 +118,7 @@ export class RemindersComponent implements OnInit {
     let dic = {reminder: reminder}
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    this.http.patch('http://localhost:3000/reminders/' + id + '.json', JSON.stringify(dic), { headers: headers }).subscribe((ok) => console.log(ok));      
+    this.http.patch(environment.apiUrl + 'reminders/' + id + '.json', JSON.stringify(dic), { headers: headers }).subscribe((ok) => console.log(ok));      
 
   }
 
