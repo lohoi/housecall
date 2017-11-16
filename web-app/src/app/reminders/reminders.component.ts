@@ -28,6 +28,7 @@ export class RemindersComponent implements OnInit {
             //console.log("returning with res: ", res)
             this.patient_id = res.id; 
             document.getElementById("task_submit").removeAttribute("disabled");
+            this.resetReminders();
             this.getReminders();
           },
           error => {
@@ -35,6 +36,7 @@ export class RemindersComponent implements OnInit {
           }
         )
       }
+      // patient view
       else {
         this.is_doctor = false;
         this.patient_id = this.user.id;
@@ -43,10 +45,14 @@ export class RemindersComponent implements OnInit {
     }); 
   }
 
-  updateCheckboxValue(){
-    console.log("____UPDATE CHECKBOX VALUE____");
-    // set checkbox values to checked or unchecked
-    if(this.reminders != null){
+  ngOnInit() {
+  }
+
+  // Set checkbox values and "No current task" text
+  setReminderComponentState(){
+    console.log("set reminder component");
+    if(this.reminders == null && this.reminders.length > 0){
+      document.getElementById("no_reminders").setAttribute("display", "none");
       for(var i = 0; i < this.reminders.length; i++){
         if(this.reminders[i].completed == false ){
           document.getElementById('checkbox-'+this.reminders[i].id).removeAttribute("checked");
@@ -55,8 +61,12 @@ export class RemindersComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
+    // Reset the reminder list on contact change
+  // For doctor-dashboard
+  resetReminders(){
+    this.reminders = null;
   }
+
 
   addReminder(new_reminder_text: string){
     if(this.patient_id === -1){

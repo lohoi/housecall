@@ -8,10 +8,12 @@
           <th>Repeat</th>
         </tr>
     </thead>
-    <tbody >
+    <tbody>
+        <p *ngIf='(!(reminders != null && reminders.length > 0))' id="no_reminders" display="visible">No current tasks</p>
         <tr class="table-option" *ngFor="let reminder of reminders;">
-            <th><input type='checkbox' id='checkbox-{{reminder.id}}' class='checkbox' (change)='setCompleted(reminder.id, !reminder.completed);' checked style="opacity:100;pointer-events:auto;" ></th>
-            <td>{{reminder.completed}}</td>
+            <th *ngIf='reminder.completed'><input type='checkbox' id='checkbox-{{reminder.id}}' class='checkbox' (click)="setCompleted(reminder.id, !reminder.completed);" checked style="opacity:100;pointer-events:auto;" ></th>
+            <th *ngIf='!reminder.completed'><input type='checkbox' id='checkbox-{{reminder.id}}' class='checkbox' (click)="setCompleted(reminder.id, !reminder.completed);" style="opacity:100;pointer-events:auto;" ></th>
+            <td>{{reminder.text}}</td>
             <td>{{reminder.user_id}}</td>
         </tr>
     </tbody>
