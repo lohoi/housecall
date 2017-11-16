@@ -1,0 +1,25 @@
+<div class="reminders">
+    <p style="font-weight:bold; font-size: 20px">Tasks:</p>
+  <table class="table table-hover" style="margin-top:10px; width: 100%" (onload)='updateCheckboxValue();'>
+    <thead>
+        <tr>
+          <th>Completed</th>
+          <th>Task</th>
+          <th>Repeat</th>
+        </tr>
+    </thead>
+    <tbody>
+        <p *ngIf='(!(reminders != null && reminders.length > 0))' id="no_reminders" display="visible">No current tasks</p>
+        <tr class="table-option" *ngFor="let reminder of reminders;">
+            <th *ngIf='reminder.completed'><input type='checkbox' id='checkbox-{{reminder.id}}' class='checkbox' (click)="setCompleted(reminder.id, !reminder.completed);" checked style="opacity:100;pointer-events:auto;" ></th>
+            <th *ngIf='!reminder.completed'><input type='checkbox' id='checkbox-{{reminder.id}}' class='checkbox' (click)="setCompleted(reminder.id, !reminder.completed);" style="opacity:100;pointer-events:auto;" ></th>
+            <td>{{reminder.text}}</td>
+            <td>{{reminder.user_id}}</td>
+        </tr>
+    </tbody>
+  </table>
+  <form *ngIf="is_doctor" class="addReminder" (ngSubmit)='addReminder(new_reminder_text); new_reminder_text= ""'>
+    <input type="text" id="new_reminder_text" class="new_reminder_text" name="new_reminder_text" [(ngModel)]="new_reminder_text" placeholder="Enter new task" required>
+    <button type="submit" id="task_submit" style="background-color:#ffb300;" disabled=disabled class="btn btn-success">Add task</button>
+  </form>
+</div>

@@ -27,6 +27,9 @@ Rails.application.routes.draw do
 
   resources :notes
   resources :contacts
+  resources :reminders
+
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :static_pages
 
   # get '*' , to: "/public/index.html"

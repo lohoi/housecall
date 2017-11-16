@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
+import { RemindersComponent } from './reminders/reminders.component';
 import { AboutComponent } from './about/about.component';
 import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard.component';
 import { SignupComponent } from './signup/signup.component';
