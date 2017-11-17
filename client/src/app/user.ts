@@ -8,4 +8,5 @@ export class User {
   specialty?: string
   hospital_id?: string
   user_type?: string
+  patient_description?: string
 }

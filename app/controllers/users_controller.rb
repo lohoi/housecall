@@ -52,6 +52,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def descrip
+    @user = User.find(params[:id])
+    render json: @user, status: :ok
+  end
+
 
   def get_type
     # return user type
@@ -72,6 +77,7 @@ class UsersController < ApplicationController
     user.skype = params[:skype] if params.key?(:skype)
     user.firstname = params[:firstname] if params.key?(:firstname)
     user.lastname = params[:lastname] if params.key?(:lastname)
+    user.patient_description = params[:patient_description] if params.key?(:patient_description)
     user.save!
   end
 
@@ -79,6 +85,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:firstname, :lastname, :email, :password, :skype, :specialty, :hospital_id, :user_type)
+    params.require(:user).permit(:firstname, :lastname, :email, :password, :skype, :specialty, :hospital_id, :user_type, :patient_description)
   end
 end

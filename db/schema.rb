@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171112190020) do
+ActiveRecord::Schema.define(version: 20171117023131) do
 
   create_table "contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "doctor_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20171112190020) do
     t.datetime "activated_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active", default: true
   end
 
   create_table "notes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -29,6 +30,14 @@ ActiveRecord::Schema.define(version: 20171112190020) do
     t.integer "user_id"
     t.boolean "active", default: true
     t.integer "patient_id"
+  end
+
+  create_table "patient_descriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "patient_id"
+    t.integer "doctor_id"
+    t.string "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "reminders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -66,6 +75,7 @@ ActiveRecord::Schema.define(version: 20171112190020) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "tokens"
+    t.string "patient_description"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
