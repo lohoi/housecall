@@ -1,0 +1,43 @@
+<div class="contact-list" style="padding: 15px;">
+
+  <button (click)="show = !show" style="background-color:#ffb300;" type="submit" class="btn btn-success">{{show ? 'Hide new patient form' : 'Add a new Patient'}}</button>
+  <form *ngIf="show" class="addContact" (ngSubmit)='addContact()'>
+    <input type="text" class="patientFirstName" name="patientFirstName" [(ngModel)]="patientFirstName" placeholder="New patient first name" required>
+    <input type="text" class="patientLastName" name="patientLastName" [(ngModel)]="patientLastName" placeholder="New patient last name" required>
+    <input type="email"  name="patientEmail" [(ngModel)]="patientEmail" placeholder="New patient email address" required>
+    <input type="text" class="patientSkype" name="patientSkype" [(ngModel)]="patientSkype" placeholder="New patient skype username" required>
+    <button type="submit" style="background-color:#ffb300;" class="btn btn-success">Add patient</button>
+  </form>
+
+  <div class="row" style="margin-top: 50px; margin-bottom: 0px;">
+    <div class="input-field">
+      <i class="material-icons prefix">search</i>
+      <input type="text" name="search" id="search" [(ngModel)]="searchTerm" placeholder="Search: John Smith, john@email.com, Smith" class="validate"> 
+      <label class="label" for="search">Search Patients</label>
+    </div>
+  </div>
+  <table class="table table-hover">
+    <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Skype Username</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="table-option" *ngFor="let contact of contacts | filter:searchTerm; let i = index" 
+        onclick=
+        "function cl () {
+          setTimeout(function() {
+            SkypeWebControl.SDK.start();
+          }, 200);
+        };
+        cl();" 
+        (click)="setClickedRow(i)" [class.active]="i == selectedRow">
+            <td>{{contact.firstname}}</td>
+            <td>{{contact.lastname}}</td>
+            <td>{{contact.skype}}</td>
+        </tr>
+    </tbody>
+  </table>
+</div>

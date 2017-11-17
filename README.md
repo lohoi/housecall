@@ -121,3 +121,9 @@ Additional:
 * We have tooltips for the Navigation bar icons to help the user navigate the site easily.
 * The user will be navigated to the About page if they try to access something they aren't authorized to view.
 * The About page has useful site tips and feature descriptions to help users use the site easily.
+
+
+## To push to production:
+* Go into /client directory and run:`ng build --prod --aot=false --env=prod`.
+* Wait for build to succeed
+* navigate to: `https://housecall.herokuapp.com/`
