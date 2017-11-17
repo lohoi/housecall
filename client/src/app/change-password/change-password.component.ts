@@ -18,8 +18,8 @@ export class ChangePasswordComponent implements OnInit {
   constructor(private userService:UserService, private router:Router ,private authService: Angular2TokenService, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params: Params) => {
-        this.resetPasswordToken = params['token'];
+    this.activatedRoute.queryParams.forEach((params: Params) => {
+        this.resetPasswordToken = params['reset_password_token'];
         console.log('reset_password_token: ', this.resetPasswordToken);
     });
     this.email = this.userService.getUser().subscribe(
