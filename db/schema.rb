@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 20171117023131) do
     t.datetime "activated_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "active", default: true
   end
 
   create_table "notes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -30,14 +29,6 @@ ActiveRecord::Schema.define(version: 20171117023131) do
     t.integer "user_id"
     t.boolean "active", default: true
     t.integer "patient_id"
-  end
-
-  create_table "patient_descriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "patient_id"
-    t.integer "doctor_id"
-    t.string "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "reminders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

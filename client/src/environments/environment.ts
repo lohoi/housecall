@@ -6,8 +6,8 @@ export const environment = {
   production: false,
   apiUrl: 'http://localhost:3000/api/',
   token_auth_config: {
-    apiBase: 'http://localhost:3000/',
-    signInPath: 'auth/sign_in',
+    apiBase: 'http://localhost:3000',
+    // signInPath: 'auth/sign_in',
     userTypes: [
         { name: 'doctor', path: '' },
         { name: 'patient', path: '' }

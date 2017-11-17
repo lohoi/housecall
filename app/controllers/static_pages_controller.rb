@@ -1,4 +1,7 @@
 class StaticPagesController < ApplicationController
+	def index
+  	end
+    
     def about
         @text = "It works"
         respond_to do |format|

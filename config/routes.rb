@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'static_pages#index'
   mount_devise_token_auth_for 'User', at: 'auth'
 
   # devise_for :users
@@ -41,6 +42,8 @@ Rails.application.routes.draw do
   get     '/api/resetPasswordToken', to: 'users#password_token'
   post    '/api/updateUser', to: 'users#update_user'
   patch    '/api/users/:id', to: 'users#update'
+
+  get '*unmatchedroute', to: 'static_pages#index'
 
   # get '*' , to: "/public/index.html"
 end
