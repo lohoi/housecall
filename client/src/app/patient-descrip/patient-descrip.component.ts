@@ -41,6 +41,7 @@ export class PatientDescripComponent implements OnInit {
       }
     });
   }
+
   ngOnInit() {
   }
 
@@ -49,18 +50,43 @@ export class PatientDescripComponent implements OnInit {
       console.log("patient id is not set");
     }
     else {
-      console.log("get patient");
+      console.log("get patient", this.patient_id);
       this.http.get(environment.apiUrl + 'users/' + this.patient_id + '.json').subscribe(
         (res: Response) => {
-            this.patient_descrip = res.json();
-            this.setEdit();
-            console.log("patient: ", this.patient_descrip);
+            this.patient_descrip = res.json().patient_description;
           }
       );
     }
   }
 
-  setEdit(){
-    this.patient_descrip.edit = false;
+  showIcon = function(icon:string) {
+    var pencilIcon = document.getElementById('pencil');
+    var checkIcon = document.getElementById('check');
+    var textElement = document.getElementById('patient_descrip');
+    if(icon === "pencil"){
+      pencilIcon.style.display = "none";
+      checkIcon.style.display = "block";
+      textElement.contentEditable = "true";
+    } else {
+      checkIcon.style.display = "none";
+      pencilIcon.style.display = "block";
+      textElement.contentEditable = "false";
+    }
+  }
+
+  editDescrip(){
+    console.log("edit description");
+    let user = new User;
+    user.id = this.patient_id
+    user.patient_description = document.getElementById('patient_descrip').innerHTML;
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    this.http.post(environment.apiUrl + 'updateUser', JSON.stringify(user), { headers: headers }).subscribe(
+      res=> {
+        console.log(res)
+      },
+      err => {
+        alert("edit description failed")
+    });
   }
 }

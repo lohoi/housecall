@@ -12,7 +12,8 @@ case Rails.env
     # Reminder.create!(text: "Reminder1", user_id: 4, patient_id: 4, completed: false);
   when 'production'
     doctor = User.create!(email: 'befost1@umich.com', firstname: 'Ben', lastname: 'Foster', password: "password", skype: "bfostervintaclothing", user_type: 0, hospital_id: 0)
-    patient = User.create!(email: 'patient@test.com', firstname: 'Spaceboy', lastname: 'Tabman', password: "password", skype: "fakeskypeacc", user_type: 1, hospital_id: 0)
+    patient = User.create!(email: 'patient@test.com', firstname: 'Spaceboy', lastname: 'Tabman', password: "password", skype: "fakeskypeacc", user_type: 1, hospital_id: 0,
+                           patient_description: "recovering from pneumonia, cough has mostly subsided")
     Contact.create!(doctor_id: doctor.id, patient_id: patient.id)
     Note.create!(title: "Drink Water", text: "ayyyy be drinkin more water pls", user_id: doctor.id, patient_id: patient.id)
     # Reminder.create!(text: "Reminder1", user_id: 4, patient_id: 4, completed: false);

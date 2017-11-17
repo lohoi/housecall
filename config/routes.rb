@@ -34,11 +34,13 @@ Rails.application.routes.draw do
   get     '/api/about', to: 'static_pages#about'
 
   # users
-  get     'users/:id', to: 'users#show', as: "/dashboard"
+  get     'users/:id', to: 'users#show'
+  get     '/api/users/:id', to: 'users#descrip'
   post    '/user',   to: 'users#create'
   get     '/api/user_type', to: 'users#get_type'
   get     '/api/resetPasswordToken', to: 'users#password_token'
   post    '/api/updateUser', to: 'users#update_user'
+  patch    '/api/users/:id', to: 'users#update'
 
   # get '*' , to: "/public/index.html"
 end
