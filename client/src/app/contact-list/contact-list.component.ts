@@ -53,13 +53,14 @@ export class ContactListComponent implements OnInit {
   }
 
   addContact = function(patientFirstName: string, patientLastName: string,
-                        patientEmail: string, patientSkype: string){
+                        patientEmail: string, patientSkype: string, patientDescription: string){
     let contact = new Contact();
     contact.firstname = this.patientFirstName;
     contact.lastname = this.patientLastName;
     contact.email = this.patientEmail;
     contact.skype = this.patientSkype;
     contact.doctor_id = this.user_id;
+    contact.patient_description = this.patientDescription;
 
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');

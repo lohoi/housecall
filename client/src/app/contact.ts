@@ -6,4 +6,5 @@ export class Contact {
     skype: string
     doctor_id: number
     id: number
+    patient_description: string
 }

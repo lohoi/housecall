@@ -5,8 +5,9 @@ class ContactsController < ApplicationController
     password = Devise.friendly_token.first(8)
     puts password
 
-    patient = User.new(firstname: params[:firstname], lastname: params[:lastname], email: params[:email],
-                      skype: params[:skype], password: password, user_type: 1)
+    patient = User.new(firstname: params[:firstname], lastname: params[:lastname], 
+                      email: params[:email], skype: params[:skype], password: password, 
+                      user_type: 1, patient_description: params[:patient_description])
     
 
     if patient.save
