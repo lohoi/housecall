@@ -3,6 +3,7 @@ import { Http, URLSearchParams, RequestOptions, Response, Headers } from '@angul
 import {CalendarHeaderComponent} from '../calendar-header/calendar-header.component';
 import {DateTimePickerComponent} from '../calendar-time-picker/calendar-time-picker.component';
 import { UserService } from '../user.service';
+import { environment } from '../../environments/environment';
 
 import {
   ChangeDetectionStrategy,
@@ -185,7 +186,7 @@ export class CalendarComponent {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    this.http.post('http://localhost:3000/events.json', JSON.stringify(event), { headers: headers }).subscribe((res: Response) => {
+    this.http.post(environment.apiUrl + 'events.json', JSON.stringify(event), { headers: headers }).subscribe((res: Response) => {
       event['event']['id'] = res.json()['id'];
       let e = Object.assign({}, event['event']);
       this.events.push(e);
@@ -203,7 +204,7 @@ export class CalendarComponent {
     };
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    this.http.patch('http://localhost:3000/events/' + event.id +
+    this.http.patch(environment.apiUrl + 'events/' + event.id +
       '.json', JSON.stringify(e), { headers: headers })
       .subscribe((ok) => console.log(ok));
   }
@@ -220,7 +221,7 @@ export class CalendarComponent {
       });
     }
 
-    this.http.get('http://localhost:3000/events.json', options).subscribe(
+    this.http.get(environment.apiUrl + 'events.json', options).subscribe(
       (res: Response) => {
         this.events = [];
         console.log(res.json());
@@ -256,7 +257,7 @@ export class CalendarComponent {
        this.events.splice(index, 1);
     }
     this.refresh.next();
-    this.http.delete('http://localhost:3000/events/' + event.id + '.json').subscribe(
+    this.http.delete(environment.apiUrl + 'events/' + event.id + '.json').subscribe(
       (res: Response) => {
         console.log('Event deleted');
       }
