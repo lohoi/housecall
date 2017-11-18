@@ -8,16 +8,17 @@ import { Http, URLSearchParams, RequestOptions, Response, Headers } from '@angul
 
 @Injectable()
 export class UserService {
-	constructor(private authService: Angular2TokenService, private router: Router, private http: Http) {
+  static selectedContact$: Subject<Contact> = new Subject();
+  static contacts$: Subject<Contact[]> = new Subject();
+
+  userSignedIn$: Subject<boolean> = new Subject()
+
+  constructor(private authService: Angular2TokenService, private router: Router, private http: Http) {
     this.authService.init(environment.token_auth_config);
     this.authService.validateToken().subscribe(
         res => res.status == 200 ? this.userSignedIn$.next(res.json().success) : this.userSignedIn$.next(false)
-    )
+    );
   }
-  
-  static selectedContact$:Subject<Contact> = new Subject();
-
-  userSignedIn$:Subject<boolean> = new Subject()
 
   logOutUser():any {
     console.log('called logOutUser')
@@ -115,20 +116,20 @@ export class UserService {
     return this.http.post(environment.apiUrl + 'updateUser', params)
   }
 
+  setAllConacts(c: Contact[]) {
+    UserService.contacts$.next(c);
+  }
+
+  getAllContacts(): any {
+    return UserService.contacts$;
+  }
+
    setSelectedContact(c: Contact) {
     UserService.selectedContact$.next(c);
-    // console.log("set user service to be...", UserService.selectedContact$)
-    // console.log("Selected contact: " + this.getSelectedContact());
   }
 
   getSelectedContact(): any {
-    // console.log("called get Selected Contact")
     return UserService.selectedContact$;
-    // console.log("Selected contact is: " + UserService.selectedContact$);
-    // if (!UserService.selectedContact) {
-    //   return null;
-    // }
-    // return UserService.selectedContact;
   }
 
    userSignedIn = function() {

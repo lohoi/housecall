@@ -20,6 +20,8 @@ import { PatientGuard } from './guards/patient.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { CalendarComponent } from 'app/calendar/calendar.component';
+import { DateTimePickerComponent } from 'app/calendar-time-picker/calendar-time-picker.component';
 
 const routes: Routes = [
   {
@@ -68,6 +70,16 @@ const routes: Routes = [
     path: 'logout',
     component: LogoutComponent,
     canActivate: [ AuthGuard ]
+  },
+  {
+    path: 'calendar',
+    component: CalendarComponent,
+    canActivate: [ AuthGuard ],
+  },
+  {
+    path: 'time-picker',
+    component: DateTimePickerComponent,
+    canActivate: [ AuthGuard ],
   }
 ];
 

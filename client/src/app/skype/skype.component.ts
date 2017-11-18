@@ -24,7 +24,7 @@ export class SkypeComponent implements OnInit {
   ngOnInit() {
     if (!SkypeComponent.reloaded) {
       this.zone.runOutsideAngular(() => {
-        location.reload();
+        // location.reload();
       });
     }
     SkypeComponent.reloaded = true

@@ -27,6 +27,19 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { LogoutComponent } from './logout/logout.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { RemindersComponent } from './reminders/reminders.component';
+import { CalendarComponent } from './calendar/calendar.component';
+
+import { CommonModule } from '@angular/common';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+
+import {
+  NgbDatepickerModule,
+  NgbTimepickerModule
+} from '@ng-bootstrap/ng-bootstrap';
+
+import { CalendarModule } from 'angular-calendar';
+import { CalendarHeaderComponent } from './calendar-header/calendar-header.component';
+import { DateTimePickerComponent } from './calendar-time-picker/calendar-time-picker.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +58,9 @@ import { RemindersComponent } from './reminders/reminders.component';
     LogoutComponent,
     ChangePasswordComponent,
     RemindersComponent,
+    CalendarComponent,
+    CalendarHeaderComponent,
+    DateTimePickerComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +69,13 @@ import { RemindersComponent } from './reminders/reminders.component';
     AppRoutingModule,
     MaterializeModule,
     Ng2SearchPipeModule,
+    CommonModule,
+    FormsModule,
+    NgbModalModule.forRoot(),
+    CalendarModule.forRoot(),
+    NgbDatepickerModule.forRoot(),
+    NgbTimepickerModule.forRoot(),
+    CalendarModule
   ],
   providers: [ Angular2TokenService, UserService, AuthGuard, DoctorGuard, PreventLoggedInAccess, PatientGuard ],
   bootstrap: [ AppComponent ]
