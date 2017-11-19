@@ -31,6 +31,13 @@ Rails.application.routes.draw do
   patch    'api/reminders/:id',   to: 'reminders#update'
   get      'api/reminders/:id',   to: 'reminders#show'
 
+  # events
+  get      'api/events/',      to: 'events#index'
+  post     '/api/events',      to: 'events#create'
+  delete   'api/events/:id',   to: 'events#destroy'
+  patch    'api/events/:id',   to: 'events#update'
+  get      'api/events/:id',   to: 'events#show'
+
   # static pages
   get     '/api/about', to: 'static_pages#about'
 

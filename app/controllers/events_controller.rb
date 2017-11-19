@@ -52,6 +52,7 @@ class EventsController < ApplicationController
             format.json
         end
     end
+    
     private
     def event_params
       params.require(:event).permit(
