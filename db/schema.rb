@@ -30,10 +30,10 @@ ActiveRecord::Schema.define(version: 20171117023131) do
     t.boolean "draggable"
     t.boolean "resizeBeforeStart"
     t.boolean "resizeAfterEnd"
+    t.integer "user_id"
+    t.integer "patiend_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.integer "patient_id"
     t.string "color"
   end
 
