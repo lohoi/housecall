@@ -4,8 +4,6 @@
   "dependencies": {
     "@angular/animations": "^5.0.1",
     "@angular/common": "^5.0.1",
-    "@angular/compiler": "^5.0.1",
-    "@angular/compiler-cli": "^5.0.1",
     "@angular/core": "^5.0.1",
     "@angular/forms": "^5.0.1",
     "@angular/http": "^5.0.1",
@@ -17,6 +15,8 @@
     "typescript": "^2.6.1"
   },
   "devDependencies": {
-    "@angular/cli": "^1.4.4"
+    "@angular/cli": "^1.4.4",
+    "@angular/compiler": "^5.0.1",
+    "@angular/compiler-cli": "^5.0.1",
   }
 }
