@@ -39,7 +39,7 @@ $ rails s
 
 
 ## Angular Setup
-* Inside of `/web-app` run `npm install` then the following should give the output:
+* Inside of `/client` run `npm install` then the following should give the output:
 ```console
 $ ng -v
     _                      _                 ____ _     ___
