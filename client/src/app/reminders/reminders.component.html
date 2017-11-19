@@ -5,7 +5,6 @@
         <tr>
           <th>Completed</th>
           <th>Task</th>
-          <th>Repeat</th>
         </tr>
     </thead>
     <tbody>
@@ -14,7 +13,6 @@
             <th *ngIf='reminder.completed'><input type='checkbox' id='checkbox-{{reminder.id}}' class='checkbox' (click)="setCompleted(reminder.id, !reminder.completed);" checked style="opacity:100;pointer-events:auto;" ></th>
             <th *ngIf='!reminder.completed'><input type='checkbox' id='checkbox-{{reminder.id}}' class='checkbox' (click)="setCompleted(reminder.id, !reminder.completed);" style="opacity:100;pointer-events:auto;" ></th>
             <td>{{reminder.text}}</td>
-            <td>{{reminder.user_id}}</td>
         </tr>
     </tbody>
   </table>
