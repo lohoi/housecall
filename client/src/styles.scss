@@ -32,3 +32,15 @@ input:focus {
     border-bottom: 1px solid #ffe54c !important;
     box-shadow: 0 1px 0 0 #ffe54c !important;
 }
+
+.btn, .btn.btn-primary,  {
+    background-color: #ffb300;
+    &:hover {
+        background-color: #ffb300;        
+    }
+}
+
+.btn.btn-primary.active {
+    background-color: #607d8b;
+
+}

@@ -44,6 +44,17 @@ Rails.application.routes.draw do
   patch    '/api/users/:id', to: 'users#update'
 
   get '*unmatchedroute', to: 'static_pages#index'
+  post     '/api/notes/mail', to: 'notes#mail'
+
+  get     '/api/about', to: 'static_pages#about'
+
+  resources :notes
+  resources :contacts
+  resources :reminders
+  resources :events
+
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :static_pages
 
   # get '*' , to: "/public/index.html"
 end

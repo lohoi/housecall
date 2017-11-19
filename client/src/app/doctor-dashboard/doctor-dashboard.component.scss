@@ -1,6 +1,7 @@
 app-notes {
     width: 50%;
     padding: 5px;
+    height: 450px;
 }
 
 app-reminders {
@@ -11,4 +12,9 @@ app-reminders {
 app-patient-descrip {
   width: 50%;
   padding: 5px;
+}
+
+app-calendar {
+    width: 100%;
+    display: flex;
 }

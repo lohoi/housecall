@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { Router } from "@angular/router";
-import { Angular2TokenService } from 'angular2-token';
+import { Router } from "@angular/router"
 
 @Component({
   selector: 'app-resetpassword',
@@ -9,27 +8,41 @@ import { Angular2TokenService } from 'angular2-token';
   styleUrls: ['./resetpassword.component.scss']
 })
 export class ResetpasswordComponent implements OnInit {
+  reset_password_token: string;
   email: string;
+  password: string;
+  passwordConfirmation: string;
+  passwordCurrent: string;
   
-  constructor(private userService:UserService, private router:Router ,private authService: Angular2TokenService) {}
+  constructor(private userService:UserService, private router:Router) {}
 
   ngOnInit() {
-    this.email = this.userService.getUser().subscribe(
-      res => {
-        this.email = this.authService.currentUserData.email;
-        console.log('email:',this.email);
-      },
-      error => {
-        console.log('ERROR! Could not find user info??', error);
-      }
-    )
+    this.email = this.userService.getUser().email;
+    //console.log("email: ", this.email)
   }
 
-  sendResetToken() {
+  onSubmit() {
     this.userService.requestResetToken(this.email).subscribe(
       res => {
-        alert('An email with a password reset token has been set! Please check your email');     
-        console.log('res', res);     
+        console.log("requestResetToken: ", res);
+        this.userService.getResetToken(this.email).subscribe(
+          res => {
+            this.reset_password_token = res.text();
+            console.log("token: ", this.reset_password_token);
+            this.userService.changePassword(this.password, this.passwordConfirmation, this.passwordCurrent, this.reset_password_token).subscribe(
+              res => {
+                this.userService.logOutUser();
+                this.router.navigate(['/login']);
+              },
+              error => {
+                alert("ERROR?");
+              }
+            )
+          }, 
+          err => {
+            console.log("error");
+          }
+        )
       }, 
       err => {
         console.log("error: ", err);
@@ -37,4 +50,5 @@ export class ResetpasswordComponent implements OnInit {
       }
     );
   }
+
 }
