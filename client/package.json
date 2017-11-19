@@ -30,6 +30,7 @@
     "@angular/common": "^5.0.1",
     "@angular/compiler": "^5.0.1",
     "@angular/compiler-cli": "^5.0.1",
+    "zone.js": "~0.7.8",
     "@angular/core": "^5.0.1",
     "@angular/forms": "^5.0.1",
     "@angular/http": "^5.0.1",
@@ -60,8 +61,7 @@
     "ts-node": "1.2.1",
     "tslint": "^4.3.0",
     "typescript": ">=2.4.2 <2.5.0",
-    "typings": "^2.1.1",
-    "zone.js": "^0.7.2"
+    "typings": "^2.1.1"
   },
   "engines": {
     "node": "6.11.3",
