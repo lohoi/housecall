@@ -1,4 +1,5 @@
 <div class="contact-list" style="padding: 15px;">
+  <h5>Patient List</h5>
 
   <button (click)="show = !show" type="submit" class="btn btn-success">{{show ? 'Hide new patient form' : 'Add a new Patient'}}</button>
   <form *ngIf="show" class="addContact" (ngSubmit)='addContact()'>
