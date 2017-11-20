@@ -78,7 +78,7 @@ export class PatientDescripComponent implements OnInit {
     console.log("edit description");
     let user = new User;
     user.id = this.patient_id
-    user.patient_description = document.getElementById('patient_descrip').innerHTML;
+    user.patient_description = document.getElementById('patient_descrip').innerText;
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     this.http.post(environment.apiUrl + 'updateUser', JSON.stringify(user), { headers: headers }).subscribe(
