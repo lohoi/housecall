@@ -1,5 +1,6 @@
 # README
-Welcome to Housecall! The following is how to set up the project locally.
+Welcome to Housecall! The following is how to set up the project locally. 
+Otherwise, you can navigate to our production application: `https://housecall.herokuapp.com/`.
 
 
 ## Rails Setup: 
