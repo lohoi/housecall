@@ -12,12 +12,6 @@ class NotesController < ApplicationController
     note = Note.find(params[:id])
     note.active = false
     note.save()
-    # @message = "note destroyed"
-    # if note.save
-    #     respond_to do |format|
-    #         format.json { render json: @message }
-    #     end
-    # end
   end
 
   def show
