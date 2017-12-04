@@ -46,15 +46,32 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
 
+  playSuccessAudio = function(){
+    console.log('hello')
+    let audio = new Audio();
+    audio.src = "../../assets/success.wav";
+    audio.load();
+    audio.play();
+  }
+
+  playFailAudio = function(){
+    let audio = new Audio();
+    audio.src = "../../assets/error.wav";
+    audio.load();
+    audio.play();
+  }
+
   onSubmit = function() {    
     console.log("Registering");
     this.userService.registerUser(this.user)
     .subscribe(
       res => {
+        this.playSuccessAudio()
         alert("registration successful!")
         this.router.navigate(['/login']) 
       },
       err => {
+        this.playFailAudio()
           alert("Registration failed! Please double check all fields are correct")
           this.onFormResult.emit({signedIn: false, err})
           console.log("ERROR: ", err)
