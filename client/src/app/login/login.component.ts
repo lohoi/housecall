@@ -21,6 +21,22 @@ export class LoginComponent implements OnInit {
     this.userService.logOutUser();
   }
 
+  playSuccessAudio = function(){
+    console.log('hello')
+    let audio = new Audio();
+    audio.src = "../../assets/success.wav";
+    audio.load();
+    audio.play();
+  }
+
+  playFailAudio = function(){
+    let audio = new Audio();
+    audio.src = "../../assets/error.wav";
+    audio.load();
+    audio.play();
+  }
+
+
   onSubmit = function() {
     event.preventDefault();
 
@@ -34,6 +50,7 @@ export class LoginComponent implements OnInit {
           .subscribe(
             res => {
               if (res.status === 200) {
+                this.playSuccessAudio();
                 this.userService.setSignIn(true);
                 let data = JSON.parse(res._body).data;
                 console.log('success! data:', data);
@@ -53,17 +70,16 @@ export class LoginComponent implements OnInit {
               }
             },
             err => {
+              this.playFailAudio();
               this.onFormResult.emit({signedIn: false, err})
               this.userService.setSignIn(false);
               alert("Incorrect user credentials");
             }
           )
       }, err => {
+        this.playFailAudio();
         alert("Invalid Credentials");
       }
-
-
-
     )
   }
 }
