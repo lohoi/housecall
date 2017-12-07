@@ -54,6 +54,7 @@ export class PatientDescripComponent implements OnInit {
       this.http.get(environment.apiUrl + 'users/' + this.patient_id + '.json').subscribe(
         (res: Response) => {
             this.patient_descrip = res.json().patient_description;
+            console.log("got patient descrip:", this.patient_descrip);
           }
       );
     }
@@ -88,5 +89,6 @@ export class PatientDescripComponent implements OnInit {
       err => {
         alert("edit description failed")
     });
+    this.getData();
   }
 }
