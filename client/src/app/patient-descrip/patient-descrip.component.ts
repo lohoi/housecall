@@ -68,7 +68,12 @@ export class PatientDescripComponent implements OnInit {
       pencilIcon.style.display = "none";
       checkIcon.style.display = "block";
       textElement.contentEditable = "true";
+      textElement.style.fontFamily = 'Courier New';
+      textElement.style.border = "1.8px solid #dcad51";
+
     } else {
+      textElement.style.border = "none";
+      textElement.style.fontFamily = 'Roboto';
       checkIcon.style.display = "none";
       pencilIcon.style.display = "block";
       textElement.contentEditable = "false";
