@@ -39,6 +39,8 @@ gem "devise_token_auth", ">= 0.1.32.beta9"
 
 gem 'omniauth'
 
+gem 'rufus-scheduler'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
