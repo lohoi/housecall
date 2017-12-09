@@ -1,12 +1,12 @@
 <div class="patient_description">
   <p style="font-weight:bold; font-size: 20px">Patient Description:</p>
   <div class="card" style="margin: 0.2rem 0 .4rem 0 !important; background-color:#607d8b;" id="patient-description">
-    <div class="card-content white-text" >
+    <div class="card-content white-text" style="width:100%;position:relative;">
       <div class="icon">
         <button id='pencil' class="fa fa-pencil fa-lg" (click)='showIcon("pencil")'></button>
         <button id='check' style='display:none' class="fa fa-check fa-lg" (click)='showIcon("check"); editDescrip(); '></button>
       </div>
-      <div id='patient_descrip' class="markdown-text" ng-model="patient_descrip"
+      <div id='patient_descrip' class="markdown-text" style="position:absolute;width:80%;" ng-model="patient_descrip"
         contenteditable="false">{{ patient_descrip }}
       </div>
   </div>
