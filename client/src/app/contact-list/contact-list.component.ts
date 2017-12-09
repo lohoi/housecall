@@ -60,6 +60,11 @@ export class ContactListComponent implements OnInit {
     });
   }
 
+  validateEmail = function() {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(this.patientEmail);
+  }
+
   addContact = function(patientFirstName: string, patientLastName: string,
                         patientEmail: string, patientSkype: string, patientDescription: string){
     let contact = new Contact();
@@ -76,6 +81,7 @@ export class ContactListComponent implements OnInit {
       res=> {
         this.contacts.push(contact);
         this.show = !this.show;
+        alert('Patient successfully registered!')
         this.router.navigate(['/doctor-dashboard']);
       },
       err => {

@@ -2,15 +2,19 @@
   <h5>Patient List</h5>
 
   <button (click)="show = !show" type="submit" class="btn btn-success">{{show ? 'Hide new patient form' : 'Add a new Patient'}}</button>
-  <form *ngIf="show" class="addContact" (ngSubmit)='addContact()'>
-    <input type="text" class="patientFirstName" name="patientFirstName" [(ngModel)]="patientFirstName" placeholder="New patient first name" required>
-    <input type="text" class="patientLastName" name="patientLastName" [(ngModel)]="patientLastName" placeholder="New patient last name" required>
-    <input type="email"  name="patientEmail" [(ngModel)]="patientEmail" placeholder="New patient email address" required>
-    <input type="text" class="patientSkype" name="patientSkype" [(ngModel)]="patientSkype" placeholder="New patient skype username" required>
-    <input type="text" class="patientDescription" name="patientDescription" [(ngModel)]="patientDescription" placeholder="Short description of the patient's condition..." required>
-    <button type="submit" style="background-color:#ffb300;" class="btn btn-success">Add patient</button>
-  </form>
-
+  <div [hidden]="!show">
+    <form class="addContact" #contactForm="ngForm" (ngSubmit)='addContact()'>
+      <input id="firstname" type="text" class="patientFirstName validate" name="patientFirstName" [(ngModel)]="patientFirstName" placeholder="New patient first name" required>
+      <input id="lastname" type="text" class="patientLastName validate" name="patientLastName" [(ngModel)]="patientLastName" placeholder="New patient last name" required>
+      <input id="email" type="email" class="validate" name="email" [(ngModel)]="patientEmail" placeholder="New patient email address" required>
+      <small *ngIf="patientEmail && !validateEmail()" style="color:red; margin-top: 0px;">
+          Incorrect Email Format
+      </small>
+      <input id="skype" type="text" class="patientSkype validate" name="patientSkype" [(ngModel)]="patientSkype" placeholder="New patient skype username" required>
+      <input id="description" type="text" class="patientDescription validate" name="patientDescription" [(ngModel)]="patientDescription" placeholder="Short description of the patient's condition..." required>
+      <button type="submit" style="background-color:#ffb300;" [disabled]="!(contactForm.valid) || !validateEmail()" class="btn btn-success">Add patient</button>
+    </form>
+  </div>
   <div class="row" style="margin-top: 50px; margin-bottom: 0px;">
     <div class="input-field col s12">
       <i class="material-icons prefix">search</i>

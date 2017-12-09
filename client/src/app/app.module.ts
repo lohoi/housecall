@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { BrowserXhr, HttpModule } from '@angular/http';
 import { MaterializeModule } from "angular2-materialize";
 
 import { AppComponent } from './app.component'
@@ -42,6 +42,8 @@ import { CalendarModule } from 'angular-calendar';
 import { CalendarHeaderComponent } from './calendar-header/calendar-header.component';
 import { DateTimePickerComponent } from './calendar-time-picker/calendar-time-picker.component';
 
+import { NgProgressModule, NgProgressBrowserXhr } from 'ngx-progressbar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,9 +79,10 @@ import { DateTimePickerComponent } from './calendar-time-picker/calendar-time-pi
     CalendarModule.forRoot(),
     NgbDatepickerModule.forRoot(),
     NgbTimepickerModule.forRoot(),
-    CalendarModule
+    CalendarModule,
+    NgProgressModule
   ],
-  providers: [ Angular2TokenService, UserService, AuthGuard, DoctorGuard, PreventLoggedInAccess, PatientGuard ],
+  providers: [ Angular2TokenService, UserService, AuthGuard, DoctorGuard, PreventLoggedInAccess, PatientGuard, { provide: BrowserXhr, useClass: NgProgressBrowserXhr }],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
