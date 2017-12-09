@@ -6,6 +6,9 @@
           <i class="material-icons prefix">email</i>
           <input id="email" type="email" class="validate" [(ngModel)]="user.email" name="email" required>
           <label class="label" for="email">Email</label>
+          <small *ngIf="user.email && !validateEmail()" style="color:red; margin-top: 0px;">
+            Incorrect Email Format
+          </small>
         </div>
       </div>
       <div class="row">
