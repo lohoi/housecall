@@ -16,6 +16,9 @@
           <i class="material-icons prefix">lock</i>
           <input id="password" type="password" class="validate" [(ngModel)]="user.password" name="password"  minlength=8 required>
           <label class="label" for="password">Password</label>
+          <small *ngIf="user.password && user.password?.length < 8" style="color:red; margin-top: 0px;">
+            Password must be at least 8 characters long
+          </small>
         </div>
       </div>
       <button type="submit" [disabled]="!(loginForm.valid)" style="background-color:#ffb300; margin-right:10px" class="btn btn-success right">Submit</button>
