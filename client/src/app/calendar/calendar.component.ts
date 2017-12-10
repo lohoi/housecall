@@ -255,19 +255,21 @@ export class CalendarComponent {
   }
 
   deleteEvent(event: any): void {
-    if (event === this.selectedEvent) {
-      this.selectedEvent = null;
-    }
-    let index = this.events.indexOf(event, 0);
-    if (index > -1) {
-       this.events.splice(index, 1);
-    }
-    this.refresh.next();
-    this.http.delete(environment.apiUrl + 'events/' + event.id + '.json').subscribe(
-      (res: Response) => {
-        console.log('Event deleted');
+    if (confirm('Delete event?')) {
+      if (event === this.selectedEvent) {
+        this.selectedEvent = null;
       }
-    );
+      let index = this.events.indexOf(event, 0);
+      if (index > -1) {
+         this.events.splice(index, 1);
+      }
+      this.refresh.next();
+      this.http.delete(environment.apiUrl + 'events/' + event.id + '.json').subscribe(
+        (res: Response) => {
+          console.log('Event deleted');
+        }
+      );
+    }
   }
 
   toggleEventEdit(): void {

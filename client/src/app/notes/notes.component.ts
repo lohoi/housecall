@@ -100,12 +100,12 @@ export class NotesComponent implements OnInit {
   }
 
   deleteNote = function(id: number){
-    console.log('delete note');
-
-    let delete_idx = this.notes.findIndex(note => note.id == id);
-    this.notes.splice(delete_idx,1);
-    this.http.delete(environment.apiUrl + 'notes/' + id + '.json').subscribe();
-  }
+    if (confirm('Delete note?')) {
+      let delete_idx = this.notes.findIndex(note => note.id == id);
+      this.notes.splice(delete_idx,1);
+      this.http.delete(environment.apiUrl + 'notes/' + id + '.json').subscribe();
+    }
+  };
 
   editNote = function(id: number){
     console.log('edit note');
