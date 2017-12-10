@@ -78,6 +78,9 @@ export class RemindersComponent implements OnInit {
     if(this.patient_id === -1){
       console.log("patient_id is not set");
     }
+    else if(!new_reminder_text){
+        console.log("task must contain text");
+    }
     else{
       let reminder = new Reminder();
       reminder.text = new_reminder_text;
