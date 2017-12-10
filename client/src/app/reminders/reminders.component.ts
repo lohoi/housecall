@@ -131,11 +131,11 @@ export class RemindersComponent implements OnInit {
   }
 
   deleteReminder = function(id: number){
-    console.log('delete reminder');
-
-    let delete_idx = this.reminders.findIndex(reminder => reminder.id === id);
-    this.reminders.splice(delete_idx,1);
-    this.http.delete(environment.apiUrl + 'reminders/' + id + '.json').subscribe();
+    if (confirm('Delete task?')) {
+      let delete_idx = this.reminders.findIndex(reminder => reminder.id === id);
+      this.reminders.splice(delete_idx,1);
+      this.http.delete(environment.apiUrl + 'reminders/' + id + '.json').subscribe();
+    }
   }
 
 
