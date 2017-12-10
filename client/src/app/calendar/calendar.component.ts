@@ -59,6 +59,7 @@ export class CalendarComponent {
   view = 'month';
   show = false;
   contacts: any;
+  selectedDate: Date = null;
 
   viewDate: Date = new Date();
 
@@ -91,51 +92,51 @@ export class CalendarComponent {
   activeDayIsOpen = false;
 
   constructor(public userService: UserService, private modal: NgbModal, private http: Http, private authService: Angular2TokenService) {
-  this.http = http;
+    this.http = http;
 
-  this.userService.getAllContacts().subscribe((res) => {
-    this.contacts = res;
-    console.log(this.contacts);
-  });
+    this.userService.getAllContacts().subscribe((res) => {
+      this.contacts = res;
+      console.log(this.contacts);
+    });
 
-  this.userService.getUser().subscribe((res) => {
-    document.getElementById('add-btn').setAttribute('disabled', 'disabled');
-    this.user = this.authService.currentUserData;
-    this.getData();
-    if (this.user.user_type === 'doctor') {
-      this.userService.getSelectedContact().subscribe(
-        r => {
-          if (r != null) {
-            document.getElementById('add-btn').removeAttribute('disabled');
-            console.log(r);
-            if (this.patient_id !== r.id) {
-              this.patient_id = r.id;
-              this.getData();
+    this.userService.getUser().subscribe((res) => {
+      document.getElementById('add-btn').setAttribute('disabled', 'disabled');
+      this.user = this.authService.currentUserData;
+      this.getData();
+      if (this.user.user_type === 'doctor') {
+        this.userService.getSelectedContact().subscribe(
+          r => {
+            if (r != null) {
+              document.getElementById('add-btn').removeAttribute('disabled');
+              console.log(r);
+              if (this.patient_id !== r.id) {
+                this.patient_id = r.id;
+                this.getData();
+              }
+            } else {
+              document.getElementById('add-btn').setAttribute('disabled', 'disabled');
+              this.getData()
             }
-          } else {
-            document.getElementById('add-btn').setAttribute('disabled', 'disabled');
-            this.getData()
           }
-        }
-      );
-    } else if (this.user.user_type === 'patient') {
-      this.patient_id = this.user.id;
-    }
-  });
-}
+        );
+      } else if (this.user.user_type === 'patient') {
+        this.patient_id = this.user.id;
+      }
+    });
+  }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
-      if (
-        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
-        events.length === 0
-      ) {
+      if (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) {
         this.activeDayIsOpen = false;
+        this.selectedDate = null;
       } else {
+        this.selectedDate = date;
         this.activeDayIsOpen = true;
         this.viewDate = date;
       }
     }
+    console.log(this.selectedDate);
   }
 
   eventTimesChanged({
@@ -168,8 +169,8 @@ export class CalendarComponent {
     // if (this.patient_id < 0) {
     //   return;
     // }
-    let start = new Date();
-    let end = addHours(new Date(start), 2);
+    let start = this.selectedDate != null ? this.selectedDate : new Date();
+    let end = addHours(start, 2);
     let event = {
       event: {
         user_id: this.user.id,
