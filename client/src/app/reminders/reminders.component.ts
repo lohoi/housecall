@@ -26,11 +26,16 @@ export class RemindersComponent implements OnInit {
         this.is_doctor = true;
         this.userService.getSelectedContact().subscribe(
           res => {
-            //console.log("returning with res: ", res)
-            this.patient_id = res.id; 
-            document.getElementById("task_submit").removeAttribute("disabled");
-            this.resetReminders();
-            this.getReminders();
+            if (res != null) {
+              this.patient_id = res.id; 
+              document.getElementById('task_submit').removeAttribute('disabled');
+              this.resetReminders();
+              this.getReminders();
+            } else {
+              this.patient_id = -1;
+              document.getElementById("task_submit").setAttribute('disabled', 'disabled');
+              this.resetReminders();
+            }
           },
           error => {
             console.log("ERROR!");

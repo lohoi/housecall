@@ -23,10 +23,14 @@ export class PatientDescripComponent implements OnInit {
       if(this.user.user_type === "doctor") {
         this.userService.getSelectedContact().subscribe(
           res => {
-            //console.log("returning with res: ", res)
-            this.patient_id = res.id; 
-            document.getElementById("saveButton").removeAttribute("disabled");
-            this.getData();
+            if (res != null) {
+              this.patient_id = res.id; 
+              document.getElementById('saveButton').removeAttribute('disabled');
+              this.getData();
+            } else {
+              this.patient_id = -1;
+              document.getElementById('saveButton').setAttribute('disabled', 'disabled');
+            }
           },
           error => {
             console.log("ERROR!");

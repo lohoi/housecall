@@ -15,7 +15,7 @@ export class ContactListComponent implements OnInit {
   user_id;
   show;
   contacts: [any];
-  selectedRow;
+  selectedRow = -1;
   searchTerm;
 
   constructor(private http: Http, private authService: Angular2TokenService, private userService: UserService, private router:Router) {
@@ -27,13 +27,22 @@ export class ContactListComponent implements OnInit {
     });
 
     this.userService.getSelectedContact().subscribe((res) => {
-      let c = this.contacts.find(c => c.id === res.id);
-      let idx = this.contacts.indexOf(c);
-      this.selectedRow = idx;
+      if (res != null) {
+        let c = this.contacts.find(c => c.id === res.id);
+        let idx = this.contacts.indexOf(c);
+        this.selectedRow = idx;
+      } else {
+        this.selectedRow = -1;
+      }
     });
   }
 
   setClickedRow (index) {
+    if (index === this.selectedRow) {
+      this.selectedRow = -1;
+      this.userService.setSelectedContact(null);
+      return;
+    }
 
     this.userService.setSelectedContact(this.contacts[index]);
     this.selectedRow = index;

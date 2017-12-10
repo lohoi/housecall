@@ -105,11 +105,16 @@ export class CalendarComponent {
     if (this.user.user_type === 'doctor') {
       this.userService.getSelectedContact().subscribe(
         r => {
-          document.getElementById('add-btn').removeAttribute('disabled');
-          console.log(r);
-          if (this.patient_id !== r.id) {
-            this.patient_id = r.id;
-            this.getData();
+          if (r != null) {
+            document.getElementById('add-btn').removeAttribute('disabled');
+            console.log(r);
+            if (this.patient_id !== r.id) {
+              this.patient_id = r.id;
+              this.getData();
+            }
+          } else {
+            document.getElementById('add-btn').setAttribute('disabled', 'disabled');
+            this.getData()
           }
         }
       );
