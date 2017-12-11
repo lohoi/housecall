@@ -10,7 +10,12 @@ import { environment } from "../environments/environment"
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  loaded = false;
 	constructor(private authService: Angular2TokenService) {
+    setTimeout(() => {
+      document.getElementById("loading").remove();
+      this.loaded = true;
+    }, 2500);
 		this.authService.init(environment.token_auth_config);
 	}
 }
