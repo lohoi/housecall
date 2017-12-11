@@ -51,18 +51,20 @@ $ ng -v
                |___/
 @angular/cli: 1.4.5
 node: 6.11.3
-os: darwin x64
-@angular/common: 2.4.10
-@angular/compiler: 2.4.10
-@angular/core: 2.4.10
-@angular/forms: 2.4.10
-@angular/http: 2.4.10
-@angular/platform-browser: 2.4.10
-@angular/platform-browser-dynamic: 2.4.10
-@angular/router: 3.4.10
+os: linux x64
+@angular/animations: 5.0.2
 @angular/cli: 1.4.5
-@angular/compiler-cli: 2.4.10
-typescript: 2.0.10
+@angular/common: 5.0.2
+@angular/compiler: 5.0.2
+@angular/compiler-cli: 5.0.2
+@angular/core: 5.0.2
+@angular/forms: 5.0.2
+@angular/http: 5.0.2
+@angular/platform-browser: 5.0.2
+@angular/platform-browser-dynamic: 5.0.2
+@angular/platform-server: 5.0.2
+@angular/router: 5.0.2
+typescript: 2.4.2
 ```
 * Navigate into the web-app directory and run `npm install` followed by `ng serve` to bootup the Angular app.
 
