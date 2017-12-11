@@ -7,7 +7,7 @@ class ContactsController < ApplicationController
 
     patient = User.new(firstname: params[:firstname], lastname: params[:lastname], 
                       email: params[:email], skype: params[:skype], password: password, 
-                      user_type: 1, patient_description: params[:patient_description])
+                      user_type: 1, patient_description: params[:patient_description], doctor_id: params[:doctor_id])
     
 
     if patient.save
@@ -67,7 +67,7 @@ class ContactsController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:firstname, :lastname, :email, :password, :skype, :user_type)
+    params.require(:user).permit(:firstname, :lastname, :email, :password, :skype, :user_type, :doctor_id)
   end
 
 end

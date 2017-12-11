@@ -72,7 +72,7 @@ export class CalendarComponent {
     {
       label: '<i class="fa fa-fw fa-pencil"></i>',
       onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.handleEvent('Edited', event);
+        this.handleEvent('Clicked', event);
       }
     },
     {
@@ -93,35 +93,41 @@ export class CalendarComponent {
 
   constructor(public userService: UserService, private modal: NgbModal, private http: Http, private authService: Angular2TokenService) {
     this.http = http;
-
-    this.userService.getAllContacts().subscribe((res) => {
-      this.contacts = res;
-      console.log(this.contacts);
-    });
+    console.log("HEYYYY")
 
     this.userService.getUser().subscribe((res) => {
-      document.getElementById('add-btn').setAttribute('disabled', 'disabled');
+      console.log(res.json());
       this.user = this.authService.currentUserData;
-      this.getData();
       if (this.user.user_type === 'doctor') {
-        this.userService.getSelectedContact().subscribe(
-          r => {
-            if (r != null) {
-              document.getElementById('add-btn').removeAttribute('disabled');
-              console.log(r);
-              if (this.patient_id !== r.id) {
-                this.patient_id = r.id;
-                this.getData();
+        this.userService.getAllContacts().subscribe((r) => {
+          this.contacts = r;
+          console.log(this.contacts);
+          document.getElementById('add-btn').setAttribute('disabled', 'disabled');
+          this.user = this.authService.currentUserData;
+          this.getData();
+          if (this.user.user_type === 'doctor') {
+            this.userService.getSelectedContact().subscribe(
+              r => {
+                if (r != null) {
+                  document.getElementById('add-btn').removeAttribute('disabled');
+                  console.log(r);
+                  if (this.patient_id !== r.id) {
+                    this.patient_id = r.id;
+                    this.getData();
+                  }
+                } else {
+                  document.getElementById('add-btn').setAttribute('disabled', 'disabled');
+                  this.getData()
+                }
               }
-            } else {
-              document.getElementById('add-btn').setAttribute('disabled', 'disabled');
-              this.getData()
-            }
+            );
           }
-        );
-      } else if (this.user.user_type === 'patient') {
-        this.patient_id = this.user.id;
-      }
+        });
+      } else {
+          document.getElementById('add-btn').setAttribute('disabled', 'disabled');
+          this.actions = []
+          this.getData();
+        }
     });
   }
 
@@ -151,6 +157,10 @@ export class CalendarComponent {
   }
 
   handleEvent(action: string, event: any): void {
+    if (this.user.user_type !== 'doctor') {
+      alert('Patients cannot edit events');
+      return;
+    }
     this.modalData = { event, action };
     if (action === 'Clicked') {
       let contact = this.contacts.find(c => c.id === event.patient_id);
@@ -166,6 +176,10 @@ export class CalendarComponent {
   }
 
   addEvent(): void {
+    if (this.user.user_type !== 'doctor') {
+      alert('Patients cannot edit events');
+      return;
+    }
     // if (this.patient_id < 0) {
     //   return;
     // }
@@ -205,6 +219,10 @@ export class CalendarComponent {
   }
 
   editEvent(event: any): void {
+    if (this.user.user_type !== 'doctor') {
+      alert('Patients cannot edit events');
+      return;
+    }
     let e = {
       event: event
     };
@@ -217,7 +235,11 @@ export class CalendarComponent {
 
   getData(): void {
     let options: any;
-    if (this.patient_id === -1){
+    if (this.user.user_type !== 'doctor') {
+      options = new RequestOptions({
+        search: new URLSearchParams('user_id=' + this.user.doctor_id + '&patient_id=' + this.user.id)
+      });
+    } else if (this.patient_id === -1) {
       options = new RequestOptions({
         search: new URLSearchParams('user_id=' + this.user.id)
       });
@@ -255,6 +277,10 @@ export class CalendarComponent {
   }
 
   deleteEvent(event: any): void {
+    if (this.user.user_type !== 'doctor') {
+      alert('Patients cannot edit events');
+      return;
+    }
     if (confirm('Delete event?')) {
       if (event === this.selectedEvent) {
         this.selectedEvent = null;

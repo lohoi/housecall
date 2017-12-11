@@ -22,7 +22,8 @@ export class RemindersComponent implements OnInit {
     this.http = http;
     this.userService.getUser().subscribe((res) => {
       this.user = this.authService.currentUserData;
-      if(this.user.user_type === "doctor") {
+      console.log(this.user);
+      if (this.user.user_type === 'doctor') {
         this.is_doctor = true;
         this.userService.getSelectedContact().subscribe(
           res => {
@@ -100,21 +101,27 @@ export class RemindersComponent implements OnInit {
   }
 
   getReminders() {
-    if(this.patient_id === -1){
-      console.log("patient id is not set");
-    }
-    else {
-      let options = new RequestOptions({
+    let options: any;
+    if (this.patient_id === -1) {
+      console.log('patient id is not set');
+    } else if (this.user.user_type !== 'doctor') {
+      options = new RequestOptions({
+        // Have to make a URLSearchParams with a query string
+        search: new URLSearchParams('user_id=' + this.user.doctor_id + '&patient_id=' + this.user.id)
+      });
+    } else {
+      options = new RequestOptions({
         // Have to make a URLSearchParams with a query string
         search: new URLSearchParams('user_id=' + this.user.id + '&patient_id=' + this.patient_id)
       });
-      console.log("get reminders");
-      this.http.get(environment.apiUrl + 'reminders.json', options).subscribe(
-        (res: Response) => {
-            this.reminders = res.json();
-        }
-      );
     }
+    console.log('getReminders()');
+    console.log(options);
+    this.http.get(environment.apiUrl + 'reminders.json', options).subscribe(
+      (res: Response) => {
+          this.reminders = res.json();
+      }
+    );
   }
 
   setCompleted(id: number, checked: boolean) {
@@ -130,7 +137,11 @@ export class RemindersComponent implements OnInit {
 
   }
 
-  deleteReminder = function(id: number){
+  deleteReminder = function(id: number) {
+    if (this.user.user_type === 'patient') {
+      alert('Patients cannot delete tasks');
+      return;
+    }
     if (confirm('Delete task?')) {
       let delete_idx = this.reminders.findIndex(reminder => reminder.id === id);
       this.reminders.splice(delete_idx,1);
