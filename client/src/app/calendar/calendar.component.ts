@@ -93,7 +93,6 @@ export class CalendarComponent {
 
   constructor(public userService: UserService, private modal: NgbModal, private http: Http, private authService: Angular2TokenService) {
     this.http = http;
-    console.log("HEYYYY")
 
     this.userService.getUser().subscribe((res) => {
       console.log(res.json());
@@ -157,22 +156,20 @@ export class CalendarComponent {
   }
 
   handleEvent(action: string, event: any): void {
-    if (this.user.user_type !== 'doctor') {
-      alert('Patients cannot edit events');
-      return;
-    }
+    this.selectedEvent = event;
     this.modalData = { event, action };
-    if (action === 'Clicked') {
-      let contact = this.contacts.find(c => c.id === event.patient_id);
-      console.log(contact);
-      this.userService.setSelectedContact(contact);
-      this.selectedEvent = event;
-    } else if (action === 'Dropped or resized') {
-      this.editEvent(event);
-    } else if (action === 'Deleted') {
-      this.deleteEvent(event);
+    if (this.user.user_type === 'doctor') {
+      if (action === 'Clicked') {
+        let contact = this.contacts.find(c => c.id === event.patient_id);
+        console.log(contact);
+        this.userService.setSelectedContact(contact);
+        this.selectedEvent = event;
+      } else if (action === 'Dropped or resized') {
+        this.editEvent(event);
+      } else if (action === 'Deleted') {
+        this.deleteEvent(event);
+      }
     }
-
   }
 
   addEvent(): void {
@@ -301,7 +298,9 @@ export class CalendarComponent {
   toggleEventEdit(): void {
     this.show = !this.show;
     if (this.selectedEvent) {
-      this.editEvent(this.selectedEvent);
+      if (this.user.user_type === 'doctor') {
+        this.editEvent(this.selectedEvent);
+      }
       this.selectedEvent = null;
       console.log(this.patient_id);
     }
