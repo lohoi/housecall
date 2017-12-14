@@ -109,7 +109,7 @@
   <div id="calendar-edit">
     <button
       id="add-btn"
-      *ngIf="selectedEvent == null"
+      *ngIf="showAddButton()"
       class="btn btn-primary pull-right"
       (click)="addEvent()">
       Add new
@@ -120,77 +120,95 @@
       class="btn btn-primary pull-right"
       (click)="toggleEventEdit()">
       X
-  </button>
+    </button>
     <div class="clearfix"></div>
 
     <!-- <h3 *ngIf="selectedEvent != null">{{selectedEvent.title}}</h3> -->
 
-    <input 
-    *ngIf="selectedEvent != null"
-    type="text"
-    class="form-control"
-    [(ngModel)]="selectedEvent.title"
-    (keyup)="refresh.next()">
+    <div *ngIf="showEdit()">
+        <input 
+        *ngIf="selectedEvent != null"
+        type="text"
+        class="form-control"
+        [(ngModel)]="selectedEvent.title"
+        (keyup)="refresh.next()">
+    
+        <!-- <h4 *ngIf="selectedEvent != null">{{selectedEvent.description}}</h4> -->
+        
+        <input 
+        *ngIf="selectedEvent != null"
+        type="text"
+        class="form-control"
+        [(ngModel)]="selectedEvent.description"
+        (keyup)="refresh.next()">
+        
+        <table *ngIf="selectedEvent != null" class="table table-bordered">
+        
+          <thead>
+            <tr>
+              <!-- <th>Color</th> -->
+              <th>Starts at</th>
+              <th>Ends at</th>
+            </tr>
+          </thead>
+        
+          <tbody>
+            <tr *ngIf="selectedEvent != null">
+              <!-- <td>
+                <input
+                  type="color"
+                  [(ngModel)]="selectedEvent.color.primary"
+                  (change)="refresh.next()">
+              </td> -->
+              <td>
+                <app-calendar-utils-date-time-picker
+                  [(ngModel)]="selectedEvent.start"
+                  (ngModelChange)="refresh.next()"
+                  placeholder="Not set">
+                </app-calendar-utils-date-time-picker>
+              </td>
+              <td>
+                <app-calendar-utils-date-time-picker
+                  [(ngModel)]="selectedEvent.end"
+                  (ngModelChange)="refresh.next()"
+                  placeholder="Not set">
+                </app-calendar-utils-date-time-picker>
+              </td>
+              <td>
+                <button *ngIf="user.user_type === 'doctor'"
+                  class="btn btn-danger"
+                  (click)="editEvent(selectedEvent); refresh.next()">
+                  Save
+                </button>
+                <br>
+                <br>
+                <button *ngIf="user.user_type === 'doctor'"
+                  class="btn btn-danger"
+                  (click)="deleteEvent(selectedEvent); refresh.next()">
+                  Del
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        
+        </table>
+    </div>
 
-    <!-- <h4 *ngIf="selectedEvent != null">{{selectedEvent.description}}</h4> -->
-    
-    <input 
-    *ngIf="selectedEvent != null"
-    type="text"
-    class="form-control"
-    [(ngModel)]="selectedEvent.description"
-    (keyup)="refresh.next()">
-    
-    <table *ngIf="selectedEvent != null" class="table table-bordered">
-    
-      <thead>
-        <tr>
-          <!-- <th>Color</th> -->
-          <th>Starts at</th>
-          <th>Ends at</th>
-        </tr>
-      </thead>
-    
-      <tbody>
-        <tr *ngIf="selectedEvent != null">
-          <!-- <td>
-            <input
-              type="color"
-              [(ngModel)]="selectedEvent.color.primary"
-              (change)="refresh.next()">
-          </td> -->
-          <td>
-            <app-calendar-utils-date-time-picker
-              [(ngModel)]="selectedEvent.start"
-              (ngModelChange)="refresh.next()"
-              placeholder="Not set">
-            </app-calendar-utils-date-time-picker>
-          </td>
-          <td>
-            <app-calendar-utils-date-time-picker
-              [(ngModel)]="selectedEvent.end"
-              (ngModelChange)="refresh.next()"
-              placeholder="Not set">
-            </app-calendar-utils-date-time-picker>
-          </td>
-          <td>
-            <button
-              class="btn btn-danger"
-              (click)="editEvent(selectedEvent); refresh.next()">
-              Save
-            </button>
-            <br>
-            <br>
-            <button
-              class="btn btn-danger"
-              (click)="deleteEvent(selectedEvent); refresh.next()">
-              Del
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    
-    </table>
+    <div *ngIf="showEvent()">
+        <h4
+        *ngIf="selectedEvent != null">
+        {{selectedEvent.title}}</h4>
+        
+        <h5
+        *ngIf="selectedEvent != null">
+        {{selectedEvent.description}}</h5>
+
+        <p>Start: {{selectedEvent.start}}</p>
+        <p>End: {{selectedEvent.end}}</p>
+        
+        
+        
+    </div>
   </div>
   
 </div>
