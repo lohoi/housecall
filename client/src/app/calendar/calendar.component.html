@@ -203,8 +203,8 @@
         *ngIf="selectedEvent != null">
         {{selectedEvent.description}}</h5>
 
-        <p>Start: {{selectedEvent.start}}</p>
-        <p>End: {{selectedEvent.end}}</p>
+        <p *ngIf="selectedEvent != null">Start: {{selectedEvent.start}}</p>
+        <p *ngIf="selectedEvent != null">End: {{selectedEvent.end}}</p>
         
         
         
