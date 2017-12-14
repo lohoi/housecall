@@ -2,7 +2,9 @@
 	<h5>Patient Dashboard</h5>
 </div>
 <hr style="margin:15px;">
-<div class="PatientProfile" style="display:flex; flex-wrap: wrap">
+<div class="PatientProfile" style="display:flex; flex-wrap: wrap" onclick = "setTimeout(function() {
+    SkypeWebControl.SDK.start();
+}, 200);">
     <app-notes></app-notes>
     <app-skype></app-skype>
     <app-reminders ></app-reminders>
